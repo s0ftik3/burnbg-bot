@@ -28,7 +28,7 @@ module.exports = () => async (ctx) => {
                         .resize()
                         .extra()
                 );
-                ctx.editMessageMarkup(Markup.inlineKeyboard([
+                ctx.editMessageReplyMarkup(Markup.inlineKeyboard([
                     [
                         Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
                         Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
@@ -45,7 +45,7 @@ module.exports = () => async (ctx) => {
                     .resize()
                     .extra()
             );
-            ctx.editMessageMarkup(Markup.inlineKeyboard([
+            ctx.editMessageReplyMarkup(Markup.inlineKeyboard([
                 [
                     Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
                     Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
