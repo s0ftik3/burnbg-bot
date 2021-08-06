@@ -24,9 +24,9 @@ module.exports = async (image) => {
 
         const image_over_background = await sharp(buffer)
             .resize({
-                width: 500,
-                height: 500,
-                fit: sharp.fit.contain
+                width: 512,
+                height: 512,
+                fit: sharp.fit.inside
             })
             .webp()
             .toBuffer();
