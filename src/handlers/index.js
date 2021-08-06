@@ -6,5 +6,5 @@ module.exports = {
     handleBack: require('./back'),
     handleProcessMedia: require('./processMedia'),
     handleToSticker: require('./toSticker'),
-    handleProcessText: requqire('./processText')
+    handleProcessText: require('./processText')
 };
