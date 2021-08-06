@@ -31,7 +31,7 @@ module.exports = () => async (ctx) => {
                     if (user.to_sticker) {
                         const sticker = await convertToSticker(image);
 
-                        await ctx.deleteMessage();
+                        await ctx.deleteMessage(ctx.message.message_id + 1);
 
                         ctx.replyWithSticker({ source: sticker }, {
                             reply_to_message_id: ctx.message.message_id
@@ -57,7 +57,7 @@ module.exports = () => async (ctx) => {
                 if (user.to_sticker) {
                     const sticker = await convertToSticker(image);
 
-                    await ctx.deleteMessage();
+                    await ctx.deleteMessage(ctx.message.message_id + 1);
 
                     ctx.replyWithSticker({ source: sticker }, {
                         reply_to_message_id: ctx.message.message_id

@@ -20,8 +20,12 @@ module.exports = async (image) => {
             .toBuffer();
 
         const image_over_background = await sharp(buffer)
-            .resize(500, 500)
-            .max()
+            .resize({
+                width: 500,
+                height: 500,
+                fit: sharp.fit.inside,
+                position: sharp.strategy.entropy
+            })
             .toBuffer();
 
         const sticker = await sharp(background)
