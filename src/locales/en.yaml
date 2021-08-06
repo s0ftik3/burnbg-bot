@@ -1,0 +1,24 @@
+language: 🇬🇧 English
+
+service:
+  greeting: |
+    Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.
+
+    I can also convert your image into a sticker. Go to your settings to activate this option.
+  settings: You can set up the bot here.
+  change_language: Choose the interface language.
+  language_changed: ✅ Language changed.
+
+error:
+  common: 😥 Something went wrong. Please try again or contact @vychs.
+  limit_exceeded: 👮🏻 Don't be in hurry!
+  wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
+  no_text_messages: 😕 Send me an image or a file of image instead.
+
+button:
+  language: Change Language
+  settings: Settings
+  to_sticker: Convert to Sticker ${state}
+  channel: Channel
+  support: Support
+  back: « Back
