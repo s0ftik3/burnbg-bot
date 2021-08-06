@@ -13,7 +13,11 @@ module.exports = () => async (ctx) => {
                 parse_mode: 'HTML',
                 reply_markup: Markup.inlineKeyboard([
                     [Markup.callbackButton(ctx.i18n.t('button.language'), `language`)],
-                    [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? '✅' : '' }), `to_sticker`)]
+                    [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? '✅' : '' }), `to_sticker`)],
+                    [
+                        Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
+                        Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
+                    ]
                 ])
             });
 
@@ -22,7 +26,11 @@ module.exports = () => async (ctx) => {
             ctx.replyWithHTML(ctx.i18n.t('service.settings'), {
                 reply_markup: Markup.inlineKeyboard([
                     [Markup.callbackButton(ctx.i18n.t('button.language'), `language`)],
-                    [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? '✅' : '' }), `to_sticker`)]
+                    [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? '✅' : '' }), `to_sticker`)],
+                    [
+                        Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
+                        Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
+                    ]
                 ])
             });
         }

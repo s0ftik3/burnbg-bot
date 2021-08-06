@@ -28,12 +28,6 @@ module.exports = () => async (ctx) => {
                         .resize()
                         .extra()
                 );
-                ctx.editMessageReplyMarkup(Markup.inlineKeyboard([
-                    [
-                        Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                        Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
-                    ]
-                ]));
             });
         } else {
             ctx.i18n.locale(user.language);
@@ -45,12 +39,6 @@ module.exports = () => async (ctx) => {
                     .resize()
                     .extra()
             );
-            ctx.editMessageReplyMarkup(Markup.inlineKeyboard([
-                [
-                    Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
-                ]
-            ]));
         }
     } catch (err) {
         console.error(err);

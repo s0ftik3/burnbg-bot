@@ -33,13 +33,13 @@ bot.start(handleStart());
 
 bot.on('photo', handleProcessMedia());
 bot.on('document', handleProcessMedia());
-bot.on('text', handleProcessText());
 bot.command('settings', handleSettings());
 bot.hears(['Settings', 'Настройки'], handleSettings());
 bot.action('to_sticker', handleToSticker());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());
+bot.on('text', handleProcessText());
 
 bot.on('callback_query', handleCallback());
 
