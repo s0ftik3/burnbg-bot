@@ -4,7 +4,7 @@ service:
   greeting: |
     Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.
 
-    I can also convert your image into a sticker. Go to your settings to activate this option.
+    I can also convert your image into a sticker. Go to your settings to activate this option.[ᅠ](https://i.ibb.co/jhGhD5D/Untitled-1.png)
   settings: You can set up the bot here.
   standby: 🕓 The sticker is generating...
   change_language: Choose the interface language.
