@@ -1,5 +1,6 @@
 'use strict';
 
+const User = require('../database/models/User');
 const axios = require('axios');
 const getUserSession = require('../scripts/getUserSession');
 const removeBackground = require('../scripts/removeBackground');
