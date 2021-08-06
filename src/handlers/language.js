@@ -40,8 +40,10 @@ module.exports = () => async (ctx) => {
 
             await User.updateOne({ id: ctx.from.id }, { $set: { language: language } }, () => {});
             ctx.session.user.language = language;
+            
+            ctx.deleteMessage();
 
-            ctx.editMessageText(
+            ctx.replyWithHTML(
                 ctx.i18n.t('service.language_changed'),
                 Markup.keyboard([[ctx.i18n.t('button.settings')]])
                     .resize()
