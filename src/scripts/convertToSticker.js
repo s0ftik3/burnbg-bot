@@ -13,17 +13,15 @@ module.exports = async (image) => {
             background: { r: 0, g: 0, b: 0, alpha: 0 }
         };
 
-        const background = await sharp({ create: config })
-            .webp()
-            .toBuffer();
+        const background = await sharp({ create: config }).toBuffer();
 
         const buffer = await sharp(image)
             .trim()
-            .webp()
             .toBuffer();
 
         const image_over_background = await sharp(buffer)
             .resize(500, 500)
+            .max()
             .toBuffer();
 
         const sticker = await sharp(background)

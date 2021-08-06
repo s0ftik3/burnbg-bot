@@ -15,6 +15,8 @@ module.exports = () => async (ctx) => {
 
         if (!user.to_sticker) {
             ctx.replyWithChatAction('upload_document');
+        } else {
+            ctx.replyWithHTML(ctx.i18n.t('service.standby'))
         }
         
         switch(message_type) {
@@ -28,6 +30,8 @@ module.exports = () => async (ctx) => {
                     
                     if (user.to_sticker) {
                         const sticker = await convertToSticker(image);
+
+                        await ctx.deleteMessage();
 
                         ctx.replyWithSticker({ source: sticker }, {
                             reply_to_message_id: ctx.message.message_id
@@ -52,6 +56,8 @@ module.exports = () => async (ctx) => {
         
                 if (user.to_sticker) {
                     const sticker = await convertToSticker(image);
+
+                    await ctx.deleteMessage();
 
                     ctx.replyWithSticker({ source: sticker }, {
                         reply_to_message_id: ctx.message.message_id

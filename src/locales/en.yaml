@@ -6,6 +6,7 @@ service:
 
     I can also convert your image into a sticker. Go to your settings to activate this option.
   settings: You can set up the bot here.
+  standby: 🕓 The sticker is generating...
   change_language: Choose the interface language.
   language_changed: ✅ Language changed.
 
