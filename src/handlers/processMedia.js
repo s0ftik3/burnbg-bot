@@ -36,6 +36,8 @@ module.exports = () => async (ctx) => {
                         ctx.replyWithSticker({ source: sticker }, {
                             reply_to_message_id: ctx.message.message_id
                         });
+
+                        console.log(`[${ctx.from.id}] Converted the document image to a sticker.`);
                     } else {
                         ctx.replyWithDocument({ 
                             source: image, 
@@ -43,6 +45,8 @@ module.exports = () => async (ctx) => {
                         }, {
                             reply_to_message_id: ctx.message.message_id
                         });
+
+                        console.log(`[${ctx.from.id}] Converted the document image to a no-background image.`);
                     }
                 } else {
                     return ctx.reply(ctx.i18n.t('error.wrong_file_extension'));
@@ -62,6 +66,8 @@ module.exports = () => async (ctx) => {
                     ctx.replyWithSticker({ source: sticker }, {
                         reply_to_message_id: ctx.message.message_id
                     });
+
+                    console.log(`[${ctx.from.id}] Converted the image to a sticker.`);
                 } else {
                     ctx.replyWithDocument({ 
                         source: image, 
@@ -69,6 +75,8 @@ module.exports = () => async (ctx) => {
                     }, {
                         reply_to_message_id: ctx.message.message_id
                     });
+
+                    console.log(`[${ctx.from.id}] Converted the image to a no-background image.`);
                 }
                 
                 break;

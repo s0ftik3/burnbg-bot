@@ -11,16 +11,14 @@ module.exports = () => async (ctx) => {
         if (user === null) {
             const data = {
                 id: ctx.from.id,
-                first_name: ctx.from.first_name == undefined ? null : ctx.from.first_name,
-                last_name: ctx.from.last_name == undefined ? null : ctx.from.last_name,
-                username: ctx.from.username == undefined ? null : ctx.from.username,
-                language: 'en', 
-                to_sticker: false,
-                usage: 0
+                first_name: ctx.from.first_name,
+                last_name: ctx.from.last_name === undefined ? null : ctx.from.last_name,
+                username: ctx.from.username === undefined ? null : ctx.from.username,
+                language: ctx.from.language_code === 'ru' ? ctx.from.language_code : 'en'
             };
 
             recordUser(data).then(async () => {
-                ctx.session.user = data;
+                ctx.session.user = { ...data, to_sticker: false, usage: 0 };
                 
                 await ctx.replyWithHTML(
                     ctx.i18n.t('service.greeting', { name: ctx.from.first_name }), 
