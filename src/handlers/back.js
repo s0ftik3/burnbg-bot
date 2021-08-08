@@ -10,7 +10,7 @@ module.exports = () => async (ctx) => {
 
         const direction = ctx.match[0].split(':')[1];
 
-        switch(direction) {
+        switch (direction) {
             case 'settings':
                 ctx.editMessageText(ctx.i18n.t('service.settings'), {
                     parse_mode: 'HTML',
@@ -25,6 +25,7 @@ module.exports = () => async (ctx) => {
                 });
                 break;
             default:
+                console.log('No action determined.');
                 break;
         }
 

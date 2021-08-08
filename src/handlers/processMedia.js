@@ -19,9 +19,10 @@ module.exports = () => async (ctx) => {
             ctx.replyWithHTML(ctx.i18n.t('service.standby'))
         }
         
-        switch(message_type) {
+        switch (message_type) {
             case 'document':
                 const mime_type = ctx.message.document.mime_type;
+                
                 if (mime_type === 'image/jpeg' || mime_type === 'image/png') {
                     const url = await removeBackground(ctx);
                     const image = await axios.get(url, {
@@ -81,6 +82,7 @@ module.exports = () => async (ctx) => {
                 
                 break;
             default:
+                console.log('No action determined.');
                 break;
         }
 
