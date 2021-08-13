@@ -20,6 +20,21 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: 0
     },
+    converted_to_file: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    converted_to_sticker: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    last_time_used: { 
+        type: Date,
+        required: false,
+        default: 0
+    },
     timestamp: {
         type: Date,
         required: false,

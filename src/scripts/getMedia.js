@@ -2,6 +2,7 @@
 
 const axios = require('axios');
 const config = require('../../config');
+const replyWithError = require('./replyWithError');
 
 module.exports = async (ctx) => {
     try {
@@ -9,14 +10,13 @@ module.exports = async (ctx) => {
         const file_id = (message_type === 'document') ? ctx.message.document.file_id : ctx.update.message.photo.reverse()[0].file_id;
         const destination = `https://api.telegram.org/bot${config.token}/getFile?file_id=${file_id}`;
 
-        const file = await axios(destination).then((response) => {
-            if (response.data.result.file_size > 20971520) return null;
-            return response.data.result.file_path
-        });
+        const file = await axios(destination).then((response) => response.data.result);
+
+        if (file.file_size >= 20971520) return;
 
         const image_data = await axios({
             method: 'GET',
-            url: `https://api.telegram.org/file/bot${config.token}/${file}`,
+            url: `https://api.telegram.org/file/bot${config.token}/${file.file_path}`,
             responseType: 'stream',
         }).then((response) => response.data);
 

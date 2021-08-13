@@ -8,7 +8,11 @@ const getMedia = require('./getMedia');
 module.exports = async (ctx) => {
     try {
         const data = new FormData();
-        data.append('file', await getMedia(ctx));
+        const file = await getMedia(ctx);
+
+        if (!file) return null;
+
+        data.append('file', file);
         data.append('mattingType', '6');
 
         const url = await axios({
@@ -20,7 +24,7 @@ module.exports = async (ctx) => {
             },
             data: data
         })
-        .then(response => response.data.data.bgRemoved)
+        .then(response => response.data?.data?.bgRemoved)
         .catch(error => console.error(error));
 
         return url;

@@ -4,6 +4,7 @@ module.exports = (ctx, code) => {
     try {
         switch (code) {
             case 0:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));
                 console.error({
                     code: 0,
@@ -17,7 +18,25 @@ module.exports = (ctx, code) => {
                 const b = () => ctx.replyWithHTML(ctx.i18n.t('error.limit_exceeded'));
                 (ctx.updateType === 'callback_query') ? a() : b();
                 break;
+            case 2:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.wrong_file_extension'));
+                break;
+            case 3:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.common_important'));
+                console.error({
+                    code: 2,
+                    type: 'error',
+                    message: 'The host token has been expired.'
+                });
+                break;
+            case 4:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.file_too_big'));
+                break;
             default:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));
                 console.error({
                     code: 'default',

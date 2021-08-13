@@ -12,9 +12,11 @@ service:
 
 error:
   common: 😥 Something went wrong. Please try again or contact @vychs.
+  common_important: 😥 The service didn't respond. Please contact @vychs to resolve the issue.
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
+  file_too_big: ✋ Your file is too big. Please, send me files up to 20MB.
 
 button:
   language: Change Language
