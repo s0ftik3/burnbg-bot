@@ -18,7 +18,7 @@ module.exports = () => async (ctx) => {
             };
 
             recordUser(data).then(async () => {
-                ctx.session.user = { ...data, to_sticker: false };
+                ctx.session.user = { ...data, to_sticker: false, service: 0 };
                 
                 await ctx.replyWithHTML(
                     ctx.i18n.t('service.greeting', { name: ctx.from.first_name }), 

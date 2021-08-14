@@ -22,7 +22,8 @@ const {
     handleBack,
     handleProcessMedia,
     handleToSticker,
-    handleProcessText
+    handleProcessText,
+    handleChangeService
 } = require('./src/handlers');
 
 bot.use(i18n.middleware());
@@ -36,6 +37,7 @@ bot.on('document', handleProcessMedia());
 bot.command('settings', handleSettings());
 bot.hears(['Settings', 'Настройки'], handleSettings());
 bot.action('to_sticker', handleToSticker());
+bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());

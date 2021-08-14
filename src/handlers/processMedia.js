@@ -25,14 +25,20 @@ module.exports = () => async (ctx) => {
             ctx.replyWithHTML(ctx.i18n.t('service.standby'))
         }
 
-        const url = await removeBackground(ctx);
+        const result = await removeBackground(ctx);
 
-        if (url === undefined) return replyWithError(ctx, 3);
-        if (url === null) return replyWithError(ctx, 4);
+        if (result === undefined) return replyWithError(ctx, 3);
+        if (result === null) return replyWithError(ctx, 4);
 
-        const image = await axios.get(url, {
-            responseType: 'arraybuffer'
-        }).then(response => Buffer.from(response.data, 'binary'));
+        let image;
+
+        if (user.service === 1) {
+            image = Buffer.from(result, 'base64');
+        } else {
+            image = await axios.get(result, {
+                responseType: 'arraybuffer'
+            }).then(response => Buffer.from(response.data, 'binary'));   
+        }
 
         if (user.to_sticker) {
             const sticker = await convertToSticker(image);
@@ -63,6 +69,7 @@ module.exports = () => async (ctx) => {
             },
             $set: { last_time_used: new Date() }
         }, () => {});
+        
         ctx.session.user.usage = user.usage + 1;
         ctx.session.user.converted_to_sticker = user.converted_to_sticker + 1;
         ctx.session.user.converted_to_file = user.converted_to_file + 1;

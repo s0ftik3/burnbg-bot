@@ -9,8 +9,8 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        User.updateOne({ id: ctx.from.id }, { $set: { to_sticker: user.to_sticker ? false : true } }, () => {});
-        ctx.session.user.to_sticker = user.to_sticker ? false : true;
+        User.updateOne({ id: ctx.from.id }, { $set: { service: user.service === 0 ? 1 : 0 } }, () => {});
+        ctx.session.user.service = user.service === 0 ? 1 : 0;
         
         ctx.editMessageReplyMarkup(Markup.inlineKeyboard([
             [
@@ -24,7 +24,11 @@ module.exports = () => async (ctx) => {
             ]
         ]));
 
-        ctx.answerCbQuery();
+        if (ctx.session.user.service === 1) {
+            ctx.answerCbQuery(ctx.i18n.t('service.warning'), true);
+        } else {
+            ctx.answerCbQuery();
+        }
     } catch (err) {
         console.error(err);
     }

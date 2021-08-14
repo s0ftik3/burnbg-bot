@@ -12,6 +12,7 @@ service:
   standby: 🕓 Please, standby while sticker is generating...
   change_language: Choose the interface language.
   language_changed: ✅ Language changed.
+  warning: The second service you just chose has limitations. You will get compressed images and might encounter limits.
 
 error:
   common: 😥 Something went wrong. Please try again or contact @vychs.
@@ -26,6 +27,7 @@ button:
   language: Change Language
   settings: Settings
   to_sticker: Convert to Sticker ${state}
+  service: Service ${state}
   channel: Channel
   support: Support
   back: « Back

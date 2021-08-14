@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: false
     },
+    service: {
+        type: Number,
+        required: false,
+        default: 0
+    },
     usage: {
         type: Number,
         required: false,

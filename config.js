@@ -1,6 +1,7 @@
 module.exports = {
     token: process.env.TOKEN,
     host_token: process.env.HOST_TOKEN,
+    host2_token: process.env.HOST2_TOKEN,
     database: process.env.DATABASE,
     admin: process.env.ADMIN,
     host: process.env.HOST,
