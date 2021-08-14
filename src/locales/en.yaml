@@ -2,10 +2,13 @@ language: 🇬🇧 English
 
 service:
   greeting: |
-    Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+    🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    I can also convert your image into a sticker. Go to your settings to activate this option.
-  settings: You can set up the way the bot works here.
+    ⭐️ I can also convert your image into a sticker. Go to your settings to activate this option.
+  settings: |
+    You can set up the way the bot works here.
+
+    For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
   standby: 🕓 Please, standby while sticker is generating...
   change_language: Choose the interface language.
   language_changed: ✅ Language changed.

@@ -2,6 +2,7 @@
 
 const getUserSession = require('../scripts/getUserSession');
 const Markup = require('telegraf/markup');
+const createStatsObject = require('../scripts/createStatsObject');
 
 module.exports = () => async (ctx) => {
     try {
@@ -12,7 +13,7 @@ module.exports = () => async (ctx) => {
 
         switch (direction) {
             case 'settings':
-                ctx.editMessageText(ctx.i18n.t('service.settings'), {
+                ctx.editMessageText(ctx.i18n.t('service.settings', createStatsObject(ctx, user)), {
                     parse_mode: 'HTML',
                     reply_markup: Markup.inlineKeyboard([
                         [Markup.callbackButton(ctx.i18n.t('button.language'), `language`)],
