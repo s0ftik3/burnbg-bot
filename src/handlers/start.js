@@ -19,7 +19,8 @@ module.exports = () => async (ctx) => {
 
             recordUser(data).then(async () => {
                 ctx.session.user = { ...data, to_sticker: false, service: 0 };
-                
+                ctx.i18n.locale(data.language);
+
                 await ctx.replyWithHTML(
                     ctx.i18n.t('service.greeting', { name: ctx.from.first_name }), 
                     Markup.keyboard([[ctx.i18n.t('button.settings')]])
