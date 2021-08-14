@@ -63,6 +63,9 @@ module.exports = () => async (ctx) => {
             },
             $set: { last_time_used: new Date() }
         }, () => {});
+        ctx.session.user.usage = user.usage + 1;
+        ctx.session.user.converted_to_sticker = user.converted_to_sticker + 1;
+        ctx.session.user.converted_to_file = user.converted_to_file + 1;
     } catch (err) {
         console.error(err);
     }
