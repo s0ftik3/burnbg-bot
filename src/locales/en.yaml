@@ -19,6 +19,7 @@ error:
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
+  no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
   file_too_big: ✋ Your file is too big. Please, send me files up to 20MB.
 
 button:

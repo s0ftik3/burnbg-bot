@@ -7,7 +7,8 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        return ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages'));
+        const i = Math.floor(Math.random() * 101);
+        return ctx.replyWithHTML(ctx.i18n.t((i === 100) ? 'error.no_text_messages_egg' : 'error.no_text_messages'));
     } catch (err) {
         console.error(err);
     }
