@@ -7,8 +7,14 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        const i = Math.floor(Math.random() * 101);
-        return ctx.replyWithHTML(ctx.i18n.t((i === 100) ? 'error.no_text_messages_egg' : 'error.no_text_messages'));
+        ctx.session.user.sent_text = ctx.session.user.sent_text === undefined ? 1 : ctx.session.user.sent_text + 1 ;
+
+        if (ctx.session.user.sent_text === 20) {
+            ctx.session.user.sent_text = 0;
+            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages_egg'));
+        } else {
+            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages'));
+        }
     } catch (err) {
         console.error(err);
     }
