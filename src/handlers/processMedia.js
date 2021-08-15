@@ -29,6 +29,7 @@ module.exports = () => async (ctx) => {
 
         if (result === undefined) return replyWithError(ctx, 3);
         if (result === null) return replyWithError(ctx, 4);
+        if (result === 'SWITCH_TOKEN') return replyWithError(ctx, 5);
 
         let image;
 

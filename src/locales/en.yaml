@@ -15,13 +15,17 @@ service:
   warning: The second service you just chose has limitations. You will get compressed images and might encounter limits.
 
 error:
-  common: 😥 Something went wrong. Please try again or contact @vychs.
-  common_important: 😥 The service didn't respond. Please contact @vychs to resolve the issue.
+  common: 😥 Something went wrong. Please try again or see @s0ftik3.
+  common_important: 😥 The service didn't respond. Please contact @vychs or check @s0ftik3 to resolve the issue.
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
   no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
   file_too_big: ✋ Your file is too big. Please, send me files up to 20MB.
+  switched_tokens: |
+    😞 I am sorry, please try again the same picture I'm switching accounts, you will probably need to send me a picture several times.
+
+    If nothing changes and I keep sending you this message, contact @vychs.
 
 button:
   language: Change Language

@@ -35,6 +35,10 @@ module.exports = (ctx, code) => {
                 ctx.i18n.locale(ctx.session.user.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.file_too_big'));
                 break;
+            case 5:
+                ctx.i18n.locale(ctx.session.user.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.switched_tokens'));
+                break;
             default:
                 ctx.i18n.locale(ctx.session.user.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));
