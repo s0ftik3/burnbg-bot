@@ -1,9 +1,9 @@
 'use strict';
 
+const Bot = require('../database/models/Bot');
 const User = require('../database/models/User');
-const axios = require('axios');
 const getUserSession = require('../scripts/getUserSession');
-const removeBackground = require('../scripts/removeBackground');
+const RemoveBackground = require('../scripts/removeBackground');
 const convertToSticker = require('../scripts/convertToSticker');
 const replyWithError = require('../scripts/replyWithError');
 
@@ -12,37 +12,54 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        const message_type = (ctx.message.document) ? 'document' : 'photo';
+        const data = {
+            ctx: ctx,
+            language: user.language,
+            message: (ctx.message.document) ?
+                { 
+                    type: 'document', 
+                    mime: ctx.message.document.mime_type,
+                    file_id: ctx.message?.document.file_id
+                } 
+                : { type: 'photo', file_id: ctx.update?.message?.photo.reverse()[0].file_id },
+            service: user.service,
+            output: (user.to_sticker) ? 'sticker' : 'file'
+        };
 
-        if (message_type === 'document') {
-            const mime_type = ctx.message.document.mime_type;
-            if (mime_type !== 'image/jpeg' && mime_type !== 'image/png') return replyWithError(ctx, 2);
-        }
+        if (data.message?.mime !== undefined 
+            && mime_type !== 'image/jpeg' 
+            && mime_type !== 'image/png') return replyWithError(ctx, 2);
 
-        if (!user.to_sticker) {
+        if (data.output === 'file') {
             ctx.replyWithChatAction('upload_document');
         } else {
-            ctx.replyWithHTML(ctx.i18n.t('service.standby'))
+            ctx.replyWithHTML(ctx.i18n.t('service.standby'));
         }
 
-        const result = await removeBackground(ctx);
+        const removeBackground = new RemoveBackground(data);
+        const result = await removeBackground.main()
+            .then(response => response)
+            .catch(err => err);
 
-        if (result === undefined) return replyWithError(ctx, 3);
-        if (result === null) return replyWithError(ctx, 4);
-        if (result === 'SWITCH_TOKEN') return replyWithError(ctx, 5);
+        if (result?.code === 3) return replyWithError(ctx, 3);
+        if (result?.code === 4) return replyWithError(ctx, 4);
+        if (result?.code === 5) return replyWithError(ctx, 5);
+        if (result?.code === 6) return replyWithError(ctx, 6);
+        if (result?.code === 7) return replyWithError(ctx, 7);
+        if (result?.code === 8) return replyWithError(ctx, 8);
+        if (result?.code === 10) return replyWithError(ctx, 10);
 
-        let image;
+        if (data.output === 'file') {
+            ctx.replyWithDocument({ 
+                source: result.buffer, 
+                filename: '@burnbgbot.png' 
+            }, {
+                reply_to_message_id: ctx.message.message_id
+            });
 
-        if (user.service === 1) {
-            image = Buffer.from(result, 'base64');
+            console.log(`[${ctx.from.id}] Converted to a no-background image.`);
         } else {
-            image = await axios.get(result, {
-                responseType: 'arraybuffer'
-            }).then(response => Buffer.from(response.data, 'binary'));   
-        }
-
-        if (user.to_sticker) {
-            const sticker = await convertToSticker(image);
+            const sticker = await convertToSticker(result.buffer);
 
             await ctx.deleteMessage(ctx.message.message_id + 1);
 
@@ -51,15 +68,6 @@ module.exports = () => async (ctx) => {
             });
 
             console.log(`[${ctx.from.id}] Converted to a sticker.`);
-        } else {
-            ctx.replyWithDocument({ 
-                source: image, 
-                filename: '@burnbgbot.png' 
-            }, {
-                reply_to_message_id: ctx.message.message_id
-            });
-
-            console.log(`[${ctx.from.id}] Converted to a no-background image.`);
         }
 
         User.updateOne({ id: ctx.from.id }, { 
@@ -69,6 +77,14 @@ module.exports = () => async (ctx) => {
                 converted_to_file: (user.to_sticker) ? 0 : 1
             },
             $set: { last_time_used: new Date() }
+        }, () => {});
+        
+        Bot.updateOne({ id: 1 }, { 
+            $set: {
+                acitve_token: ctx.session.bot.acitve_token,
+                inactive_tokens: ctx.session.bot.inactive_tokens,
+                number: ctx.session.bot.number
+            }
         }, () => {});
         
         ctx.session.user.usage = user.usage + 1;

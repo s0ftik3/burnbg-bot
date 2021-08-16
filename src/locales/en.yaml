@@ -14,6 +14,7 @@ service:
   language_changed: ✅ Language changed.
   warning: The second service you just chose has limitations. You will get compressed images and might encounter limits.
   service_no_change: You're not able to switch between services now.
+  still_working: 🤖 I am still working! The image processing will take a few seconds more...
 
 error:
   common: 😥 Something went wrong. Please try again or see @s0ftik3.
@@ -27,6 +28,7 @@ error:
     😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times.
 
     If nothing changes and I keep sending you this message, contact @vychs.
+  failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
 
 button:
   language: Change Language

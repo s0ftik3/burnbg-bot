@@ -11,7 +11,7 @@ module.exports = () => async (ctx) => {
         if (user === null) {
             const data = {
                 id: ctx.from.id,
-                first_name: ctx.from.first_name,
+                first_name: ctx.from.first_name.replace(/[<>]/g, ''),
                 last_name: ctx.from.last_name === undefined ? null : ctx.from.last_name,
                 username: ctx.from.username === undefined ? null : ctx.from.username,
                 language: ctx.from.language_code === 'ru' ? ctx.from.language_code : 'en'
@@ -22,7 +22,7 @@ module.exports = () => async (ctx) => {
                 ctx.i18n.locale(data.language);
 
                 await ctx.replyWithHTML(
-                    ctx.i18n.t('service.greeting', { name: ctx.from.first_name }), 
+                    ctx.i18n.t('service.greeting', { name: data.first_name }), 
                     Markup.keyboard([[ctx.i18n.t('button.settings')]])
                         .resize()
                         .extra()
@@ -33,7 +33,7 @@ module.exports = () => async (ctx) => {
             ctx.session.user = user;
             
             await ctx.replyWithHTML(
-                ctx.i18n.t('service.greeting', { name: ctx.from.first_name }), 
+                ctx.i18n.t('service.greeting', { name: ctx.from.first_name.replace(/[<>]/g, '') }), 
                 Markup.keyboard([[ctx.i18n.t('button.settings')]])
                     .resize()
                     .extra()

@@ -1,5 +1,5 @@
 # Burn Background Bot
-[![release](https://img.shields.io/badge/release-v1.2.4-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v1.2.5-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![size](https://img.shields.io/github/languages/code-size/s0ftik3/random-animals)]()
 
@@ -9,6 +9,15 @@ Telegram description: Remove image backgrounds automatically in a few seconds. D
 
 ## About
 If you don't want to waste time and manually remove background of your desired image, this bot is for you. You can also convert your image to a sticker without background.
+
+## Translators
+
+* Italian by [Seba](https://t.me/probably_dead)
+
+Don't see your language on the list? Add it!
+Text to be translated is found in `src/locales/en.yaml`
+
+Fork this [repository](https://github.com/thomaspark/gridgarden/), add your translations, and submit a pull request.
 
 ## Credits
 - Author on [Telegram](https://t.me/vychs)
