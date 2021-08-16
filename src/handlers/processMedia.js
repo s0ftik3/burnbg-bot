@@ -13,9 +13,9 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        // const is_member = await checkSubscription(ctx).then(response => response);
+        const is_member = await checkSubscription(ctx).then(response => response);
 
-        // if (user.usage > 30 && !is_member) return replyWithError(ctx, 11);
+        if (user.usage > 30 && !is_member) return replyWithError(ctx, 11);
 
         const data = {
             ctx: ctx,
