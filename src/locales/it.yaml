@@ -34,7 +34,7 @@ button:
   language: Cambia Lingua
   settings: Impostazioni
   to_sticker: Converti a Sticker ${state}
-  service: Seervizio ${state}
+  service: Servizio ${state}
   channel: Canale
   support: Supporto
   back: « Indietro

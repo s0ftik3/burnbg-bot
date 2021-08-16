@@ -45,7 +45,7 @@ module.exports = () => async (ctx) => {
                 await User.updateOne({ id: ctx.from.id }, { $set: { language: language } }, () => {});
                 ctx.session.user.language = language;
                 
-                await ctx.deleteMessage();
+                await ctx.deleteMessage().catch(() => {});
     
                 ctx.replyWithHTML(
                     ctx.i18n.t('service.language_changed'),

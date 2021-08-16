@@ -61,7 +61,7 @@ module.exports = () => async (ctx) => {
         } else {
             const sticker = await convertToSticker(result.buffer);
 
-            await ctx.deleteMessage(ctx.message.message_id + 1);
+            await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
 
             ctx.replyWithSticker({ source: sticker }, {
                 reply_to_message_id: ctx.message.message_id
