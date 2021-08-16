@@ -27,8 +27,8 @@ module.exports = () => async (ctx) => {
         };
 
         if (data.message?.mime !== undefined 
-            && mime_type !== 'image/jpeg' 
-            && mime_type !== 'image/png') return replyWithError(ctx, 2);
+            && data.message?.mime !== 'image/jpeg' 
+            && data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
 
         if (data.output === 'file') {
             ctx.replyWithChatAction('upload_document');
