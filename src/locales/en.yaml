@@ -17,8 +17,8 @@ service:
   still_working: 🤖 I am still working! The image processing will take a few seconds more...
 
 error:
-  common: 😥 Something went wrong. Please try /start again or see @s0ftik3.
-  common_important: 😥 The service didn't respond. Please contact @vychs or check @s0ftik3 to resolve the issue.
+  common: 😥 Something went wrong. Please try /start again or see @softik.
+  common_important: 😥 The service didn't respond. Please contact @vychs or check @softik to resolve the issue.
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
@@ -29,6 +29,7 @@ error:
 
     If nothing changes and I keep sending you this message, contact @vychs.
   failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
+  not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
 
 button:
   language: Change Language
@@ -37,4 +38,5 @@ button:
   service: Service ${state}
   channel: Channel
   support: Support
+  subscribe: Subscribe
   back: « Back

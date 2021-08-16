@@ -13,7 +13,8 @@ module.exports = {
     host2_token: process.env.HOST2_TOKEN,
     database: process.env.DATABASE,
     admin: process.env.ADMIN,
-    host: process.env.HOST,
+    host: process.env.DATABASE,
+    channel: process.env.CHANNEL,
     handler_timeout: 100,
     limit: {
         window: 1500,

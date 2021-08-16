@@ -1,5 +1,7 @@
 'use strict';
 
+const Markup = require('telegraf/markup');
+
 module.exports = (ctx, code) => {
     try {
         switch (code) {
@@ -77,6 +79,14 @@ module.exports = (ctx, code) => {
                     code: 10,
                     type: 'error',
                     message: 'Failed to downloaded processed photo'
+                });
+                break;
+            case 11:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.not_a_member'), {
+                    reply_markup: Markup.inlineKeyboard([
+                        [Markup.urlButton(ctx.i18n.t('button.subscribe'), 'https://t.me/softik')]
+                    ])
                 });
                 break;
             default:

@@ -6,11 +6,16 @@ const getUserSession = require('../scripts/getUserSession');
 const RemoveBackground = require('../scripts/removeBackground');
 const convertToSticker = require('../scripts/convertToSticker');
 const replyWithError = require('../scripts/replyWithError');
+const checkSubscription = require('../scripts/checkSubscription');
 
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
+
+        const is_member = await checkSubscription(ctx).then(response => response);
+
+        if (user.usage > 30 && !is_member) return replyWithError(ctx, 11);
 
         const data = {
             ctx: ctx,

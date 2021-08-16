@@ -17,8 +17,8 @@ service:
   still_working: 🤖 Sto ancora lavorando! L'elaborazione dell'immagine richiederà qualche secondo in più...
 
 error:
-  common: 😥 Qualcosa è andato storto. Prova /start ancora o controlla su @s0ftik3.
-  common_important: 😥 Il servizio non ha risposto. Per favore contatta @vychs o controlla su @s0ftik3 per risolvere il problema.
+  common: 😥 Qualcosa è andato storto. Prova /start ancora o controlla su @softik.
+  common_important: 😥 Il servizio non ha risposto. Per favore contatta @vychs o controlla su @softik per risolvere il problema.
   limit_exceeded: 👮🏻 Non avere fretta!
   wrong_file_extension: 📄 Estensione del file errata. Sono supportati solo JPG/JPEG/PNG.
   no_text_messages: 😕 Inviami invece un'immagine o un'immagine.
@@ -29,6 +29,7 @@ error:
 
     Se non cambia nulla e continuo ad inviarti questo messaggio, contatta @vychs.
   failed_download_file: 😞 Impossibile scaricare questa foto. Per favore, prova con qualche altra foto.
+  not_a_member: ✋ Per continuare a utilizzare il bot, iscriviti al canale. È il canale degli sviluppatori e lì non vedrai spam. Il bot è gratuito e questo è il tuo supporto :)
 
 button:
   language: Cambia Lingua
@@ -37,4 +38,5 @@ button:
   service: Servizio ${state}
   channel: Canale
   support: Supporto
+  subscribe: Sottoscrivi
   back: « Indietro

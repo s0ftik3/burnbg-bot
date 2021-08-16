@@ -40,6 +40,11 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: 0
     },
+    channel_member: {
+        type: Boolean,
+        required: false,
+        default: null
+    },
     timestamp: {
         type: Date,
         required: false,
