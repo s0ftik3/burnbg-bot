@@ -35,7 +35,7 @@ bot.start(handleStart());
 bot.on('photo', handleProcessMedia());
 bot.on('document', handleProcessMedia());
 bot.command('settings', handleSettings());
-bot.hears(['Settings', 'Настройки'], handleSettings());
+bot.hears(['Settings', 'Настройки', 'Impostazioni'], handleSettings());
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());

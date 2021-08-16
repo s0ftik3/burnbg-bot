@@ -6,6 +6,7 @@ module.exports = async (ctx) => {
     try {
         if (ctx.session.user === undefined) {
             const user = await getUser(ctx.from.id);
+            if (user === null) return { user: { language: 'en' } };
             ctx.session.user = user;
 
             return user;

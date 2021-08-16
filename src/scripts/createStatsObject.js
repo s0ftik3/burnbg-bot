@@ -36,6 +36,16 @@ module.exports = (ctx, user) => {
                     stickers: stickers
                 };
                 return obj_ru;
+            case 'it':
+                const obj_it = {
+                    range: moment(user.timestamp).from(new Date(), true),
+                    converted_to_sticker: user.converted_to_sticker === undefined ? 0 : user.converted_to_sticker,
+                    converted_to_file: user.converted_to_file === undefined ? 0 : user.converted_to_file,
+                    plural: (user.usage > 1) ? 's' : '',
+                    usage: user.usage === undefined ? 0 : user.usage
+                };
+
+                return obj_it;
             default:
                 replyWithError(ctx, 0);
                 break;

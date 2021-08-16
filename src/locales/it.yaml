@@ -1,0 +1,40 @@
+﻿language: 🇮🇹 Italiano
+
+service:
+  greeting: |
+    🖐 Ciao, <b>${name}</b>! Posso rimuovere lo sfondo di ogni foto che mi mandi. Prova a mandarmi un file o una foto e osserva la magia.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+
+    ⭐️ Posso anche convertire la tua immagine in uno sticker. Vai nelle impostazioni per attivare questa opzione.
+  settings: |
+    Puoi decidere come impostare il bot qui.
+
+    Per <b>${range}</b> che hai processato <b>${usage} image${plural}</b> dei quali <b>${converted_to_file} convertiti</b> a file e <b>${converted_to_sticker} convertiti</b> a sticker.
+  standby: 🕓 Per favore, aspetta mentre lo sticker viene generato...
+  change_language: Scegli la lingua dell'interfaccia.
+  language_changed: ✅ Lingua cambiata.
+  warning: Il secondo servizio che hai appena scelto contiene delle limitazioni. Otterrai immagini compresse e potresti incontrare dei limiti.
+  service_no_change: Non puoi passare da un servizio all'altro ora.
+  still_working: 🤖 Sto ancora lavorando! L'elaborazione dell'immagine richiederà qualche secondo in più...
+
+error:
+  common: 😥 Qualcosa è andato storto. Prova ancora o controlla su @s0ftik3.
+  common_important: 😥 Il servizio non ha risposto. Per favore contatta @vychs o controlla su @s0ftik3 per risolvere il problema.
+  limit_exceeded: 👮🏻 Non avere fretta!
+  wrong_file_extension: 📄 Estensione del file errata. Sono supportati solo JPG/JPEG/PNG.
+  no_text_messages: 😕 Inviami invece un'immagine o un'immagine.
+  no_text_messages_egg: 😠 Ti è stato detto di inviare un' I-M-M-A-G-I-N-E!
+  file_too_big: ✋ Il file è troppo grosso. Per favore mandami un file fino a 20 MB.
+  switched_tokens: |
+    😞 Mi dispiace, prova di nuovo con la stessa immagine. C'è un carico enorme per il bot ora. Probabilmente dovrai inviarmi la foto più volte.
+
+    Se non cambia nulla e continuo ad inviarti questo messaggio, contatta @vychs.
+  failed_download_file: 😞 Impossibile scaricare questa foto. Per favore, prova con qualche altra foto.
+
+button:
+  language: Cambia Lingua
+  settings: Impostazioni
+  to_sticker: Converti a Sticker ${state}
+  service: Seervizio ${state}
+  channel: Canale
+  support: Supporto
+  back: « Indietro

@@ -1,5 +1,5 @@
 # Burn Background Bot
-[![release](https://img.shields.io/badge/release-v1.2.6-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v1.2.7-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![size](https://img.shields.io/github/languages/code-size/s0ftik3/random-animals)]()
 
@@ -17,8 +17,9 @@ If you don't want to waste time and manually remove background of your desired i
 Don't see your language on the list? Add it!
 Text to be translated is found in `src/locales/en.yaml`
 
-Fork this [repository](https://github.com/thomaspark/gridgarden/), add your translations, and submit a pull request.
+Fork this [repository](https://github.com/s0ftik3/burnbg-bot), add your translations, and submit a pull request.
 
 ## Credits
 - Author on [Telegram](https://t.me/vychs)
 - Developer's channel on [Telegram](https://t.me/softik)
+- Thanks to [@pryid](https://t.me/pryid), [@Johnny321123](https://t.me/Johnny321123) for tokens providing.
