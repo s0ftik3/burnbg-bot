@@ -17,8 +17,8 @@ service:
   still_working: 🤖 Sto ancora lavorando! L'elaborazione dell'immagine richiederà qualche secondo in più...
 
 error:
-  common: 😥 Qualcosa è andato storto. Prova /start ancora o controlla su @softik.
-  common_important: 😥 Il servizio non ha risposto. Per favore contatta @vychs o controlla su @softik per risolvere il problema.
+  common: 😥 Qualcosa è andato storto. Prova /start ancora.
+  common_important: 😥 Il servizio non ha risposto. Per favore contatta @vychs per risolvere il problema.
   limit_exceeded: 👮🏻 Non avere fretta!
   wrong_file_extension: 📄 Estensione del file errata. Sono supportati solo JPG/JPEG/PNG.
   no_text_messages: 😕 Inviami invece un'immagine o un'immagine.

@@ -14,7 +14,6 @@ module.exports = () => async (ctx) => {
         ctx.i18n.locale(user.language);
 
         const is_member = await checkSubscription(ctx).then(response => response);
-
         if (user.usage > 30 && !is_member) return replyWithError(ctx, 11);
 
         const data = {
@@ -93,8 +92,8 @@ module.exports = () => async (ctx) => {
         }, () => {});
         
         ctx.session.user.usage = user.usage + 1;
-        ctx.session.user.converted_to_sticker = user.converted_to_sticker + 1;
-        ctx.session.user.converted_to_file = user.converted_to_file + 1;
+        ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
+        ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file + 1 : user.converted_to_file + 1;
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);

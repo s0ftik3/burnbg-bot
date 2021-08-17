@@ -17,8 +17,8 @@ service:
   still_working: 🤖 I am still working! The image processing will take a few seconds more...
 
 error:
-  common: 😥 Something went wrong. Please try /start again or see @softik.
-  common_important: 😥 The service didn't respond. Please contact @vychs or check @softik to resolve the issue.
+  common: 😥 Something went wrong. Please try /start again.
+  common_important: 😥 The service didn't respond. Please contact @vychs to resolve the issue.
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.

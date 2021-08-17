@@ -14,6 +14,7 @@ const i18n = new TelegrafI18n({
 });
 
 const connect = require('./src/database/connect');
+const resetTokens = require('./src/database/resetTokens');
 const {
     handleStart,
     handleCallback,
@@ -45,7 +46,8 @@ bot.on('text', handleProcessText());
 
 bot.on('callback_query', handleCallback());
 
-bot.launch().then(() => {
+bot.launch().then(async () => {
     console.log('[Bot] I have been started.');
-    connect();
+    await connect();
+    await resetTokens();
 });
