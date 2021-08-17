@@ -41,6 +41,16 @@ module.exports = () => async (ctx) => {
         const result = await removeBackground.main()
             .then(response => response)
             .catch(err => err);
+
+        if (data.service === 0) {
+            await Bot.updateOne({ id: 1 }, { 
+                $set: {
+                    acitve_token: ctx.session.bot.acitve_token,
+                    inactive_tokens: ctx.session.bot.inactive_tokens,
+                    number: ctx.session.bot.number
+                }
+            }, () => {});
+        }
         
         if (result?.code === 3) return replyWithError(ctx, 3);
         if (result?.code === 4) return replyWithError(ctx, 4);
@@ -84,16 +94,6 @@ module.exports = () => async (ctx) => {
             },
             $set: { last_time_used: new Date() }
         }, () => {});
-
-        if (data.service === 0) {
-            Bot.updateOne({ id: 1 }, { 
-                $set: {
-                    acitve_token: ctx.session.bot.acitve_token,
-                    inactive_tokens: ctx.session.bot.inactive_tokens,
-                    number: ctx.session.bot.number
-                }
-            }, () => {});
-        }
         
         ctx.session.user.usage = user.usage + 1;
         ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
