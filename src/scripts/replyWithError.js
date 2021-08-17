@@ -56,7 +56,7 @@ module.exports = (ctx, code) => {
                 break;
             case 8:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
-                ctx.replyWithHTML(ctx.i18n.t('error.common'));
+                ctx.replyWithHTML(ctx.i18n.t('error.api_error'));
                 console.error({
                     code: 8,
                     type: 'error',
@@ -87,6 +87,15 @@ module.exports = (ctx, code) => {
                     reply_markup: Markup.inlineKeyboard([
                         [Markup.urlButton(ctx.i18n.t('button.subscribe'), 'https://t.me/softik')]
                     ])
+                });
+                break;
+            case 12:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.api_error'));
+                console.error({
+                    code: 12,
+                    type: 'error',
+                    message: 'Failed to call 2nd API'
                 });
                 break;
             default:

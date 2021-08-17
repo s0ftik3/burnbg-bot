@@ -1,6 +1,7 @@
 'use strict';
 
 const getUserSession = require('../scripts/getUserSession');
+const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {

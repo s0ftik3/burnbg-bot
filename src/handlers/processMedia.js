@@ -19,6 +19,7 @@ module.exports = () => async (ctx) => {
         const data = {
             ctx: ctx,
             language: user.language,
+            bot_message_id: ctx.message.message_id + 1,
             message: (ctx.message.document) ?
                 { 
                     type: 'document', 
@@ -34,17 +35,13 @@ module.exports = () => async (ctx) => {
             && data.message?.mime !== 'image/jpeg' 
             && data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
 
-        if (data.output === 'file') {
-            ctx.replyWithChatAction('upload_document');
-        } else {
-            ctx.replyWithHTML(ctx.i18n.t('service.standby'));
-        }
+        ctx.replyWithHTML(ctx.i18n.t('service.standby'));
 
         const removeBackground = new RemoveBackground(data);
         const result = await removeBackground.main()
             .then(response => response)
             .catch(err => err);
-
+        
         if (result?.code === 3) return replyWithError(ctx, 3);
         if (result?.code === 4) return replyWithError(ctx, 4);
         if (result?.code === 5) return replyWithError(ctx, 5);
@@ -52,8 +49,13 @@ module.exports = () => async (ctx) => {
         if (result?.code === 7) return replyWithError(ctx, 7);
         if (result?.code === 8) return replyWithError(ctx, 8);
         if (result?.code === 10) return replyWithError(ctx, 10);
+        if (result?.code === 12) return replyWithError(ctx, 12);
 
         if (data.output === 'file') {
+            ctx.replyWithChatAction('upload_document');
+
+            await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
+
             ctx.replyWithDocument({ 
                 source: result.buffer, 
                 filename: '@burnbgbot.png' 
@@ -82,14 +84,16 @@ module.exports = () => async (ctx) => {
             },
             $set: { last_time_used: new Date() }
         }, () => {});
-        
-        Bot.updateOne({ id: 1 }, { 
-            $set: {
-                acitve_token: ctx.session.bot.acitve_token,
-                inactive_tokens: ctx.session.bot.inactive_tokens,
-                number: ctx.session.bot.number
-            }
-        }, () => {});
+
+        if (data.service === 0) {
+            Bot.updateOne({ id: 1 }, { 
+                $set: {
+                    acitve_token: ctx.session.bot.acitve_token,
+                    inactive_tokens: ctx.session.bot.inactive_tokens,
+                    number: ctx.session.bot.number
+                }
+            }, () => {});
+        }
         
         ctx.session.user.usage = user.usage + 1;
         ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;

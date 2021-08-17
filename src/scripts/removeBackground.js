@@ -9,6 +9,7 @@ module.exports = class RemoveBackground {
     constructor(data) {
         this.ctx = data.ctx;
         this.language = data.language;
+        this.bot_message_id = data.bot_message_id;
         this.message = data.message;
         this.service = data.service;
         this.output = data.output;
@@ -19,16 +20,27 @@ module.exports = class RemoveBackground {
      * @returns Promise, an object with either data or error and its code.
      */
     async main() {
-        return new Promise((resolve, reject) => {
-            Promise.all([this.getMedia(), this.getRequestData()]).then(async response => {
-                const image = response[0];
-                
-                const result = await this.callMainService(image);
+        if (this.service === 0) {
+            return new Promise((resolve, reject) => {
+                Promise.all([this.getMedia(), this.getRequestData()]).then(async response => {
+                    const image = response[0];
+                    
+                    const result = await this.callMainService(image).catch(err => err);
+                    resolve(result);
+                }).catch((err) => {
+                    reject(err);
+                });
+            });
+        } else {
+            return new Promise(async (resolve, reject) => {
+                const image = await this.getMedia();
+
+                const result = await this.callSecondService(image).catch(err => err);
                 resolve(result);
             }).catch((err) => {
                 reject(err);
             });
-        });
+        }
     }
 
     /**
@@ -55,11 +67,22 @@ module.exports = class RemoveBackground {
                         responseType: 'stream'
                     }).then(response => response.data);
                     
+                    this.ctx.telegram.editMessageText(
+                        this.ctx.from.id, 
+                        this.bot_message_id, 
+                        0, 
+                        this.ctx.i18n.t('service.image_downloaded', { 
+                            size: Math.round((file.file_size / 1000000 + Number.EPSILON) * 100) / 100 
+                        }),
+                        { parse_mode: 'HTML' }
+                    ).catch(() => {});
+
                     resolve({
                         code: 200,
                         stream: image_stream,
                         url: url,
-                        size: file.file_size
+                        size: file.file_size,
+                        name: file.file_path.replace(/(documents\/|photos\/)/g, '')
                     });
                 }
             }).catch(() => {
@@ -101,7 +124,7 @@ module.exports = class RemoveBackground {
             axios({
                 method: 'POST',
                 url: config.host,
-                headers: { 
+                headers: {
                     ...data.getHeaders(),
                     token: this.ctx.session.bot.active_token
                 },
@@ -112,8 +135,6 @@ module.exports = class RemoveBackground {
                         reject({ code: 3, error: 'No active tokens left' });
                         return;
                     } else {
-                        // this.ctx.replyWithHTML(this.ctx.i18n.t('service.still_working'));
-    
                         this.ctx.session.bot?.inactive_tokens.push(this.ctx.session.bot.active_token);
     
                         if (this.ctx.session.bot?.number === 10) {
@@ -142,6 +163,38 @@ module.exports = class RemoveBackground {
             }).catch((err) => {
                 console.error(err);
                 reject({ code: 8, error: 'Failed to call API' });
+            });
+        });
+    }
+
+    /**
+     * Calls the second service's API and converts the result to buffer.
+     * @param {Object} image Image data
+     * @returns Promise, an object with either data or error and its code.
+     * This function might return 12 - failed to call 2nd API.
+     */
+    async callSecondService(image) {
+        return new Promise((resolve, reject) => {
+            const data = new FormData();
+            
+            data.append('file', image.stream);
+
+            axios({
+                method: 'POST',
+                url: config.host2,
+                headers: {
+                    ...data.getHeaders(),
+                },
+                data: data,
+                responseType: 'arraybuffer'
+            }).then(response => {
+                resolve({
+                    buffer: Buffer.from(response.data, 'binary'),
+                    initial_file_size: image.size
+                });
+            }).catch((err) => {
+                console.error(err);
+                reject({ code: 12, error: 'Failed to call 2rd API' });
             });
         });
     }
