@@ -16,6 +16,7 @@ module.exports = () => async (ctx) => {
             ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages'));
         }
     } catch (err) {
+        replyWithError(ctx, 0);
         console.error(err);
     }
 };
