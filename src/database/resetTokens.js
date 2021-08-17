@@ -4,7 +4,7 @@ const config = require('../../config');
 module.exports = async () => {
     return await Bot.updateOne({ id: 1 }, { 
         $set: {
-            acitve_token: config.host_token,
+            active_token: config.host_token,
             inactive_tokens: [],
             number: 1
         }

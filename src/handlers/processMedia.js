@@ -45,7 +45,7 @@ module.exports = () => async (ctx) => {
         if (data.service === 0) {
             await Bot.updateOne({ id: 1 }, { 
                 $set: {
-                    acitve_token: ctx.session.bot.acitve_token,
+                    active_token: ctx.session.bot.active_token,
                     inactive_tokens: ctx.session.bot.inactive_tokens,
                     number: ctx.session.bot.number
                 }

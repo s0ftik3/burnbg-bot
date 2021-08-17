@@ -116,6 +116,18 @@ module.exports = class RemoveBackground {
      */
     async callMainService(image) {
         return new Promise((resolve, reject) => {
+            const hosts = {
+                1: config.host_token,
+                2: config.host_token2,
+                3: config.host_token3,
+                4: config.host_token4,
+                5: config.host_token5,
+                6: config.host_token6,
+                7: config.host_token7,
+                8: config.host_token8,
+                9: config.host_token9,
+                10: config.host_token10
+            };
             const data = new FormData();
             
             data.append('file', image.stream);
@@ -141,7 +153,7 @@ module.exports = class RemoveBackground {
                             this.ctx.session.bot.active_token = config.host_token;
                             this.ctx.session.bot.number = 1;
                         } else {
-                            this.ctx.session.bot.active_token = eval('config.host_token' + (this.ctx.session.bot?.number + 1));
+                            this.ctx.session.bot.active_token = hosts[this.ctx.session.bot.number + 1];
                             ++this.ctx.session.bot.number;
                         }
 
