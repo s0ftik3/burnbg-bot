@@ -78,7 +78,7 @@ module.exports = (ctx, code) => {
                 console.error({
                     code: 10,
                     type: 'error',
-                    message: 'Failed to downloaded processed photo'
+                    message: 'Failed to download processed photo'
                 });
                 break;
             case 11:

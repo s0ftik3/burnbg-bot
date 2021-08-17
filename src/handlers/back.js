@@ -22,8 +22,8 @@ module.exports = () => async (ctx) => {
                         ],
                         [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? '✅' : '' }), `to_sticker`)],
                         [
-                            Markup.urlButton(ctx.i18n.t('button.channel'), 'tg://resolve?domain=softik'),
-                            Markup.urlButton(ctx.i18n.t('button.support'), 'tg://resolve?domain=vychs')
+                            Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
+                            Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
                         ]
                     ])
                 });
