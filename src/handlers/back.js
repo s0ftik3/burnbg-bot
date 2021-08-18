@@ -26,7 +26,7 @@ module.exports = () => async (ctx) => {
                             Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
                         ]
                     ])
-                });
+                }).catch(() => {});
                 break;
             default:
                 console.log('No action determined.');

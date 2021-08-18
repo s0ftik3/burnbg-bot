@@ -12,9 +12,9 @@ service:
   standby: 🕓 Please, standby while picture is processing...
   change_language: Choose the interface language.
   language_changed: ✅ Language changed.
-  warning: The second service you just chose works way slower and unstable (beta).
+  warning: (beta) The second service you just chose works way slower and unstable.
   service_no_change: You're not able to switch between services now.
-  image_downloaded: ✅ <code>(${size}MB)</code> The image has been downloaded. Processing...
+  image_downloaded: ✅ <code>(${size} MB)</code> The image has been downloaded. Processing...
 
 error:
   common: 😥 Something went wrong. Please try /start again.
@@ -23,7 +23,7 @@ error:
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
   no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
-  file_too_big: ✋ Your file is too big. Please, send me files up to 20MB.
+  file_too_big: ✋ Your file is too big. Please, send me files up to 20 MB.
   switched_tokens: |
     😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times.
 

@@ -34,7 +34,7 @@ module.exports = () => async (ctx) => {
 
                 ctx.editMessageText(ctx.i18n.t('service.change_language'), {
                     reply_markup: Markup.inlineKeyboard(keyboard, { columns: 2 }),
-                });
+                }).catch(() => {});
     
                 ctx.answerCbQuery();
                 break;
