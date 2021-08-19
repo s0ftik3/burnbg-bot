@@ -36,12 +36,17 @@ bot.start(handleStart());
 bot.on('photo', handleProcessMedia());
 bot.on('document', handleProcessMedia());
 bot.command('settings', handleSettings());
-bot.hears(['Settings', 'Настройки', 'Impostazioni'], handleSettings());
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());
+bot.hears([
+    'Settings', 
+    'Настройки', 
+    'Impostazioni',
+    'Configuraciones'
+], handleSettings());
 bot.on('text', handleProcessText());
 
 bot.on('callback_query', handleCallback());
@@ -49,5 +54,5 @@ bot.on('callback_query', handleCallback());
 bot.launch().then(async () => {
     console.log('[Bot] I have been started.');
     await connect();
-    await resetTokens();
+    // await resetTokens();
 });
