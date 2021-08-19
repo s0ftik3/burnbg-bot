@@ -54,5 +54,5 @@ bot.on('callback_query', handleCallback());
 bot.launch().then(async () => {
     console.log('[Bot] I have been started.');
     await connect();
-    // await resetTokens();
+    await resetTokens();
 });
