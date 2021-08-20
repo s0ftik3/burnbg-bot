@@ -8,6 +8,6 @@ module.exports = async () => {
             useUnifiedTopology: true,
             useCreateIndex: true,
         })
-        .then(() => console.log('[Database] Successfully connected.'))
-        .catch(err => console.error('[Database] Failed to connect.\n\n' + err));
+        .then(() => console.log('[Database] Successfully connected'))
+        .catch(err => console.error('[Database] Failed to connect\n\n' + err));
 };

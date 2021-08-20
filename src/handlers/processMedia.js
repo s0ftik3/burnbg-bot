@@ -71,19 +71,19 @@ module.exports = () => async (ctx) => {
                 filename: '@burnbgbot.png' 
             }, {
                 reply_to_message_id: ctx.message.message_id
-            });
+            }).catch(() => replyWithError(ctx, 13));;
 
-            console.log(`[${ctx.from.id}] Converted to a no-background image.`);
+            console.log(`[${ctx.from.id}] Converted to a no-background image`);
         } else {
             const sticker = await convertToSticker(result.buffer);
 
             await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
-
+            
             ctx.replyWithSticker({ source: sticker }, {
                 reply_to_message_id: ctx.message.message_id
-            });
+            }).catch(() => replyWithError(ctx, 14));
 
-            console.log(`[${ctx.from.id}] Converted to a sticker.`);
+            console.log(`[${ctx.from.id}] Converted to a sticker`);
         }
 
         User.updateOne({ id: ctx.from.id }, { 

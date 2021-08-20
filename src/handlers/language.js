@@ -55,7 +55,7 @@ module.exports = () => async (ctx) => {
                 );
                 break;
             default:
-                console.log('No action determined.');
+                console.log('No action determined');
                 break;
         }
     } catch (err) {

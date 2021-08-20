@@ -88,6 +88,7 @@ module.exports = (ctx, code) => {
                         [Markup.urlButton(ctx.i18n.t('button.subscribe'), 'https://t.me/softik')]
                     ])
                 });
+                console.log(`[${ctx.from.id}] Requires subscription`);
                 break;
             case 12:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
@@ -96,6 +97,20 @@ module.exports = (ctx, code) => {
                     code: 12,
                     type: 'error',
                     message: 'Failed to call 2nd API'
+                });
+                break;
+            case 13:
+                console.error({
+                    code: 13,
+                    type: 'error',
+                    message: `[${ctx.from.id}] Couldn't reply to this user with document`
+                });
+                break;
+            case 14:
+                console.error({
+                    code: 14,
+                    type: 'error',
+                    message: `[${ctx.from.id}] Couldn't reply to this user with sticker`
                 });
                 break;
             default:

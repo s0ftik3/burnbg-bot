@@ -9,6 +9,6 @@ module.exports = async () => {
             number: 1
         }
     }, () => {})
-        .then(() => console.log('[Database] Successfully reseted tokens.'))
-        .catch(err => console.error('[Database] Failed to reset tokens.\n\n' + err));
+        .then(() => console.log('[Database] Successfully reseted tokens'))
+        .catch(err => console.error('[Database] Failed to reset tokens\n\n' + err));
 };

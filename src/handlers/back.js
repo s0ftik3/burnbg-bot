@@ -29,7 +29,7 @@ module.exports = () => async (ctx) => {
                 }).catch(() => {});
                 break;
             default:
-                console.log('No action determined.');
+                console.log('No action determined');
                 break;
         }
 

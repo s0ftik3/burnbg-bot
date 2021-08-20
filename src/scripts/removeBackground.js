@@ -48,12 +48,12 @@ module.exports = class RemoveBackground {
      * @returns Promise, an object with either data or error and its code.
      * This function might return 4 - too big file, 6 - failed to download.
      */
-    async getMedia() {
-        return new Promise(async (resolve, reject) => {
+    getMedia() {
+        return new Promise((resolve, reject) => {
             const file_id = this.message.file_id;
             const download_url = `https://api.telegram.org/bot${config.token}/getFile?file_id=${file_id}`;
     
-            await axios(download_url).then(async response => {
+            axios(download_url).then(async response => {
                 const file = response.data.result;
                 const url = `https://api.telegram.org/file/bot${config.token}/${file.file_path}`;
 
@@ -67,7 +67,7 @@ module.exports = class RemoveBackground {
                         responseType: 'stream'
                     }).then(response => response.data);
                     
-                    this.ctx.telegram.editMessageText(
+                    await this.ctx.telegram.editMessageText(
                         this.ctx.from.id, 
                         this.bot_message_id, 
                         0, 
@@ -87,7 +87,6 @@ module.exports = class RemoveBackground {
                 }
             }).catch(() => {
                 reject({ code: 6, error: 'Failed to download' });
-                return;
             });
         });
     }
@@ -97,9 +96,9 @@ module.exports = class RemoveBackground {
      * @returns Promise, an object with either data or error and its code.
      * This function might return 7 - failed to get data from database.
      */
-    async getRequestData() {
-        return new Promise(async (resolve, reject) => {
-            await Bot.find({ id: 1 }).then(response => {
+    getRequestData() {
+        return new Promise((resolve, reject) => {
+            Bot.find({ id: 1 }).then(response => {
                 this.ctx.session.bot = response[0];
                 resolve(response[0]);
             }).catch(() => {
@@ -114,7 +113,7 @@ module.exports = class RemoveBackground {
      * @returns Promise, an object with either data or error and its code.
      * This function might return 3 - no active tokens, 7 - failed to call API.
      */
-    async callMainService(image) {
+    callMainService(image) {
         return new Promise((resolve, reject) => {
             const hosts = {
                 1: config.host_token,
@@ -173,8 +172,7 @@ module.exports = class RemoveBackground {
                     });
                 }
             }).catch((err) => {
-                console.error(err);
-                reject({ code: 8, error: 'Failed to call API' });
+                reject({ code: 8, error: 'Failed to call API', msg: err });
             });
         });
     }
@@ -185,7 +183,7 @@ module.exports = class RemoveBackground {
      * @returns Promise, an object with either data or error and its code.
      * This function might return 12 - failed to call 2nd API.
      */
-    async callSecondService(image) {
+    callSecondService(image) {
         return new Promise((resolve, reject) => {
             const data = new FormData();
             
@@ -205,8 +203,7 @@ module.exports = class RemoveBackground {
                     initial_file_size: image.size
                 });
             }).catch((err) => {
-                console.error(err);
-                reject({ code: 12, error: 'Failed to call 2rd API' });
+                reject({ code: 12, error: 'Failed to call 2nd API', msg: err });
             });
         });
     }
