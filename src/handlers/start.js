@@ -3,6 +3,7 @@
 const Markup = require('telegraf/markup');
 const getUserSession = require('../scripts/getUserSession');
 const recordUser = require('../database/recordUser');
+const setLanguage = require('../scripts/setLanguage');
 
 module.exports = () => async (ctx) => {
     try {
@@ -14,7 +15,7 @@ module.exports = () => async (ctx) => {
                 first_name: ctx.from.first_name.replace(/[<>]/g, ''),
                 last_name: ctx.from.last_name === undefined ? null : ctx.from.last_name,
                 username: ctx.from.username === undefined ? null : ctx.from.username,
-                language: ctx.from.language_code === 'ru' ? ctx.from.language_code : 'en'
+                language: setLanguage(ctx.from.language_code)
             };
 
             recordUser(data).then(async () => {

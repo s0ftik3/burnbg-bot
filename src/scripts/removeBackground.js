@@ -2,6 +2,7 @@
 
 const Bot = require('../database/models/Bot');
 const axios = require('axios');
+const byteSize = require('byte-size');
 const FormData = require('form-data');
 const config = require('../../config');
 
@@ -72,7 +73,7 @@ module.exports = class RemoveBackground {
                         this.bot_message_id, 
                         0, 
                         this.ctx.i18n.t('service.image_downloaded', { 
-                            size: Math.round((file.file_size / 1000000 + Number.EPSILON) * 100) / 100 
+                            size: byteSize(file.file_size)
                         }),
                         { parse_mode: 'HTML' }
                     ).catch(() => {});

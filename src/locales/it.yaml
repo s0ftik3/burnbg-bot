@@ -4,7 +4,7 @@ service:
   greeting: |
     🖐 Ciao, <b>${name}</b>! Posso rimuovere lo sfondo di ogni foto che mi mandi. Prova a mandarmi un file o una foto e osserva la magia.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    ⭐️ Posso anche convertire la tua immagine in uno sticker. Vai nelle impostazioni per attivare questa opzione.
+    ⭐️ Posso anche convertire la tua immagine in uno sticker. Utilizzare il comando /settings per attivare questa opzione.
   settings: |
     Puoi decidere come impostare il bot qui.
 
@@ -14,7 +14,7 @@ service:
   language_changed: ✅ Lingua cambiata.
   warning: (beta) Il secondo servizio che hai appena scelto funziona in modo molto più lento e instabile.
   service_no_change: Non puoi passare da un servizio all'altro ora.
-  image_downloaded: ✅ <code>(${size} MB)</code> L'immagine è stata scaricata. In lavorazione...
+  image_downloaded: ✅ <code>(${size})</code> L'immagine è stata scaricata. In lavorazione, potrebbero volerci alcuni secondi...
 
 error:
   common: 😥 Qualcosa è andato storto. Prova /start ancora.

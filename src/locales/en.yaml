@@ -4,7 +4,7 @@ service:
   greeting: |
     🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    ⭐️ I can also convert your image into a sticker. Go to your settings to activate this option.
+    ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
   settings: |
     You can set up the way the bot works here.
 
@@ -14,7 +14,7 @@ service:
   language_changed: ✅ Language changed.
   warning: (beta) The second service you just chose works way slower and unstable.
   service_no_change: You're not able to switch between services now.
-  image_downloaded: ✅ <code>(${size} MB)</code> The image has been downloaded. Processing...
+  image_downloaded: ✅ <code>(${size})</code> The image has been downloaded. Processing, it may take a few seconds...
 
 error:
   common: 😥 Something went wrong. Please try /start again.

@@ -4,7 +4,7 @@ service:
   greeting: |
     🖐 Hola, <b>${name}</b>! Puedo remover el fondo de cualquier imagen que me envíes. Prueba enviándome un archivo o una foto y verás la magia.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    ⭐️ También puedo convertir tu imagen en un stiker. Solo tienes que ir a la configuración y activar esa opcion.
+    ⭐️ También puedo convertir tu imagen en un stiker. Utilice el comando /settings para activar esta opción.
   settings: |
     Puedes configurar la forma en que trabaja el bot aquí.
 
@@ -14,7 +14,7 @@ service:
   language_changed: ✅ Idioma cambiado.
   warning: (beta) El segundo servicio trabaja más lento y es inestable.
   service_no_change: No tienes permitido cambiar entre servicios por ahora.
-  image_downloaded: ✅ <code>(${size} MB)</code> La imagen ha sido descargada. Procesando...
+  image_downloaded: ✅ <code>(${size})</code> La imagen ha sido descargada. Procesando, puede tardar unos segundos...
 
 error:
   common: 😥 Algo falló. Por favor intenta /start de nuevo.
