@@ -4,6 +4,7 @@ const Markup = require('telegraf/markup');
 const getUserSession = require('../scripts/getUserSession');
 const recordUser = require('../database/recordUser');
 const setLanguage = require('../scripts/setLanguage');
+const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {
@@ -27,7 +28,7 @@ module.exports = () => async (ctx) => {
                     Markup.keyboard([[ctx.i18n.t('button.settings')]])
                         .resize()
                         .extra()
-                );
+                ).catch(() => replyWithError(ctx, 15));
             });
         } else {
             ctx.i18n.locale(user.language);
@@ -38,7 +39,7 @@ module.exports = () => async (ctx) => {
                 Markup.keyboard([[ctx.i18n.t('button.settings')]])
                     .resize()
                     .extra()
-            );
+            ).catch(() => replyWithError(ctx, 15));
         }
     } catch (err) {
         console.error(err);

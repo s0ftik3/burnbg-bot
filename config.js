@@ -15,6 +15,12 @@ module.exports = {
     host: process.env.HOST,
     host2: process.env.HOST2,
     channel: process.env.CHANNEL,
+    buttons: [
+        'Settings', 
+        'Настройки', 
+        'Impostazioni',
+        'Configuraciones'
+    ],
     handler_timeout: 100,
     limit: {
         window: 1500,

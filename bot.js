@@ -41,12 +41,7 @@ bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());
-bot.hears([
-    'Settings', 
-    'Настройки', 
-    'Impostazioni',
-    'Configuraciones'
-], handleSettings());
+bot.hears(config.buttons, handleSettings());
 bot.on('text', handleProcessText());
 
 bot.on('callback_query', handleCallback());

@@ -35,7 +35,7 @@ module.exports = () => async (ctx) => {
             && data.message?.mime !== 'image/jpeg' 
             && data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
 
-        ctx.replyWithHTML(ctx.i18n.t('service.standby'));
+        ctx.replyWithHTML(ctx.i18n.t('service.standby')).catch(() => replyWithError(ctx, 15));
 
         const removeBackground = new RemoveBackground(data);
         const result = await removeBackground.main()

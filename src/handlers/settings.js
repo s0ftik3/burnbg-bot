@@ -3,6 +3,7 @@
 const getUserSession = require('../scripts/getUserSession');
 const Markup = require('telegraf/markup');
 const createStatsObject = require('../scripts/createStatsObject');
+const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {
@@ -21,7 +22,7 @@ module.exports = () => async (ctx) => {
                     Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
                 ]
             ])
-        });
+        }).catch(() => replyWithError(ctx, 15));
     } catch (err) {
         console.error(err);
     }

@@ -12,9 +12,9 @@ module.exports = () => async (ctx) => {
 
         if (ctx.session.user.sent_text === 20) {
             ctx.session.user.sent_text = 0;
-            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages_egg'));
+            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages_egg')).catch(() => replyWithError(ctx, 15));
         } else {
-            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages'));
+            ctx.replyWithHTML(ctx.i18n.t('error.no_text_messages')).catch(() => replyWithError(ctx, 15));
         }
     } catch (err) {
         replyWithError(ctx, 0);

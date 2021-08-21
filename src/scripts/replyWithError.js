@@ -113,6 +113,13 @@ module.exports = (ctx, code) => {
                     message: `[${ctx.from.id}] Couldn't reply to this user with sticker`
                 });
                 break;
+            case 15:
+                console.error({
+                    code: 15,
+                    type: 'error',
+                    message: `[${ctx.from.id}] Bot was blocked by the user`
+                });
+                break;
             default:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));
