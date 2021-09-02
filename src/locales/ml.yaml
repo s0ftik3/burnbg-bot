@@ -1,0 +1,40 @@
+language: 🇬🇧 Malayalam
+
+service:
+  greeting: |
+    🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+    ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
+  settings: |
+    You can set up the way the bot works here.
+    For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
+  standby: 🕓 Please, standby while picture is processing...
+  change_language: Choose the interface language.
+  language_changed: ✅ Language changed.
+  warning: (beta) The second service you just chose works way slower and unstable.
+  service_no_change: You're not able to switch between services now.
+  image_downloaded: ✅ <code>(${size})</code> The image has been downloaded. Processing, it may take a few seconds...
+
+error:
+  common: 😥 എന്തോ കുഴപ്പം സംഭവിച്ചു. /start ദയവായി  വീണ്ടും ശ്രമിക്കുക. 
+  common_important: 😥 ഈ സേവനം പ്രതികരിച്ചില്ല.പ്രശ്നം പരിഹരിക്കാൻ @vychs-നെ ബന്ധപ്പെടുക.
+  limit_exceeded: 👮🏻 തിരക്കുകൂട്ടരുത്!
+  wrong_file_extension: 📄 തെറ്റായ ഫയൽ വിപുലീകരണം.JPG/JPEG/PNG മാത്രമേ പിന്തുണയ്ക്കൂ.
+  no_text_messages: 😕 പകരം ഒരു ചിത്രമോ ചിത്രത്തിന്റെ ഒരു ഫയലോ എനിക്ക് അയയ്ക്കുക.
+  no_text_messages_egg: 😠 നിങ്ങളോട് ഒരു ചിത്രം അയയ്ക്കാൻ ആണ് പറഞ്ഞത് !
+  file_too_big: ✋ നിങ്ങളുടെ ഫയൽ വളരെ വലുതാണ്. ദയവായി, എനിക്ക് 20 MB വരെയുള്ള ഫയലുകൾ അയയ്ക്കുക..
+  switched_tokens: |
+    😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times.
+    If nothing changes and I keep sending you this message, contact @vychs.
+  failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
+  not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
+  api_error: : 😥 എന്തോ കുഴപ്പം സംഭവിച്ചു.ദയവായി മറ്റേതെങ്കിലും ചിത്രം ശ്രമിക്കുക അല്ലെങ്കിൽ സേവനം മാറ്റുക /settings.
+  
+button:
+  language: ഭാഷ മാറ്റുക
+  settings: ക്രമീകരണങ്ങൾ
+  to_sticker: സ്റ്റിക്കറിലേക്ക് പരിവർത്തനം ചെയ്യുക ${state}
+  service: സേവനം ${state}
+  channel: ചാനൽ
+  support: സപ്പോർട്ട്
+  subscribe: സബ്സ്ക്രൈബ്
+  back: « തിരികെ
