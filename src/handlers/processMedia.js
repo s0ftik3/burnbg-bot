@@ -27,6 +27,7 @@ module.exports = () => async (ctx) => {
                     file_id: ctx.message?.document.file_id
                 } 
                 : { type: 'photo', file_id: ctx.update?.message?.photo.reverse()[0].file_id },
+            text: ctx.message.caption && ctx.message.caption,
             service: user.service,
             output: (user.to_sticker) ? 'sticker' : 'file'
         };
@@ -75,7 +76,7 @@ module.exports = () => async (ctx) => {
 
             console.log(`[${ctx.from.id}] Converted to a no-background image`);
         } else {
-            const sticker = await convertToSticker(result.buffer);
+            const sticker = await convertToSticker(result.buffer, data.text);
 
             await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
             
@@ -86,18 +87,18 @@ module.exports = () => async (ctx) => {
             console.log(`[${ctx.from.id}] Converted to a sticker`);
         }
 
-        User.updateOne({ id: ctx.from.id }, { 
-            $inc: { 
-                usage: 1,
-                converted_to_sticker: (user.to_sticker) ? 1 : 0,
-                converted_to_file: (user.to_sticker) ? 0 : 1
-            },
-            $set: { last_time_used: new Date() }
-        }, () => {});
+        // User.updateOne({ id: ctx.from.id }, { 
+        //     $inc: { 
+        //         usage: 1,
+        //         converted_to_sticker: (user.to_sticker) ? 1 : 0,
+        //         converted_to_file: (user.to_sticker) ? 0 : 1
+        //     },
+        //     $set: { last_time_used: new Date() }
+        // }, () => {});
         
-        ctx.session.user.usage = user.usage + 1;
-        ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
-        ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file : user.converted_to_file + 1;
+        // ctx.session.user.usage = user.usage + 1;
+        // ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
+        // ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file : user.converted_to_file + 1;
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);
