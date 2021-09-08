@@ -7,6 +7,7 @@ const RemoveBackground = require('../scripts/removeBackground');
 const convertToSticker = require('../scripts/convertToSticker');
 const replyWithError = require('../scripts/replyWithError');
 const checkSubscription = require('../scripts/checkSubscription');
+const sendLog = require('../scripts/sendLog');
 
 module.exports = () => async (ctx) => {
     try {
@@ -74,7 +75,20 @@ module.exports = () => async (ctx) => {
                 reply_to_message_id: ctx.message.message_id
             }).catch(() => replyWithError(ctx, 13));;
 
-            console.log(`[${ctx.from.id}] Converted to a no-background image`);
+            sendLog({
+                type: 'common',
+                id: ctx.from.id,
+                username: user.username,
+                name: user.first_name,
+                query_type: data.message.type,
+                action: 0, // 0 - no-bg image / 1 - sticker
+                size: result.initial_file_size,
+                usage: user.usage,
+                to_sticker: user.converted_to_sticker,
+                to_file: user.converted_to_file,
+                subscription: user.channel_member ? true : false,
+                timestamp: new Date()
+            });
         } else {
             const sticker = await convertToSticker(result.buffer, data.text);
 
@@ -84,21 +98,34 @@ module.exports = () => async (ctx) => {
                 reply_to_message_id: ctx.message.message_id
             }).catch(() => replyWithError(ctx, 14));
 
-            console.log(`[${ctx.from.id}] Converted to a sticker`);
+            sendLog({
+                type: 'common',
+                id: ctx.from.id,
+                username: user.username,
+                name: user.first_name,
+                query_type: data.message.type,
+                action: 1, // 0 - no-bg image / 1 - sticker
+                size: result.initial_file_size,
+                usage: user.usage,
+                to_sticker: user.converted_to_sticker,
+                to_file: user.converted_to_file,
+                subscription: user.channel_member ? true : false,
+                timestamp: new Date()
+            });
         }
 
-        // User.updateOne({ id: ctx.from.id }, { 
-        //     $inc: { 
-        //         usage: 1,
-        //         converted_to_sticker: (user.to_sticker) ? 1 : 0,
-        //         converted_to_file: (user.to_sticker) ? 0 : 1
-        //     },
-        //     $set: { last_time_used: new Date() }
-        // }, () => {});
+        User.updateOne({ id: ctx.from.id }, { 
+            $inc: { 
+                usage: 1,
+                converted_to_sticker: (user.to_sticker) ? 1 : 0,
+                converted_to_file: (user.to_sticker) ? 0 : 1
+            },
+            $set: { last_time_used: new Date() }
+        }, () => {});
         
-        // ctx.session.user.usage = user.usage + 1;
-        // ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
-        // ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file : user.converted_to_file + 1;
+        ctx.session.user.usage = user.usage + 1;
+        ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
+        ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file : user.converted_to_file + 1;
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);

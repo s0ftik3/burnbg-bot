@@ -4,6 +4,7 @@ const User = require('../database/models/User');
 const getUserSession = require('../scripts/getUserSession');
 const Markup = require('telegraf/markup');
 const getSettingsButtons = require('../scripts/getSettingsButtons');
+const sendLog = require('../scripts/sendLog');
 
 module.exports = () => async (ctx) => {
     try {
@@ -18,8 +19,22 @@ module.exports = () => async (ctx) => {
         ctx.editMessageReplyMarkup(Markup.inlineKeyboard(getSettingsButtons(ctx, user)));
 
         if (ctx.session.user.service === 1) {
+            sendLog({ 
+                type: 'service_change', 
+                id: ctx.from.id, 
+                name: ctx.from.first_name, 
+                service: ctx.session.user.service,
+                old_service: user.service - 1
+            });
             ctx.answerCbQuery(ctx.i18n.t('service.warning'), true);
         } else {
+            sendLog({ 
+                type: 'service_change', 
+                id: ctx.from.id, 
+                name: ctx.from.first_name, 
+                service: ctx.session.user.service,
+                old_service: user.service + 1
+            });
             ctx.answerCbQuery();
         }
     } catch (err) {

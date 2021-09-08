@@ -15,6 +15,7 @@ If you don't want to waste time and manually remove background of your desired i
 * Russian by [Vyacheslav](https://t.me/vychs)
 * Italian by [Seba](https://t.me/probably_dead)
 * Spanish by [Angel Erazo](https://t.me/aerazo)
+* Telugu by [Hello](https://t.me/Udaycab)
 
 Don't see your language on the list? Add it!
 Text to be translated is found in `src/locales/en.yaml`
