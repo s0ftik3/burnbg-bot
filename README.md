@@ -1,5 +1,9 @@
 # Burn Background Bot
+<<<<<<< HEAD
 [![release](https://img.shields.io/badge/release-v1.4.1-green.svg?style=flat)]()
+=======
+[![release](https://img.shields.io/badge/release-v1.4.0-green.svg?style=flat)]()
+>>>>>>> d7149680e9ea65d22e25013dac019ac8e1328e3d
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![size](https://img.shields.io/github/languages/code-size/s0ftik3/random-animals)]()
 
