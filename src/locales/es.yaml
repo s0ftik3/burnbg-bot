@@ -35,9 +35,14 @@ error:
 button:
   language: Cambiar idioma
   settings: Configuraciones
-  to_sticker: Convertir a sticker ${state}
-  service: Servicio ${state}
+  to_sticker: "Convertir a sticker: ${state}"
+  service: "Servicio: ${state}"
+  add_text: "Add text to Sticker: ${state}"
   channel: Canal
   support: Soporte
   subscribe: Suscribirse
   back: « Regresar
+
+action:
+  a_on: "ON"
+  a_off: "OFF"

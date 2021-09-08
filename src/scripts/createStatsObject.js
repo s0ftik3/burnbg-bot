@@ -56,6 +56,15 @@ module.exports = (ctx, user) => {
                 };
 
                 return obj_es;
+            case 'te':
+                const obj_te = {
+                    range: moment(user.timestamp).from(new Date(), true),
+                    converted_to_sticker: user.converted_to_sticker === undefined ? 0 : user.converted_to_sticker,
+                    converted_to_file: user.converted_to_file === undefined ? 0 : user.converted_to_file,
+                    usage: user.usage === undefined ? 0 : user.usage
+                };
+
+                return obj_te;
             default:
                 replyWithError(ctx, 0);
                 break;
