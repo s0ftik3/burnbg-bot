@@ -35,9 +35,14 @@ error:
 button:
   language: Сменить язык
   settings: Настройки
-  to_sticker: Конвертировать в стикер ${state}
-  service: Сервис ${state}
+  to_sticker: "Конвертировать в стикер: ${state}"
+  service: "Сервис: ${state}"
+  add_text: "Стикеры с текстом: ${state}"
   channel: Канал
   support: Помощь
   subscribe: Подписаться
   back: « Назад
+
+action:
+  a_on: ВКЛ.
+  a_off: ВЫКЛ.

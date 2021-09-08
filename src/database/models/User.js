@@ -15,6 +15,11 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: false
     },
+    add_text: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     service: {
         type: Number,
         required: false,
