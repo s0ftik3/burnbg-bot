@@ -7,6 +7,7 @@ const RemoveBackground = require('../scripts/removeBackground');
 const convertToSticker = require('../scripts/convertToSticker');
 const replyWithError = require('../scripts/replyWithError');
 const checkSubscription = require('../scripts/checkSubscription');
+const sendLog = require('../scripts/sendLog');
 
 module.exports = () => async (ctx) => {
     try {
@@ -27,6 +28,7 @@ module.exports = () => async (ctx) => {
                     file_id: ctx.message?.document.file_id
                 } 
                 : { type: 'photo', file_id: ctx.update?.message?.photo.reverse()[0].file_id },
+            text: ctx.message.caption && ctx.message.caption,
             service: user.service,
             output: (user.to_sticker) ? 'sticker' : 'file'
         };
@@ -73,9 +75,22 @@ module.exports = () => async (ctx) => {
                 reply_to_message_id: ctx.message.message_id
             }).catch(() => replyWithError(ctx, 13));;
 
-            console.log(`[${ctx.from.id}] Converted to a no-background image`);
+            sendLog({
+                type: 'common',
+                id: ctx.from.id,
+                username: user.username,
+                name: user.first_name,
+                query_type: data.message.type,
+                action: 0, // 0 - no-bg image / 1 - sticker
+                size: result.initial_file_size,
+                usage: user.usage,
+                to_sticker: user.converted_to_sticker,
+                to_file: user.converted_to_file,
+                subscription: user.channel_member ? true : false,
+                timestamp: new Date()
+            });
         } else {
-            const sticker = await convertToSticker(result.buffer);
+            const sticker = await convertToSticker(result.buffer, data.text);
 
             await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
             
@@ -83,7 +98,20 @@ module.exports = () => async (ctx) => {
                 reply_to_message_id: ctx.message.message_id
             }).catch(() => replyWithError(ctx, 14));
 
-            console.log(`[${ctx.from.id}] Converted to a sticker`);
+            sendLog({
+                type: 'common',
+                id: ctx.from.id,
+                username: user.username,
+                name: user.first_name,
+                query_type: data.message.type,
+                action: 1, // 0 - no-bg image / 1 - sticker
+                size: result.initial_file_size,
+                usage: user.usage,
+                to_sticker: user.converted_to_sticker,
+                to_file: user.converted_to_file,
+                subscription: user.channel_member ? true : false,
+                timestamp: new Date()
+            });
         }
 
         User.updateOne({ id: ctx.from.id }, { 

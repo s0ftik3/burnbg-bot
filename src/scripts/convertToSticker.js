@@ -2,7 +2,7 @@
 
 const sharp = require('sharp');
 
-module.exports = async (image) => {
+module.exports = async (image, text) => {
     try {
         sharp.concurrency(1);
 
@@ -31,12 +31,23 @@ module.exports = async (image) => {
             .webp()
             .toBuffer();
 
-        const sticker = await sharp(background)
-            .composite([{ input: image_over_background, gravity: 'centre' }])
-            .webp()
-            .toBuffer();
-        
-        return sticker;
+        switch (text) {
+            case undefined:
+                return await sharp(background)
+                    .composite([
+                        { input: image_over_background }
+                    ])
+                    .webp()
+                    .toBuffer();
+            default:
+
+                return await sharp(background)
+                    .composite([
+                        { input: image_over_background }
+                    ])
+                    .webp()
+                    .toBuffer();
+        }
     } catch (err) {
         console.error(err);
     }
