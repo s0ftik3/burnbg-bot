@@ -5,27 +5,37 @@ const Telegram = require('telegraf/telegram');
 const telegram = new Telegram(config.token);
 const byteSize = require('byte-size');
 const moment = require('moment');
+const path = require('path');
+const TelegrafI18n = require('telegraf-i18n');
+const i18n = new TelegrafI18n({
+    directory: path.resolve(__dirname, '../locales'),
+    defaultLanguage: 'en',
+    defaultLanguageOnMissing: true
+});
 
 module.exports = (data) => {
     try {
         moment.locale('en');
-        
+
         switch (data.type) {
             case 'common':
                 telegram.sendMessage(
                     config.logs,
-                    `🤖 #burnbgbot\n\n` +
-                    `👤 <a href="tg://user?id=${data.id}">${data.name}</a> just converted a <b>${data.query_type}</b> <code>(${byteSize(data.size)})</code> to a ` +
-                    `<b>${(data.action === 0) ? 'no-background file' : 'sticker'}</b>.\n\n` +
-                    `ℹ️ <b>Information:</b>\n` +
-                    `├ ID: <b>${data.id}</b>\n` +
-                    `├ Total converted: <b>${data.usage}</b>\n` +
-                    `├ Converted to sticker: <b>${data.to_sticker}</b>\n` +
-                    `├ Converted to file: <b>${data.to_file}</b>\n` +
-                    `├ Subscribed: <b>${data.subscription}</b>\n\n` +
-                    `🕓 <i>${moment(data.timestamp).format('LLL')}</i>`,
+                    i18n.t('en', 'log.common', {
+                        type: data.query_type === 'photo' ? '🖼' : '📄',
+                        id: data.id,
+                        name: data.name,
+                        input: data.query_type,
+                        output: data.action === 0 ? 'no-background file' : 'sticker',
+                        size: byteSize(data.size),
+                        total: data.usage,
+                        to_sticker: data.to_sticker,
+                        to_file: data.to_file,
+                        subscription: data.subscription ? 'yes' : 'no',
+                        timestamp: moment(data.timestamp).format('L LTS'),
+                    }),
                     {
-                        parse_mode: 'HTML'
+                      parse_mode: 'HTML'
                     }
                 );
 
@@ -33,21 +43,11 @@ module.exports = (data) => {
             case 'new_user':
                 telegram.sendMessage(
                     config.logs,
-                    `🤖 #burnbgbot\n\n` +
-                    `👤 [${data.id}] New user <a href="tg://user?id=${data.id}">${data.name}</a> has just started the bot.\n\n` +
-                    `🕓 <i>${moment(data.timestamp).format('LLL')}</i>`,
-                    {
-                        parse_mode: 'HTML'
-                    }
-                );
-
-                break;
-            case 'error_common':
-                telegram.sendMessage(
-                    config.logs,
-                    `🤖 #burnbgbot\n\n` +
-                    `⭕️ [${data.id}] An error occured with the user <a href="tg://user?id=${data.id}">${data.name}</a>.\n\n` +
-                    `🕓 <i>${moment(data.timestamp).format('LLL')}</i>`,
+                    i18n.t('en', 'log.new_user', {
+                        id: data.id,
+                        name: data.name,
+                        timestamp: moment(data.timestamp).format('L LTS'),
+                    }),
                     {
                         parse_mode: 'HTML'
                     }
@@ -57,9 +57,11 @@ module.exports = (data) => {
             case 'error_no_sub':
                 telegram.sendMessage(
                     config.logs,
-                    `🤖 #burnbgbot\n\n` +
-                    `⭕️ [${data.id}] <a href="tg://user?id=${data.id}">${data.name}</a> tried to use the bot without subscription.\n\n` +
-                    `🕓 <i>${moment(data.timestamp).format('LLL')}</i>`,
+                    i18n.t('en', 'log.no_subscription', {
+                        id: data.id,
+                        name: data.name,
+                        timestamp: moment(data.timestamp).format('L LTS'),
+                    }),
                     {
                         parse_mode: 'HTML'
                     }
@@ -69,9 +71,29 @@ module.exports = (data) => {
             case 'service_change':
                 telegram.sendMessage(
                     config.logs,
-                    `🤖 #burnbgbot\n\n` +
-                    `🔄 [${data.id}] <a href="tg://user?id=${data.id}">${data.name}</a> changed service from <b>${data.old_service + 1}</b> to <b>${data.service + 1}</b>.\n\n` +
-                    `🕓 <i>${moment(data.timestamp).format('LLL')}</i>`,
+                    i18n.t('en', 'log.service_change', {
+                        id: data.id,
+                        name: data.name,
+                        old_service: data.old_service + 1,
+                        new_service: data.service + 1,
+                        timestamp: moment(data.timestamp).format('L LTS'),
+                    }),
+                    {
+                        parse_mode: 'HTML'
+                    }
+                );
+
+                break;
+            case 'language_change':
+                telegram.sendMessage(
+                    config.logs,
+                    i18n.t('en', 'log.language_change', {
+                        id: data.id,
+                        name: data.name,
+                        old_language: data.old_language,
+                        new_language: data.new_language,
+                        timestamp: moment(data.timestamp).format('L LTS'),
+                    }),
                     {
                         parse_mode: 'HTML'
                     }

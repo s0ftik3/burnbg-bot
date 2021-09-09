@@ -124,8 +124,8 @@ module.exports = () => async (ctx) => {
         }, () => {});
         
         ctx.session.user.usage = user.usage + 1;
-        ctx.session.user.converted_to_sticker = (user.to_sticker) ? user.converted_to_sticker + 1 : user.converted_to_sticker;
-        ctx.session.user.converted_to_file = (user.to_sticker) ? user.converted_to_file : user.converted_to_file + 1;
+        ctx.session.user.converted_to_sticker = (user.to_sticker) ? (user?.converted_to_sticker || 0) + 1 : (user?.converted_to_sticker || 0);
+        ctx.session.user.converted_to_file = (user.to_sticker) ? (user?.converted_to_file || 0) : (user?.converted_to_file || 0) + 1;
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);

@@ -24,7 +24,8 @@ const {
     handleProcessMedia,
     handleToSticker,
     handleProcessText,
-    handleChangeService
+    handleChangeService,
+    handleReset
 } = require('./src/handlers');
 
 bot.use(i18n.middleware());
@@ -35,15 +36,19 @@ bot.start(handleStart());
 
 bot.on('photo', handleProcessMedia());
 bot.on('document', handleProcessMedia());
+
 bot.command('settings', handleSettings());
+bot.command('reset', handleReset());
+
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());
-bot.hears(config.buttons, handleSettings());
-bot.on('text', handleProcessText());
 
+bot.hears(config.buttons, handleSettings());
+
+bot.on('text', handleProcessText());
 bot.on('callback_query', handleCallback());
 
 bot.launch().then(async () => {

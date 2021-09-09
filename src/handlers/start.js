@@ -20,7 +20,14 @@ module.exports = () => async (ctx) => {
             };
 
             recordUser(data).then(async () => {
-                ctx.session.user = { ...data, to_sticker: false, service: 0 };
+                ctx.session.user = { 
+                    ...data, 
+                    to_sticker: false, 
+                    service: 0,
+                    usage: 0,
+                    converted_to_sticker: 0,
+                    converted_to_file: 0
+                };
                 ctx.i18n.locale(data.language);
 
                 await ctx.replyWithHTML(

@@ -72,7 +72,8 @@ module.exports = class RemoveBackground {
                         this.ctx.from.id, 
                         this.bot_message_id, 
                         0, 
-                        this.ctx.i18n.t('service.image_downloaded', { 
+                        this.ctx.i18n.t('service.image_downloaded', {
+                            type: this.message.type === 'photo' ? '🖼' : '📄',
                             size: byteSize(file.file_size)
                         }),
                         { parse_mode: 'HTML' }

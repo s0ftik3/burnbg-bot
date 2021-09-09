@@ -7,5 +7,6 @@ module.exports = {
     handleProcessMedia: require('./processMedia'),
     handleToSticker: require('./toSticker'),
     handleProcessText: require('./processText'),
-    handleChangeService: require('./changeService')
+    handleChangeService: require('./changeService'),
+    handleReset: require('./admin/reset')
 };

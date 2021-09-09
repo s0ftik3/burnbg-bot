@@ -14,7 +14,6 @@ module.exports = (ctx, code) => {
                     type: 'error',
                     message: `User ${ctx.from.id} isn't recorded in the database or there are some incorrect lines`
                 });
-                sendLog({ type: 'error_common', id: ctx.from.id, name: ctx.from.first_name });
                 break;
             case 1:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
@@ -90,7 +89,6 @@ module.exports = (ctx, code) => {
                         [Markup.urlButton(ctx.i18n.t('button.subscribe'), 'https://t.me/softik')]
                     ])
                 });
-                console.log(`[${ctx.from.id}] Requires subscription`);
                 sendLog({ type: 'error_no_sub', id: ctx.from.id, name: ctx.from.first_name });
                 break;
             case 12:

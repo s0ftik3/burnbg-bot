@@ -14,7 +14,7 @@ service:
   language_changed: ✅ Idioma cambiado.
   warning: (beta) El segundo servicio trabaja más lento y es inestable.
   service_no_change: No tienes permitido cambiar entre servicios por ahora.
-  image_downloaded: ✅ <code>(${size})</code> La imagen ha sido descargada. Procesando, puede tardar unos segundos...
+  image_downloaded: ${type} <code>(${size})</code> La imagen ha sido descargada. Procesando, puede tardar unos segundos...
 
 error:
   common: 😥 Algo falló. Por favor intenta /start de nuevo.

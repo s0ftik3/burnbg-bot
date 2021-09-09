@@ -6,6 +6,7 @@ const getUserSession = require('../scripts/getUserSession');
 const fs = require('fs');
 const path = require('path');
 const TelegrafI18n = require('telegraf-i18n');
+const sendLog = require('../scripts/sendLog');
 const i18n = new TelegrafI18n({
     directory: path.resolve(__dirname, '../locales'),
     defaultLanguage: 'en',
@@ -40,6 +41,14 @@ module.exports = () => async (ctx) => {
                 break;
             case 'set_language':
                 const language = ctx.match[0].split(':')[1];
+                sendLog({
+                    type: 'language_change',
+                    id: ctx.from.id,
+                    name: user.first_name,
+                    old_language: i18n.t(user.language, 'language'),
+                    new_language: i18n.t(language, 'language'),
+                    timestamp: new Date()
+                });
                 ctx.i18n.locale(language);
     
                 await User.updateOne({ id: ctx.from.id }, { $set: { language: language } }, () => {});
