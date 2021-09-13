@@ -37,8 +37,7 @@ module.exports = (data) => {
                     {
                       parse_mode: 'HTML'
                     }
-                )
-                .catch(() => {});
+                );
 
                 break;
             case 'new_user':
@@ -52,8 +51,7 @@ module.exports = (data) => {
                     {
                         parse_mode: 'HTML'
                     }
-                )
-                .catch(() => {});
+                );
 
                 break;
             case 'error_no_sub':
@@ -67,8 +65,7 @@ module.exports = (data) => {
                     {
                         parse_mode: 'HTML'
                     }
-                )
-                .catch(() => {});
+                );
 
                 break;
             case 'service_change':
@@ -84,8 +81,7 @@ module.exports = (data) => {
                     {
                         parse_mode: 'HTML'
                     }
-                )
-                .catch(() => {});
+                );
 
                 break;
             case 'language_change':
@@ -101,8 +97,7 @@ module.exports = (data) => {
                     {
                         parse_mode: 'HTML'
                     }
-                )
-                .catch(() => {});
+                );
 
                 break;
             default:

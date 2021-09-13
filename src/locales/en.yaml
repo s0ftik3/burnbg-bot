@@ -15,7 +15,6 @@ service:
   warning: (beta) The second service you just chose works way slower and unstable.
   service_no_change: You're not able to switch between services now.
   image_downloaded: ${type} <code>(${size})</code> The image has been downloaded. Processing may take a few seconds...
-  warning_add_text: Send image or file with text. Up to 64 characters.
 
 error:
   common: 😥 Something went wrong. Please try /start again.

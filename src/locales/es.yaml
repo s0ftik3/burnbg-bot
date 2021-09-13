@@ -15,8 +15,7 @@ service:
   warning: (beta) El segundo servicio trabaja más lento y es inestable.
   service_no_change: No tienes permitido cambiar entre servicios por ahora.
   image_downloaded: ${type} <code>(${size})</code> La imagen ha sido descargada. Procesando, puede tardar unos segundos...
-  warning_add_text: Send image or file with text. Up to 64 characters.
-  
+
 error:
   common: 😥 Algo falló. Por favor intenta /start de nuevo.
   common_important: 😥 El servicio no respondió. Por favor contacta a @vychs para notificar sobre el problema.

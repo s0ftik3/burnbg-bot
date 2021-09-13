@@ -65,10 +65,6 @@ module.exports = (ctx, user) => {
                 };
 
                 return obj_te;
-            case 'ml':
-                const obj_ml = { range: '' };
-
-                return obj_ml;
             default:
                 replyWithError(ctx, 0);
                 break;
