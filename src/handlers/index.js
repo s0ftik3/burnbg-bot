@@ -8,5 +8,6 @@ module.exports = {
     handleToSticker: require('./toSticker'),
     handleProcessText: require('./processText'),
     handleChangeService: require('./changeService'),
-    handleReset: require('./admin/reset')
+    handleReset: require('./admin/reset'),
+    handleAddText: require('./addText')
 };

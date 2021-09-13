@@ -25,7 +25,8 @@ const {
     handleToSticker,
     handleProcessText,
     handleChangeService,
-    handleReset
+    handleReset,
+    handleAddText
 } = require('./src/handlers');
 
 bot.use(i18n.middleware());
@@ -41,6 +42,7 @@ bot.command('settings', handleSettings());
 bot.command('reset', handleReset());
 
 bot.action('to_sticker', handleToSticker());
+bot.action('add_text', handleAddText());
 bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());

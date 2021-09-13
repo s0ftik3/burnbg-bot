@@ -1,5 +1,5 @@
 # Burn Background Bot
-[![release](https://img.shields.io/badge/release-v1.4.3-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v1.5.0-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![size](https://img.shields.io/github/languages/code-size/s0ftik3/random-animals)]()
 
@@ -16,6 +16,7 @@ If you don't want to waste time and manually remove background of your desired i
 * Italian by [Seba](https://t.me/probably_dead)
 * Spanish by [Angel Erazo](https://t.me/aerazo)
 * Telugu by [Hello](https://t.me/Udaycab)
+* Malayalam by [Shabin-k](https://github.com/SHABIN-K)
 
 Don't see your language on the list? Add it!
 Text to be translated is found in `src/locales/en.yaml`

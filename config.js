@@ -21,7 +21,8 @@ module.exports = {
         'Настройки', 
         'Impostazioni',
         'Configuraciones',
-        'సెట్టింగులు'
+        'సెట్టింగులు',
+        'ക്രമീകരണങ്ങൾ'
     ],
     handler_timeout: 100,
     limit: {

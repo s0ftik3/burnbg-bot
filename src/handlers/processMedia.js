@@ -90,7 +90,7 @@ module.exports = () => async (ctx) => {
                 timestamp: new Date()
             });
         } else {
-            const sticker = await convertToSticker(result.buffer, data.text);
+            const sticker = await convertToSticker(result.buffer, (user.add_text) ? data.text : undefined);
 
             await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
             
