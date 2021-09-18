@@ -8,7 +8,7 @@ service:
   settings: |
     Aqui você pode configurar a forma como o bot funciona.
 
-    Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} ${verb_file} covertidas</b> para arquivo e <b>${converted_to_sticker} ${verb_sticker} convertidas</b> para sticker.
+    Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
   standby: 🕓 Por favor, aguarde enquanto a imagem está sendo processada...
   change_language: Escolha o idioma da interface.
   language_changed: ✅ Idioma alterado.
