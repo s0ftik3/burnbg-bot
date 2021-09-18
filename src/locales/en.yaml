@@ -12,7 +12,7 @@ service:
   standby: 🕓 Please, standby while picture is processing...
   change_language: Choose the interface language.
   language_changed: ✅ Language changed.
-  warning: (beta) The second service you just chose works way slower and unstable.
+  warning: (beta) This service works slower and unstable.
   service_no_change: You're not able to switch between services now.
   image_downloaded: ${type} <code>(${size})</code> The image has been downloaded. Processing may take a few seconds...
 
@@ -37,30 +37,35 @@ log:
   common: |
     ${type} <b><a href="tg://user?id=${id}">${name}</a></b> has just converted a <b>${input}</b> <code>(${size})</code> to a <b>${output}</b>.
 
-    <b>Information:</b>
-    ├ ID: <code>${id}</code>
+    <b>Information [<code>${id}</code>]:</b> 
+    ├ Started the bot: <b>${registered}</b>
     ├ Total converted: <b>${total}</b>
     ├ Converted to sticker: <b>${to_sticker}</b>
     ├ Converted to file: <b>${to_file}</b>
+    ├ Language: <b>${language}</b>
     ├ Subscriber: <b>${subscription}</b>
 
-    <i>${timestamp}</i> • #burnbgbot
+    <i>${timestamp}''</i> • #burnbgbot
   new_user: |
     🆕 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just started the bot for the first time.
 
-    <i>${timestamp}</i> • #burnbgbot
+    <i>${timestamp}''</i> • #burnbgbot
   no_subscription: |
     ⛔️ [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> tried to use the bot without subscription.
 
-    <i>${timestamp}</i> • #burnbgbot
+    <i>${timestamp}''</i> • #burnbgbot
   service_change: |
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed service from <b>${old_service}</b> to <b>${new_service}</b>.
 
-    <i>${timestamp}</i> • #burnbgbot
+    <i>${timestamp}''</i> • #burnbgbot
   language_change: |
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed language from <b>${old_language}</b> to <b>${new_language}</b>.
 
-    <i>${timestamp}</i> • #burnbgbot
+    <i>${timestamp}''</i> • #burnbgbot
+  to_sticker: |
+    🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has turned ${action} to-sticker mode.
+
+    <i>${timestamp}''</i> • #burnbgbot
 
 button:
   language: Change Language

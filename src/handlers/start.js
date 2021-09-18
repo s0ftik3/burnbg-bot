@@ -22,7 +22,8 @@ module.exports = () => async (ctx) => {
             recordUser(data).then(async () => {
                 ctx.session.user = { 
                     ...data, 
-                    to_sticker: false, 
+                    to_sticker: false,
+                    add_text: false,
                     service: 0,
                     usage: 0,
                     converted_to_sticker: 0,

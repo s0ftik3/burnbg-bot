@@ -65,6 +65,22 @@ module.exports = (ctx, user) => {
                 };
 
                 return obj_te;
+            case 'ml':
+                // I don't want to add stats to languages that I can't moderate.
+                // I will think how to let translators set up this line themselves.
+                const obj_ml = { plug: '' };
+
+                return obj_ml;
+            case 'pt-br':
+                const obj_ptbr = {
+                    range: moment(user.timestamp).from(new Date(), true),
+                    usage: user.usage === undefined ? 0 : user.usage,
+                    plural: (user.usage > 1) ? 's' : '',
+                    converted_to_sticker: user.converted_to_sticker === undefined ? 0 : user.converted_to_sticker,
+                    converted_to_file: user.converted_to_file === undefined ? 0 : user.converted_to_file
+                };
+                
+                return obj_ptbr;
             default:
                 replyWithError(ctx, 0);
                 break;

@@ -44,7 +44,7 @@ module.exports = () => async (ctx) => {
                 sendLog({
                     type: 'language_change',
                     id: ctx.from.id,
-                    name: user.first_name,
+                    name: ctx.from.first_name,
                     old_language: i18n.t(user.language, 'language'),
                     new_language: i18n.t(language, 'language'),
                     timestamp: new Date()

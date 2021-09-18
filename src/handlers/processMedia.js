@@ -15,7 +15,7 @@ module.exports = () => async (ctx) => {
         ctx.i18n.locale(user.language);
 
         const is_member = await checkSubscription(ctx).then(response => response);
-        if (user.usage > 20 && !is_member) return replyWithError(ctx, 11);
+        if (user.usage > 10 && !is_member) return replyWithError(ctx, 11);
 
         const data = {
             ctx: ctx,
@@ -79,7 +79,7 @@ module.exports = () => async (ctx) => {
                 type: 'common',
                 id: ctx.from.id,
                 username: user.username,
-                name: user.first_name,
+                name: ctx.from.first_name,
                 query_type: data.message.type,
                 action: 0, // 0 - no-bg image / 1 - sticker
                 size: result.initial_file_size,
@@ -87,6 +87,8 @@ module.exports = () => async (ctx) => {
                 to_sticker: user.converted_to_sticker,
                 to_file: user.converted_to_file,
                 subscription: user.channel_member ? true : false,
+                language: user.language,
+                registered: user.timestamp,
                 timestamp: new Date()
             });
         } else {
@@ -102,7 +104,7 @@ module.exports = () => async (ctx) => {
                 type: 'common',
                 id: ctx.from.id,
                 username: user.username,
-                name: user.first_name,
+                name: ctx.from.first_name,
                 query_type: data.message.type,
                 action: 1, // 0 - no-bg image / 1 - sticker
                 size: result.initial_file_size,
@@ -110,6 +112,8 @@ module.exports = () => async (ctx) => {
                 to_sticker: user.converted_to_sticker,
                 to_file: user.converted_to_file,
                 subscription: user.channel_member ? true : false,
+                language: user.language,
+                registered: user.timestamp,
                 timestamp: new Date()
             });
         }

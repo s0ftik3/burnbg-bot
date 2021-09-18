@@ -32,12 +32,14 @@ module.exports = (data) => {
                         to_sticker: data.to_sticker,
                         to_file: data.to_file,
                         subscription: data.subscription ? 'yes' : 'no',
-                        timestamp: moment(data.timestamp).format('L LTS'),
+                        language: i18n.t(data.language, 'language'),
+                        registered: moment(data.registered).format('ll'),
+                        timestamp: moment(data.timestamp).format('ll s'),
                     }),
                     {
                       parse_mode: 'HTML'
                     }
-                );
+                ).catch(() => {});
 
                 break;
             case 'new_user':
@@ -46,12 +48,12 @@ module.exports = (data) => {
                     i18n.t('en', 'log.new_user', {
                         id: data.id,
                         name: data.name,
-                        timestamp: moment(data.timestamp).format('L LTS'),
+                        timestamp: moment(data.timestamp).format('ll s'),
                     }),
                     {
                         parse_mode: 'HTML'
                     }
-                );
+                ).catch(() => {});
 
                 break;
             case 'error_no_sub':
@@ -60,12 +62,12 @@ module.exports = (data) => {
                     i18n.t('en', 'log.no_subscription', {
                         id: data.id,
                         name: data.name,
-                        timestamp: moment(data.timestamp).format('L LTS'),
+                        timestamp: moment(data.timestamp).format('ll s'),
                     }),
                     {
                         parse_mode: 'HTML'
                     }
-                );
+                ).catch(() => {});
 
                 break;
             case 'service_change':
@@ -76,12 +78,12 @@ module.exports = (data) => {
                         name: data.name,
                         old_service: data.old_service + 1,
                         new_service: data.service + 1,
-                        timestamp: moment(data.timestamp).format('L LTS'),
+                        timestamp: moment(data.timestamp).format('ll s'),
                     }),
                     {
                         parse_mode: 'HTML'
                     }
-                );
+                ).catch(() => {});
 
                 break;
             case 'language_change':
@@ -92,12 +94,27 @@ module.exports = (data) => {
                         name: data.name,
                         old_language: data.old_language,
                         new_language: data.new_language,
-                        timestamp: moment(data.timestamp).format('L LTS'),
+                        timestamp: moment(data.timestamp).format('ll s'),
                     }),
                     {
                         parse_mode: 'HTML'
                     }
-                );
+                ).catch(() => {});
+
+                break;
+            case 'to_sticker':
+                telegram.sendMessage(
+                    config.logs,
+                    i18n.t('en', 'log.to_sticker', {
+                        id: data.id,
+                        name: data.name,
+                        action: data.action ? 'on' : 'off',
+                        timestamp: moment(data.timestamp).format('ll s'),
+                    }),
+                    {
+                        parse_mode: 'HTML'
+                    }
+                ).catch(() => {});
 
                 break;
             default:
