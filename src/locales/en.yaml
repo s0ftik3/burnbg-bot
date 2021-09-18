@@ -43,7 +43,6 @@ log:
     ├ Converted to sticker: <b>${to_sticker}</b>
     ├ Converted to file: <b>${to_file}</b>
     ├ Language: <b>${language}</b>
-    ├ Subscriber: <b>${subscription}</b>
 
     <i>${timestamp}''</i> • #burnbgbot
   new_user: |

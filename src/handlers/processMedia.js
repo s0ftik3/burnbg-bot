@@ -1,13 +1,13 @@
 'use strict';
 
 const Bot = require('../database/models/Bot');
-const User = require('../database/models/User');
 const getUserSession = require('../scripts/getUserSession');
 const RemoveBackground = require('../scripts/removeBackground');
-const convertToSticker = require('../scripts/convertToSticker');
 const replyWithError = require('../scripts/replyWithError');
 const checkSubscription = require('../scripts/checkSubscription');
-const sendLog = require('../scripts/sendLog');
+const replyWithFile = require('../scripts/replyWithFile');
+const replyWithSticker = require('../scripts/replyWithSticker');
+const updateUser = require('../database/updateUser');
 
 module.exports = () => async (ctx) => {
     try {
@@ -33,9 +33,9 @@ module.exports = () => async (ctx) => {
             output: (user.to_sticker) ? 'sticker' : 'file'
         };
 
-        if (data.message?.mime !== undefined 
-            && data.message?.mime !== 'image/jpeg' 
-            && data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
+        if (data.message?.mime !== undefined &&
+            data.message?.mime !== 'image/jpeg' &&
+            data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
 
         ctx.replyWithHTML(ctx.i18n.t('service.standby')).catch(() => replyWithError(ctx, 15));
 
@@ -63,73 +63,20 @@ module.exports = () => async (ctx) => {
         if (result?.code === 10) return replyWithError(ctx, 10);
         if (result?.code === 12) return replyWithError(ctx, 12);
 
-        if (data.output === 'file') {
-            ctx.replyWithChatAction('upload_document');
-
-            await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
-
-            ctx.replyWithDocument({ 
-                source: result.buffer, 
-                filename: '@burnbgbot.png' 
-            }, {
-                reply_to_message_id: ctx.message.message_id
-            }).catch(() => replyWithError(ctx, 13));;
-
-            sendLog({
-                type: 'common',
-                id: ctx.from.id,
-                username: user.username,
-                name: ctx.from.first_name,
-                query_type: data.message.type,
-                action: 0, // 0 - no-bg image / 1 - sticker
-                size: result.initial_file_size,
-                usage: user.usage,
-                to_sticker: user.converted_to_sticker,
-                to_file: user.converted_to_file,
-                subscription: user.channel_member ? true : false,
-                language: user.language,
-                registered: user.timestamp,
-                timestamp: new Date()
-            });
-        } else {
-            const sticker = await convertToSticker(result.buffer, data.text);
-
-            await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
-            
-            ctx.replyWithSticker({ source: sticker }, {
-                reply_to_message_id: ctx.message.message_id
-            }).catch(() => replyWithError(ctx, 14));
-
-            sendLog({
-                type: 'common',
-                id: ctx.from.id,
-                username: user.username,
-                name: ctx.from.first_name,
-                query_type: data.message.type,
-                action: 1, // 0 - no-bg image / 1 - sticker
-                size: result.initial_file_size,
-                usage: user.usage,
-                to_sticker: user.converted_to_sticker,
-                to_file: user.converted_to_file,
-                subscription: user.channel_member ? true : false,
-                language: user.language,
-                registered: user.timestamp,
-                timestamp: new Date()
-            });
+        switch (data.output) {
+            case 'file':
+                replyWithFile(ctx, data, user, result);
+                break;
+            case 'sticker':
+                replyWithSticker(ctx, data, user, result);
+                break;
+            default:
+                console.log('Unknown output: %s', data.output);
+                replyWithError(ctx, 0);
+                break;
         }
 
-        User.updateOne({ id: ctx.from.id }, { 
-            $inc: { 
-                usage: 1,
-                converted_to_sticker: (user.to_sticker) ? 1 : 0,
-                converted_to_file: (user.to_sticker) ? 0 : 1
-            },
-            $set: { last_time_used: new Date() }
-        }, () => {});
-        
-        ctx.session.user.usage = user.usage + 1;
-        ctx.session.user.converted_to_sticker = (user.to_sticker) ? (user?.converted_to_sticker || 0) + 1 : (user?.converted_to_sticker || 0);
-        ctx.session.user.converted_to_file = (user.to_sticker) ? (user?.converted_to_file || 0) : (user?.converted_to_file || 0) + 1;
+        updateUser(ctx, user);
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);
