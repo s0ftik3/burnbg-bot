@@ -11,7 +11,7 @@ service:
     Por <b>${range}</b> has procesado <b>${usage} image${plural}</b>, de la cuales, <b>${converted_to_file} fueron convertidas</b> a archivos, y <b>${converted_to_sticker} fueron convertidas</b> a sticker.
   standby: 🕓 Por favor, espera mientras la imagen se está convirtiendo...
   change_language: Escoge el idioma de la interface.
-  language_changed: ✅ Idioma cambiado.
+  language_changed: 🇪🇸 Idioma cambiado.
   warning: (beta) El segundo servicio trabaja más lento y es inestable.
   service_no_change: No tienes permitido cambiar entre servicios por ahora.
   image_downloaded: ${type} <code>(${size})</code> La imagen ha sido descargada. Procesando, puede tardar unos segundos...
