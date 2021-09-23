@@ -50,6 +50,10 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: null
     },
+    files: [{
+        type: Object,
+        required: false
+    }],
     timestamp: {
         type: Date,
         required: false,

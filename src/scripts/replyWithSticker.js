@@ -2,6 +2,7 @@
 
 const convertToSticker = require('../scripts/convertToSticker');
 const sendLog = require('../scripts/sendLog');
+const replyWithError = require('./replyWithError');
 
 module.exports = async (ctx, data, user, result) => {
     try {

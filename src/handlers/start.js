@@ -32,7 +32,7 @@ module.exports = () => async (ctx) => {
                 ctx.i18n.locale(data.language);
 
                 await ctx.replyWithHTML(
-                    ctx.i18n.t('service.greeting', { name: data.first_name }), 
+                    ctx.getString(ctx, 'service.greeting', { name: data.first_name }),
                     Markup.keyboard([[ctx.i18n.t('button.settings')]])
                         .resize()
                         .extra()
@@ -43,7 +43,7 @@ module.exports = () => async (ctx) => {
             ctx.session.user = user;
             
             await ctx.replyWithHTML(
-                ctx.i18n.t('service.greeting', { name: ctx.from.first_name.replace(/[<>]/g, '') }), 
+                ctx.getString(ctx, 'service.greeting', { name: ctx.from.first_name.replace(/[<>]/g, '') }), 
                 Markup.keyboard([[ctx.i18n.t('button.settings')]])
                     .resize()
                     .extra()

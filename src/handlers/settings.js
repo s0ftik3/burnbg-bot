@@ -10,8 +10,8 @@ module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
-        
-        ctx.replyWithHTML(ctx.i18n.t('service.settings', createStatsObject(ctx, user)), {
+
+        ctx.replyWithHTML(ctx.getString(ctx, 'service.settings', createStatsObject(ctx, user)), {
             reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user))
         }).catch(() => replyWithError(ctx, 15));
     } catch (err) {

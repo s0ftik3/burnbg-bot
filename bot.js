@@ -31,6 +31,7 @@ const {
 bot.use(i18n.middleware());
 bot.use(session());
 bot.use(rateLimit(require('./config').limit));
+bot.context.getString = require('./src/scripts/getString');
 
 bot.start(handleStart());
 

@@ -19,7 +19,7 @@ module.exports = () => async (ctx) => {
         ctx.i18n.locale(user.language);
         
         const action = (ctx.match[0].match(/set_lang:(.*)/g) === null) ? 'language' : 'set_language';
-
+        
         switch (action) {
             case 'language':
                 const buttons = [];
@@ -32,8 +32,8 @@ module.exports = () => async (ctx) => {
         
                 buttons.push(Markup.callbackButton(ctx.i18n.t('button.back'), 'back:settings'));
                 const keyboard = buttons.filter((e) => e.callback_data != `set_lang:${ctx.session.user.language}`);
-
-                ctx.editMessageText(ctx.i18n.t('service.change_language'), {
+                
+                ctx.editMessageText(ctx.getString(ctx, 'service.change_language'), {
                     reply_markup: Markup.inlineKeyboard(keyboard, { columns: 2 }),
                 }).catch(() => {});
     
@@ -57,7 +57,7 @@ module.exports = () => async (ctx) => {
                 await ctx.deleteMessage().catch(() => {});
     
                 ctx.replyWithHTML(
-                    ctx.i18n.t('service.language_changed'),
+                    ctx.getString(ctx, 'service.language_changed'),
                     Markup.keyboard([[ctx.i18n.t('button.settings')]])
                         .resize()
                         .extra()

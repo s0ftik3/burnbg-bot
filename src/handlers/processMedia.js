@@ -37,7 +37,7 @@ module.exports = () => async (ctx) => {
             data.message?.mime !== 'image/jpeg' &&
             data.message?.mime !== 'image/png') return replyWithError(ctx, 2);
 
-        ctx.replyWithHTML(ctx.i18n.t('service.standby')).catch(() => replyWithError(ctx, 15));
+        ctx.replyWithHTML(ctx.getString(ctx, 'service.standby')).catch(() => replyWithError(ctx, 15));
 
         const removeBackground = new RemoveBackground(data);
         const result = await removeBackground.main()
@@ -76,7 +76,7 @@ module.exports = () => async (ctx) => {
                 break;
         }
 
-        updateUser(ctx, user);
+        updateUser(ctx, user, data);
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);

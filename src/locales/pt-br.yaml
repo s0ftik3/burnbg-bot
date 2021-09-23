@@ -15,6 +15,7 @@ service:
   warning: (beta) O segundo serviço que você acabou de escolher funciona de forma mais lenta e instável.
   service_no_change: Você não pode alternar entre os serviços agora.
   image_downloaded: ${type} <code>(${size})</code> A imagem foi baixada. O processamento pode demorar alguns segundos...
+  no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
 
 error:
   common: 😥 Algo deu errado. Por favor, tente usar o comando /start novamente.

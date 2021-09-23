@@ -1,14 +1,12 @@
 # Burn Background Bot
-[![release](https://img.shields.io/badge/release-v1.4.7-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v1.4.8-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![bot](https://img.shields.io/badge/Bot-Telegram-blue)](https://t.me/burnbgbot)
-
-Telegram description: Remove image backgrounds automatically in a few seconds. Don't spend hours manually picking pixels. Send your photo now & see the magic.
 
 ![preview](https://i.ibb.co/dKxZf5G/preview.png)
 
 ## About
-If you don't want to waste time and manually remove background of your desired image, this bot is for you. You can also convert your image to a sticker without background.
+This bot can remove image backgrounds automatically in a few seconds. No need to spend hours manually picking pixels. Just send a picture or file to the bot and see the magic. You can also convert your image to a sticker, activate this option in settings. You have 10 free attempts, after that you will be asked to subscribe to my channel and you will be granted unlimited access to the bot. The bot is fully free and your subscription is your gratitude to me.
 
 ## Translators
 

@@ -1,6 +1,7 @@
 'use strict';
 
 const sendLog = require('../scripts/sendLog');
+const replyWithError = require('./replyWithError');
 
 module.exports = async (ctx, data, user, result) => {
     try {
