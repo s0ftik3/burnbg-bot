@@ -121,6 +121,10 @@ module.exports = (ctx, code) => {
                     message: `[${ctx.from.id}] Bot was blocked by the user`
                 });
                 break;
+            case 16:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.getString(ctx, 'error.unable_reset'));
+                break;
             default:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));

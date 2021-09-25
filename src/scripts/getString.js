@@ -15,7 +15,7 @@ module.exports = (ctx, string, params = {}) => {
 
         if (missing.includes(string)) {
             let text = i18n.t(language, string, params);
-            text += '\n' + ctx.i18n.t('service.no_translation');
+            text += '\n\n' + ctx.i18n.t('service.no_translation');
             return text;
         } else {
             return i18n.t(language, string, params);

@@ -16,6 +16,8 @@ service:
   service_no_change: You're not able to switch between services now.
   image_downloaded: ${type} <code>(${size})</code> The image has been downloaded. Processing may take a few seconds...
   no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
+  pre_reset: Do you really want to reset your account?
+  reset: 🚀 You successfully deleted all the information stored about you. To start over use /start command.
 
 error:
   common: 😥 Something went wrong. Please try /start again.
@@ -32,7 +34,8 @@ error:
   failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
   not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
   api_error: 😥 Something went wrong. Please try some other photo or change service in /settings.
-
+  unable_reset: 🙂 Nothing to reset. Use /start command to create a record.
+  
   # Do not translate this (admin) section
 log:
   common: |
@@ -81,3 +84,5 @@ button:
 action:
   a_on: "ON"
   a_off: "OFF"
+  a_yes: "Yes"
+  a_no: "No"

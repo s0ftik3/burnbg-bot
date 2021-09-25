@@ -162,14 +162,17 @@ module.exports = class RemoveBackground {
                         return;
                     }
                 } else {
-                    axios.get(response.data?.data?.bgRemoved, {
+                    axios({
+                        method: 'GET',
+                        url: response.data?.data?.bgRemoved,
                         responseType: 'arraybuffer'
                     }).then(response => {
                         resolve({
                             buffer: Buffer.from(response.data, 'binary'),
                             initial_file_size: image.size
                         });
-                    }).catch(() => {
+                    }).catch((err) => {
+                        console.error(err);
                         reject({ code: 10, error: 'Failed to download processed photo' });
                     });
                 }

@@ -46,6 +46,8 @@ bot.action('service', handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());
+bot.action('yes', handleReset());
+bot.action('no', handleReset());
 
 bot.hears(config.buttons, handleSettings());
 
