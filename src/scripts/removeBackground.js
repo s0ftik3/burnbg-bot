@@ -172,7 +172,7 @@ module.exports = class RemoveBackground {
                             initial_file_size: image.size
                         });
                     }).catch((err) => {
-                        console.error(err);
+                        console.error(response);
                         reject({ code: 10, error: 'Failed to download processed photo' });
                     });
                 }
