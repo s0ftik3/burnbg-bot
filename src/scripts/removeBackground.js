@@ -143,7 +143,9 @@ module.exports = class RemoveBackground {
                 },
                 data: data
             }).then(response => {
-                if (response.data.code === 4004) {
+                const codes = [4000, 4001, 4002, 4003, 4004];
+                
+                if (codes.includes(response.data.code)) {
                     if (this.ctx.session.bot?.inactive_tokens.length >= 10) {
                         reject({ code: 3, error: 'No active tokens left' });
                         return;
@@ -171,8 +173,7 @@ module.exports = class RemoveBackground {
                             buffer: Buffer.from(response.data, 'binary'),
                             initial_file_size: image.size
                         });
-                    }).catch((err) => {
-                        console.error(response);
+                    }).catch(() => {
                         reject({ code: 10, error: 'Failed to download processed photo' });
                     });
                 }
