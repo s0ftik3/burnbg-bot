@@ -69,6 +69,24 @@ log:
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has turned ${action} to-sticker mode.
 
     <i>${timestamp}''</i> • #burnbgbot
+  standby: Fetching updates...
+  stats: |
+    <b>Users:</b> ${total}
+    <b>Channel members:</b> ${channel_members}
+    <b>Languages:</b>
+    ├ RU: ${ru}
+    ├ EN: ${en}
+    ├ ES: ${es}
+    ├ IT: ${it}
+    ├ ML: ${ml}
+    ├ PT-BR: ${pt_br}
+    └ TE: ${te}
+    <b>Enabled stickers mode:</b> ${to_sticker}
+    <b>Converted to files the most:</b> <a href="tg://user?id=${file_id}">${file_name}</a> (${file_converted})
+    <b>Converted to stickers the most:</b> <a href="tg://user?id=${sticker_id}">${sticker_name}</a> (${sticker_converted})
+    <b>Usage the most:</b> <a href="tg://user?id=${usage_id}">${usage_name}</a> (${usage_usage})
+    <b>Used today:</b> ${used_today}
+    <b>Last usage:</b> <a href="tg://user?id=${last_time_id}">${last_time_name}</a> (${last_time_timestamp})
 
 button:
   language: Change Language

@@ -147,6 +147,7 @@ module.exports = class RemoveBackground {
                 
                 if (codes.includes(response.data.code)) {
                     if (this.ctx.session.bot?.inactive_tokens.length >= 10) {
+                        console.log(response);
                         reject({ code: 3, error: 'No active tokens left' });
                         return;
                     } else {

@@ -25,7 +25,8 @@ const {
     handleToSticker,
     handleProcessText,
     handleChangeService,
-    handleReset
+    handleReset,
+    handleStatistics
 } = require('./src/handlers');
 
 bot.use(i18n.middleware());
@@ -40,6 +41,7 @@ bot.on('document', handleProcessMedia());
 
 bot.command('settings', handleSettings());
 bot.command('reset', handleReset());
+bot.command('stats', handleStatistics());
 
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());
