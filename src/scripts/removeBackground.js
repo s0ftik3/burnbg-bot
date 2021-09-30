@@ -132,7 +132,7 @@ module.exports = class RemoveBackground {
             const data = new FormData();
             
             data.append('file', image.stream);
-            data.append('mattingType', '5');
+            data.append('mattingType', '6');
             
             axios({
                 method: 'POST',

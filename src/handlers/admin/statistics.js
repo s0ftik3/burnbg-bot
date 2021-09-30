@@ -10,7 +10,7 @@ module.exports = () => async (ctx) => {
             ctx.session.adm_msg_id = response.message_id;
         });
 
-        const users = await User.find(); // array
+        const users = await User.find();
         const total = users.length;
         const channel_members = users.filter(e => e.channel_member === true).length;
         const ru = users.filter(e => e.language === 'ru').length;
