@@ -71,22 +71,26 @@ log:
     <i>${timestamp}''</i> • #burnbgbot
   standby: Fetching updates...
   stats: |
-    <b>Users:</b> ${total}
+    <b>Users:</b> ${total} (+${total_new})
     <b>Channel members:</b> ${channel_members}
     <b>Languages:</b>
-    ├ RU: ${ru}
-    ├ EN: ${en}
-    ├ ES: ${es}
-    ├ IT: ${it}
-    ├ ML: ${ml}
-    ├ PT-BR: ${pt_br}
-    └ TE: ${te}
+    ├ RU: ${ru} (+${ru_new})
+    ├ EN: ${en} (+${en_new})
+    ├ ES: ${es} (+${es_new})
+    ├ IT: ${it} (+${it_new})
+    ├ ML: ${ml} (+${ml_new})
+    ├ PT-BR: ${pt_br} (+${pt_br_new})
+    └ TE: ${te} (+${te_new})
     <b>Enabled stickers mode:</b> ${to_sticker}
     <b>Converted to files the most:</b> <a href="tg://user?id=${file_id}">${file_name}</a> (${file_converted})
     <b>Converted to stickers the most:</b> <a href="tg://user?id=${sticker_id}">${sticker_name}</a> (${sticker_converted})
     <b>Usage the most:</b> <a href="tg://user?id=${usage_id}">${usage_name}</a> (${usage_usage})
-    <b>Used today:</b> ${used_today}
+    <b>Used today:</b> ${used_today} (+${used_today_new})
     <b>Last usage:</b> <a href="tg://user?id=${last_time_id}">${last_time_name}</a> (${last_time_timestamp})
+    <b>New user:</b> <a href="tg://user?id=${new_user_id}">${new_user_name}</a> (${new_user_timestamp})
+
+    <i>(+n) since the latest command execution</i>
+    <i>${timestamp}</i>
 
 button:
   language: Change Language

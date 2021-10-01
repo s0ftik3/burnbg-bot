@@ -22,6 +22,7 @@ module.exports = () => async (ctx) => {
         const te = users.filter(e => e.language === 'te').length;
         const to_sticker = users.filter(e => e.to_sticker === true).length;
         const used_today = users.filter(e => new Date(e.last_time_used).getDate() === new Date().getDate()).length;
+        const last_user = users.reverse()[0];
 
         let to_file_the_most = { converted_to_file: 0 };
         let to_sticker_the_most = { converted_to_sticker: 0 };
@@ -76,12 +77,34 @@ module.exports = () => async (ctx) => {
             used_today: used_today,
             last_time_id: last_time_used.id,
             last_time_name: last_time_used.first_name,
-            last_time_timestamp: moment(last_time_used.last_time_used).fromNow()
-        }))
+            last_time_timestamp: moment(last_time_used.last_time_used).fromNow(),
+            new_user_id: last_user.id,
+            new_user_name: last_user.first_name,
+            new_user_timestamp: moment(last_user.timestamp).fromNow(),
+            total_new: total - (ctx.session?.total_new || total),
+            used_today_new: used_today - (ctx.session?.used_today || used_today),
+            ru_new: ru - (ctx.session?.ru || ru),
+            en_new: en - (ctx.session?.en || en),
+            es_new: es - (ctx.session?.es || es),
+            it_new: it - (ctx.session?.it || it),
+            ml_new: ml - (ctx.session?.ml || ml),
+            pt_br_new: pt_br - (ctx.session?.pt_br || pt_br),
+            te_new: te - (ctx.session?.te || te),
+            timestamp: moment(new Date())
+        }));
 
         await ctx.deleteMessage(ctx.session.adm_msg_id);
 
         ctx.session.adm_msg_id = undefined;
+        ctx.session.total_new = total;
+        ctx.session.used_today = used_today;
+        ctx.session.ru = ru;
+        ctx.session.en = en;
+        ctx.session.es = es;
+        ctx.session.it = it;
+        ctx.session.ml = ml;
+        ctx.session.pt_br = pt_br;
+        ctx.session.te = te;
     } catch (err) {
         console.error(err);
     }
