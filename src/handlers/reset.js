@@ -6,7 +6,7 @@ const config = require('../../config');
 
 module.exports = () => async (ctx) => {
     try {
-        if (ctx.from.id !== config.admin) return;
+        if (ctx.from.id != config.admin) return;
     
         const is_user_exist = ((await getUser(ctx.from.id)) === null) ? false : true;
         

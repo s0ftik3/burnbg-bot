@@ -8,7 +8,8 @@ const botSchema = new mongoose.Schema({
         type: Array,
         required: false,
         default: []
-    }
+    },
+    type: String
 });
 
 module.exports = mongoose.model('Bot', botSchema);

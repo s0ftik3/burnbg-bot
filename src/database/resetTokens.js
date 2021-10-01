@@ -6,7 +6,8 @@ module.exports = async () => {
         $set: {
             active_token: config.host_token,
             inactive_tokens: [],
-            number: 1
+            number: 1,
+            type: '5'
         }
     }, () => {})
         .then(() => console.log('[Database] Successfully reseted tokens'))

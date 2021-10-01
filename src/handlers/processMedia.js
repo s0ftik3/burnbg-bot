@@ -49,7 +49,8 @@ module.exports = () => async (ctx) => {
                 $set: {
                     active_token: ctx.session.bot.active_token,
                     inactive_tokens: ctx.session.bot.inactive_tokens,
-                    number: ctx.session.bot.number
+                    number: ctx.session.bot.number,
+                    type: ctx.session.bot.type
                 }
             }, () => {});
         }

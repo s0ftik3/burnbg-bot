@@ -4,6 +4,7 @@ const Bot = require('../database/models/Bot');
 const axios = require('axios');
 const byteSize = require('byte-size');
 const FormData = require('form-data');
+const resetTokens = require('../database/resetTokens');
 const config = require('../../config');
 
 module.exports = class RemoveBackground {
@@ -132,7 +133,7 @@ module.exports = class RemoveBackground {
             const data = new FormData();
             
             data.append('file', image.stream);
-            data.append('mattingType', '6');
+            data.append('mattingType', this.ctx.session.bot.type || '5');
             
             axios({
                 method: 'POST',
@@ -147,7 +148,11 @@ module.exports = class RemoveBackground {
                 
                 if (codes.includes(response.data.code)) {
                     if (this.ctx.session.bot?.inactive_tokens.length >= 10) {
-                        console.log(response);
+                        if (this.ctx.session.bot.type == 6) {
+                            resetTokens();
+                        } else {
+                            this.ctx.session.bot.type = '6';
+                        }
                         reject({ code: 3, error: 'No active tokens left' });
                         return;
                     } else {

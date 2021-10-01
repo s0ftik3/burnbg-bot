@@ -6,7 +6,7 @@ module.exports = () => async (ctx) => {
     try {
         if (ctx.from.id != config.admin) return;
 
-        ctx.reply(ctx.getString(ctx, 'log.standby')).then(response => {
+        ctx.reply(ctx.i18n.t('log.standby')).then(response => {
             ctx.session.adm_msg_id = response.message_id;
         });
 
@@ -53,7 +53,7 @@ module.exports = () => async (ctx) => {
             }
         }
 
-        await ctx.replyWithHTML(ctx.getString(ctx, 'log.stats', {
+        await ctx.replyWithHTML(ctx.i18n.t('log.stats', {
             total: total,
             channel_members: channel_members,
             en: en,
