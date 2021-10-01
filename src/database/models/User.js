@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
     last_name: String,
     username: String,
     language: String,
+    role: {
+        type: String,
+        required: false,
+        default: 'user'
+    },
     to_sticker: {
         type: Boolean,
         required: false,

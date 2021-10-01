@@ -35,6 +35,7 @@ module.exports = (data) => {
                         language: i18n.t(data.language, 'language'),
                         registered: moment(data.registered).format('ll'),
                         timestamp: moment(data.timestamp).format('ll s'),
+                        payload: data.file_id
                     }),
                     {
                       parse_mode: 'HTML'

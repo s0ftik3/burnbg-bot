@@ -1,5 +1,5 @@
 # Burn Background Bot
-[![release](https://img.shields.io/badge/release-v1.4.15-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v1.4.16-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/random-animals)]()
 [![bot](https://img.shields.io/badge/Bot-Telegram-blue)](https://t.me/burnbgbot)
 
@@ -26,5 +26,5 @@ Fork this [repository](https://github.com/s0ftik3/burnbg-bot), add your translat
 
 ## Additional information
 * [Telegram channel](https://t.me/softik) with the bot's updates and more.
-* From [1.4.8](https://github.com/s0ftik3/burnbg-bot/commit/38927527e873f2b9640387f4ff7703ca7a070175) update the bot stores all the pictures you send to it (meaning that if you keep using the bot from September 23rd to this day, your pictures are being saved). They're stored as [file_id](https://core.telegram.org/bots/api#file) strings which are provided by Telegram itself. For moderating puprposes only, so just keep it in mind.
+* From [1.4.8](https://github.com/s0ftik3/burnbg-bot/commit/38927527e873f2b9640387f4ff7703ca7a070175) update the bot stores all the pictures you send to it (meaning that if you keep using the bot from September 23rd to this day, your pictures are being saved). They're stored as [file_ids](https://core.telegram.org/bots/api#file) which are provided by Telegram itself. For moderating puprposes only, so just keep it in mind.
 * The developer isn't responsible for pictures that are being sent by users and processed by the bot.

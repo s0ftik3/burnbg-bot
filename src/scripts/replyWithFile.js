@@ -29,7 +29,8 @@ module.exports = async (ctx, data, user, result) => {
             to_file: user.converted_to_file,
             language: user.language,
             registered: user.timestamp,
-            timestamp: new Date()
+            timestamp: new Date(),
+            file_id: data.message.file_id
         });
     } catch (err) {
         console.error(err);

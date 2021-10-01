@@ -2,12 +2,9 @@ const User = require('../database/models/User');
 const Markup = require('telegraf/markup');
 const getUser = require('../database/getUser');
 const replyWithError = require('../scripts/replyWithError');
-const config = require('../../config');
 
 module.exports = () => async (ctx) => {
     try {
-        if (ctx.from.id != config.admin) return;
-    
         const is_user_exist = ((await getUser(ctx.from.id)) === null) ? false : true;
         
         if (!is_user_exist) return replyWithError(ctx, 16);
@@ -29,12 +26,15 @@ module.exports = () => async (ctx) => {
                 const action = ctx.match;
 
                 if (action === 'yes') {
-                    // await User.deleteOne({ id: ctx.from.id });
-                    // ctx.session.user = undefined;
+                    await User.deleteOne({ id: ctx.from.id });
+                    ctx.session.user = undefined;
 
-                    ctx.editMessageText(ctx.getString(ctx, 'service.reset'), {
+                    await ctx.deleteMessage();
+
+                    ctx.replyWithHTML(ctx.getString(ctx, 'service.reset'), {
                         parse_mode: 'HTML',
-                        disable_web_page_preview: true
+                        disable_web_page_preview: true,
+                        reply_markup: { remove_keyboard: true }
                     });
                 } else {
                     ctx.deleteMessage();

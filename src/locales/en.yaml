@@ -48,27 +48,27 @@ log:
     ├ Converted to file: <b>${to_file}</b>
     └ Language: <b>${language}</b>
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}'' • <a href="https://t.me/share/url?url=file_id%3A${payload}">View</a></i> 
   new_user: |
     🆕 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just started the bot for the first time.
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}''</i>
   no_subscription: |
     ⛔️ [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> tried to use the bot without subscription.
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}''</i>
   service_change: |
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed service from <b>${old_service}</b> to <b>${new_service}</b>.
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}''</i>
   language_change: |
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed language from <b>${old_language}</b> to <b>${new_language}</b>.
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}''</i>
   to_sticker: |
     🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has turned ${action} to-sticker mode.
 
-    <i>${timestamp}''</i> • #burnbgbot
+    <i>${timestamp}''</i>
   standby: Fetching updates...
   stats: |
     <b>Users:</b> ${total} (+${total_new})

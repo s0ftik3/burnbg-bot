@@ -9,5 +9,6 @@ module.exports = {
     handleProcessText: require('./processText'),
     handleChangeService: require('./changeService'),
     handleReset: require('./reset'),
-    handleStatistics: require('./admin/statistics')
+    handleStatistics: require('./admin/statistics'),
+    handleProcessFileId: require('./admin/processFileId')
 };

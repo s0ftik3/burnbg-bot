@@ -26,7 +26,8 @@ const {
     handleProcessText,
     handleChangeService,
     handleReset,
-    handleStatistics
+    handleStatistics,
+    handleProcessFileId
 } = require('./src/handlers');
 
 bot.use(i18n.middleware());
@@ -52,6 +53,7 @@ bot.action('yes', handleReset());
 bot.action('no', handleReset());
 
 bot.hears(config.buttons, handleSettings());
+bot.hears(/file_id/, handleProcessFileId());
 
 bot.on('text', handleProcessText());
 bot.on('callback_query', handleCallback());
