@@ -151,6 +151,9 @@ module.exports = class RemoveBackground {
                         if (this.ctx.session.bot.type == 6) {
                             resetTokens();
                         } else {
+                            this.ctx.session.bot.active_token = config.host_token;
+                            this.ctx.session.bot.inactive_tokens = [];
+                            this.ctx.session.bot.number = 1;
                             this.ctx.session.bot.type = '6';
                         }
                         reject({ code: 3, error: 'No active tokens left' });
