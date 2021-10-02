@@ -149,6 +149,10 @@ module.exports = class RemoveBackground {
                 if (codes.includes(response.data.code)) {
                     if (this.ctx.session.bot?.inactive_tokens.length >= 10) {
                         if (this.ctx.session.bot.type == 6) {
+                            this.ctx.session.bot.active_token = config.host_token;
+                            this.ctx.session.bot.inactive_tokens = [];
+                            this.ctx.session.bot.number = 1;
+                            this.ctx.session.bot.type = '5';
                             resetTokens();
                         } else {
                             this.ctx.session.bot.active_token = config.host_token;
