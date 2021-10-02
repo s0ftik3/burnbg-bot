@@ -5,6 +5,10 @@ const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {
+        const getUserSession = require('../scripts/getUserSession');
+        const user = await getUserSession(ctx);
+        ctx.i18n.locale(user.language);
+        
         const is_user_exist = ((await getUser(ctx.from.id)) === null) ? false : true;
         
         if (!is_user_exist) return replyWithError(ctx, 16);

@@ -43,6 +43,7 @@ bot.on('document', handleProcessMedia());
 bot.command('settings', handleSettings());
 bot.command('reset', handleReset());
 bot.command('stats', handleStatistics());
+// bot.command('history', handleHistory());
 
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());

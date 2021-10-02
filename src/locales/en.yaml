@@ -18,6 +18,7 @@ service:
   no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
   pre_reset: Do you really want to reset your account?
   reset: 🚀 You successfully deleted all the information stored about you. To start over use /start command.
+  history: (${total}) All the processed pictures are stored here. Tap on any button to view a picture. If you want to delete all of them use /reset command.
 
 error:
   common: 😥 Something went wrong. Please try /start again.
@@ -48,7 +49,7 @@ log:
     ├ Converted to file: <b>${to_file}</b>
     └ Language: <b>${language}</b>
 
-    <i>${timestamp}'' • <a href="https://t.me/share/url?url=file_id%3A${payload}">View</a></i> 
+    <i>${timestamp}''
   new_user: |
     🆕 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just started the bot for the first time.
 

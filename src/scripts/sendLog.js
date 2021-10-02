@@ -34,11 +34,15 @@ module.exports = (data) => {
                         subscription: data.subscription ? 'yes' : 'no',
                         language: i18n.t(data.language, 'language'),
                         registered: moment(data.registered).format('ll'),
-                        timestamp: moment(data.timestamp).format('ll s'),
-                        payload: data.file_id
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
-                      parse_mode: 'HTML'
+                        parse_mode: 'HTML',
+                        reply_markup: { 
+                            inline_keyboard: [
+                                [{ text: 'View', url: `https://t.me/share/url?url=file_id%3A${data.file_id}` }]
+                            ]
+                        }
                     }
                 ).catch(() => {});
 
