@@ -22,7 +22,7 @@ service:
 
 error:
   common: 😥 Something went wrong. Please try /start again.
-  common_important: 😥 The service didn't respond. Please contact @vychs to resolve the issue.
+  common_important: 😥 The service is not responding. Go to /settings and switch to another.
   limit_exceeded: 👮🏻 Don't be in hurry!
   wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
   no_text_messages: 😕 Send me an image or a file of image instead.
@@ -31,7 +31,7 @@ error:
   switched_tokens: |
     😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times.
 
-    If nothing changes and I keep sending you this message, contact @vychs.
+    If there's something wrong with the bot, it will be published in @softik channel.
   failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
   not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
   api_error: 😥 Something went wrong. Please try some other photo or change service in /settings.
@@ -100,7 +100,7 @@ button:
   service: "Service: ${state}"
   add_text: "Sticker with Text: ${state}"
   channel: Channel
-  support: Support
+  support: Developer
   subscribe: Subscribe
   back: « Back
 
