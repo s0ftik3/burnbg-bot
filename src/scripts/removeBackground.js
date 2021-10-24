@@ -262,7 +262,7 @@ module.exports = class RemoveBackground {
 
             axios({
                 method: 'POST',
-                url: config.host2,
+                url: config.host3,
                 headers: {
                     ...data.getHeaders(),
                 },
