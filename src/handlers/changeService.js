@@ -26,7 +26,7 @@ module.exports = () => async (ctx) => {
                 service: ctx.session.user.service,
                 old_service: user.service - 1
             });
-            
+            ctx.answerCbQuery();
         } else if (ctx.session.user.service === 2) {
             sendLog({ 
                 type: 'service_change', 
