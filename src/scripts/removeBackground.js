@@ -6,6 +6,7 @@ const byteSize = require('byte-size');
 const FormData = require('form-data');
 const resetTokens = require('../database/resetTokens');
 const config = require('../../config');
+const changeService = require('../database/changeService');
 
 module.exports = class RemoveBackground {
     constructor(data) {
@@ -33,11 +34,20 @@ module.exports = class RemoveBackground {
                     reject(err);
                 });
             });
-        } else {
+        } else if (this.service === 1) {
             return new Promise(async (resolve, reject) => {
                 const image = await this.getMedia();
 
                 const result = await this.callSecondService(image).catch(err => err);
+                resolve(result);
+            }).catch((err) => {
+                reject(err);
+            });
+        } else {
+            return new Promise(async (resolve, reject) => {
+                const image = await this.getMedia();
+
+                const result = await this.callThirdService(image).catch(err => err);
                 resolve(result);
             }).catch((err) => {
                 reject(err);
@@ -143,9 +153,9 @@ module.exports = class RemoveBackground {
                     token: this.ctx.session.bot.active_token
                 },
                 data: data
-            }).then(response => {
+            }).then(async response => {
                 const codes = [4000, 4001, 4002, 4003, 4004];
-                
+
                 if (codes.includes(response.data.code)) {
                     if (this.ctx.session.bot?.inactive_tokens.length >= 10) {
                         if (this.ctx.session.bot.type == 6) {
@@ -153,7 +163,11 @@ module.exports = class RemoveBackground {
                             this.ctx.session.bot.inactive_tokens = [];
                             this.ctx.session.bot.number = 1;
                             this.ctx.session.bot.type = '5';
-                            resetTokens();
+                            await resetTokens();
+
+                            const new_service = await changeService(this.ctx);
+                            reject({ code: 17, error: 'Changed service', service: new_service + 1 });
+                            return;
                         } else {
                             this.ctx.session.bot.active_token = config.host_token;
                             this.ctx.session.bot.inactive_tokens = [];
@@ -200,9 +214,47 @@ module.exports = class RemoveBackground {
      * Calls the second service's API and converts the result to buffer.
      * @param {Object} image Image data
      * @returns Promise, an object with either data or error and its code.
-     * This function might return 12 - failed to call 2nd API.
+     * This function might return 18 - failed to call 2nd API.
      */
     callSecondService(image) {
+        return new Promise((resolve, reject) => {
+            const data = new FormData();
+            
+            data.append('image_file_url', '');
+            data.append('image_file', image.stream);
+            data.append('bg_color', '');
+            data.append('crop', 'false');
+            data.append('crop_margin', 'px,px,px,px');
+            data.append('bg_image_file_url', '');
+            data.append('size', 'full');
+            data.append('output_format', 'json');
+
+            axios({
+                method: 'POST',
+                url: config.host2,
+                headers: {
+                    'X-Api-Key': config.host2_token,
+                    ...data.getHeaders(),
+                },
+                data: data
+            }).then(response => {
+                resolve({
+                    buffer: Buffer.from(response.data.image_raw, 'base64'),
+                    initial_file_size: image.size
+                });
+            }).catch((err) => {
+                reject({ code: 18, error: 'Failed to call 2nd API', msg: err });
+            });
+        });
+    }
+
+    /**
+     * Calls the third service's API and converts the result to buffer.
+     * @param {Object} image Image data
+     * @returns Promise, an object with either data or error and its code.
+     * This function might return 12 - failed to call 3rd API.
+     */
+    callThirdService(image) {
         return new Promise((resolve, reject) => {
             const data = new FormData();
             
@@ -222,7 +274,7 @@ module.exports = class RemoveBackground {
                     initial_file_size: image.size
                 });
             }).catch((err) => {
-                reject({ code: 12, error: 'Failed to call 2nd API', msg: err });
+                reject({ code: 12, error: 'Failed to call 3rd API', msg: err });
             });
         });
     }

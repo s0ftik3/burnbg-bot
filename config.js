@@ -14,6 +14,8 @@ module.exports = {
     admin: process.env.ADMIN,
     host: process.env.HOST,
     host2: process.env.HOST2,
+    host2_token: process.env.HOST2_TOKEN,
+    host3: process.env.HOST3,
     channel: process.env.CHANNEL,
     logs: process.env.LOGS,
     buttons: [

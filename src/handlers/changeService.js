@@ -13,12 +13,21 @@ module.exports = () => async (ctx) => {
 
         // if (ctx.session.user.service === 0) return ctx.answerCbQuery(ctx.i18n.t('service.service_no_change'), true);
 
-        User.updateOne({ id: ctx.from.id }, { $set: { service: user.service === 0 ? 1 : 0 } }, () => {});
-        ctx.session.user.service = user.service === 0 ? 1 : 0;
+        User.updateOne({ id: ctx.from.id }, { $set: { service: (user.service === 0) ? 1 : (user.service === 1) ? 2 : (user.service === 2) ? 0 : 0 } }, () => {});
+        ctx.session.user.service = (user.service === 0) ? 1 : (user.service === 1) ? 2 : (user.service === 2) ? 0 : 0;
         
         ctx.editMessageReplyMarkup(Markup.inlineKeyboard(getSettingsButtons(ctx, user)));
 
         if (ctx.session.user.service === 1) {
+            sendLog({ 
+                type: 'service_change', 
+                id: ctx.from.id, 
+                name: ctx.from.first_name, 
+                service: ctx.session.user.service,
+                old_service: user.service - 1
+            });
+            
+        } else if (ctx.session.user.service === 2) {
             sendLog({ 
                 type: 'service_change', 
                 id: ctx.from.id, 
@@ -33,7 +42,7 @@ module.exports = () => async (ctx) => {
                 id: ctx.from.id, 
                 name: ctx.from.first_name, 
                 service: ctx.session.user.service,
-                old_service: user.service + 1
+                old_service: user.service + 2
             });
             ctx.answerCbQuery();
         }

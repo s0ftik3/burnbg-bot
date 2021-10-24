@@ -29,13 +29,15 @@ error:
   no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
   file_too_big: ✋ Your file is too big. Please, send me files up to 20 MB.
   switched_tokens: |
-    😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times.
+    😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times. You can switch between services by /settings command.
 
     If there's something wrong with the bot, it will be published in @softik channel.
   failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
   not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
   api_error: 😥 Something went wrong. Please try some other photo or change service in /settings.
   unable_reset: 🙂 Nothing to reset. Use /start command to create a record.
+  changed_service: 🔄 Send this image again. The service has been changed to <b>${new_service}</b>.
+  daily_limit: ✋ You've reached a daily limit. Please, come back tomorrow or contact @vychs and convince him why exactly you need to have increased limit.
   
   # Do not translate this (admin) section
 log:

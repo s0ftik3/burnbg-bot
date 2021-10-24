@@ -1,6 +1,6 @@
 {
   "name": "burngbg-bot",
-  "version": "1.4.21",
+  "version": "1.4.22",
   "description": "A bot that can remove background of any image.",
   "main": "index.js",
   "scripts": {

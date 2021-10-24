@@ -3,7 +3,7 @@
 const Markup = require('telegraf/markup');
 const sendLog = require('./sendLog');
 
-module.exports = (ctx, code) => {
+module.exports = (ctx, code, additional) => {
     try {
         switch (code) {
             case 0:
@@ -97,7 +97,8 @@ module.exports = (ctx, code) => {
                 console.error({
                     code: 12,
                     type: 'error',
-                    message: 'Failed to call 2nd API'
+                    message: 'Failed to call 3rd API',
+                    error: additional
                 });
                 break;
             case 13:
@@ -124,6 +125,19 @@ module.exports = (ctx, code) => {
             case 16:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
                 ctx.replyWithHTML(ctx.getString(ctx, 'error.unable_reset'));
+                break;
+            case 17:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.getString(ctx, 'error.changed_service', { new_service: additional }));
+                break;
+            case 18:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.getString(ctx, 'error.api_error'));
+                console.error({
+                    code: 18,
+                    type: 'error',
+                    message: 'Failed to call 2nd API'
+                });
                 break;
             default:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');

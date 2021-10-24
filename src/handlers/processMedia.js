@@ -12,7 +12,7 @@ const updateUser = require('../database/updateUser');
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
-        ctx.i18n.locale(user.language);
+        ctx.i18n.locale(user?.language);
 
         const is_member = await checkSubscription(ctx).then(response => response);
         if (user.usage >= 5 && !is_member) return replyWithError(ctx, 11);
@@ -62,7 +62,9 @@ module.exports = () => async (ctx) => {
         if (result?.code === 7) return replyWithError(ctx, 7);
         if (result?.code === 8) return replyWithError(ctx, 8);
         if (result?.code === 10) return replyWithError(ctx, 10);
-        if (result?.code === 12) return replyWithError(ctx, 12);
+        if (result?.code === 12) return replyWithError(ctx, 12, result.msg);
+        if (result?.code === 17) return replyWithError(ctx, 17, result.service);
+        if (result?.code === 18) return replyWithError(ctx, 18);
 
         switch (data.output) {
             case 'file':

@@ -10,7 +10,7 @@ module.exports = (ctx, user) => {
             buttons = [
                 [
                     Markup.callbackButton(ctx.i18n.t('button.language'), `language`),
-                    Markup.callbackButton(ctx.i18n.t('button.service', { state: user.service === 0 ? '1' : '2' }), `service`)
+                    Markup.callbackButton(ctx.i18n.t('button.service', { state: (user.service === 0) ? '1' : (user.service === 1) ? '2' : (user.service === 2) ? '3' : '1' }), `service`)
                 ],
                 [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off') }), `to_sticker`)],
                 [
@@ -22,7 +22,7 @@ module.exports = (ctx, user) => {
             buttons = [
                 [
                     Markup.callbackButton(ctx.i18n.t('button.language'), `language`),
-                    Markup.callbackButton(ctx.i18n.t('button.service', { state: user.service === 0 ? '1' : '2' }), `service`)
+                    Markup.callbackButton(ctx.i18n.t('button.service', { state: (user.service === 0) ? '1' : (user.service === 1) ? '2' : (user.service === 2) ? '3' : '1' }), `service`)
                 ],
                 [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off') }), `to_sticker`)],
                 // [Markup.callbackButton(

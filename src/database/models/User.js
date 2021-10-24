@@ -55,6 +55,16 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: null
     },
+    usage_limit: {
+        type: Number,
+        required: false,
+        default: 25
+    },
+    used_today: {
+        type: Number,
+        required: false,
+        default: 0
+    },
     files: [{
         type: Object,
         required: false
