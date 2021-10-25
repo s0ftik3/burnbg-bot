@@ -13,7 +13,8 @@ module.exports = () => async (ctx) => {
         ctx.i18n.locale(user.language);
 
         ctx.replyWithHTML(ctx.getString(ctx, 'service.settings', { version: config.version, ...createStatsObject(ctx, user)}), {
-            reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user))
+            reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
+            disable_web_page_preview: true
         }).catch(() => replyWithError(ctx, 15));
     } catch (err) {
         console.error(err);
