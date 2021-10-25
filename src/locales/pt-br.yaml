@@ -6,7 +6,7 @@ service:
 
     ⭐️ Eu também posso converter sua imagem em um sticker. Use o comando /settings para ativar esta opção.
   settings: |
-    Aqui você pode configurar a forma como o bot funciona.
+    Aqui você pode configurar a forma como o bot (<a href="https://github.com/s0ftik3/burnbg-bot">${version}</a>) funciona.
 
     Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
   standby: 🕓 Por favor, aguarde enquanto a imagem está sendo processada...

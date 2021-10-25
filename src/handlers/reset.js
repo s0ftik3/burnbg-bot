@@ -2,6 +2,7 @@ const User = require('../database/models/User');
 const Markup = require('telegraf/markup');
 const getUser = require('../database/getUser');
 const replyWithError = require('../scripts/replyWithError');
+const sendLog = require('../scripts/sendLog');
 
 module.exports = () => async (ctx) => {
     try {
@@ -39,6 +40,12 @@ module.exports = () => async (ctx) => {
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_markup: { remove_keyboard: true }
+                    });
+
+                    sendLog({
+                        type: 'reseted', 
+                        id: ctx.from.id,
+                        name: ctx.from.first_name
                     });
                 } else {
                     ctx.deleteMessage();

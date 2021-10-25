@@ -53,7 +53,7 @@ module.exports = (data) => {
                     i18n.t('en', 'log.new_user', {
                         id: data.id,
                         name: data.name,
-                        timestamp: moment(data.timestamp).format('ll s'),
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
                         parse_mode: 'HTML'
@@ -67,7 +67,7 @@ module.exports = (data) => {
                     i18n.t('en', 'log.no_subscription', {
                         id: data.id,
                         name: data.name,
-                        timestamp: moment(data.timestamp).format('ll s'),
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
                         parse_mode: 'HTML'
@@ -83,7 +83,7 @@ module.exports = (data) => {
                         name: data.name,
                         old_service: data.old_service + 1,
                         new_service: data.service + 1,
-                        timestamp: moment(data.timestamp).format('ll s'),
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
                         parse_mode: 'HTML'
@@ -99,7 +99,7 @@ module.exports = (data) => {
                         name: data.name,
                         old_language: data.old_language,
                         new_language: data.new_language,
-                        timestamp: moment(data.timestamp).format('ll s'),
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
                         parse_mode: 'HTML'
@@ -114,7 +114,21 @@ module.exports = (data) => {
                         id: data.id,
                         name: data.name,
                         action: data.action ? 'on' : 'off',
-                        timestamp: moment(data.timestamp).format('ll s'),
+                        timestamp: moment(data.timestamp).format('ll s')
+                    }),
+                    {
+                        parse_mode: 'HTML'
+                    }
+                ).catch(() => {});
+
+                break;
+            case 'reseted':
+                telegram.sendMessage(
+                    config.logs,
+                    i18n.t('en', 'log.reseted', {
+                        id: data.id,
+                        name: data.name,
+                        timestamp: moment(data.timestamp).format('ll s')
                     }),
                     {
                         parse_mode: 'HTML'
