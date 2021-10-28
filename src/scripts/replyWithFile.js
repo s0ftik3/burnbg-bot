@@ -11,10 +11,16 @@ module.exports = async (ctx, data, user, result) => {
 
         ctx.replyWithDocument({ 
             source: result.buffer, 
-            filename: '@burnbgbot.png' 
+            filename: data.message.file_name || '@burnbgbot.png' 
         }, {
             reply_to_message_id: ctx.message.message_id
-        }).catch(() => replyWithError(ctx, 13));;
+        }).catch(() => replyWithError(ctx, 13));
+
+        const services = {
+            0: 'the 1st',
+            1: 'the 2nd',
+            2: 'the 3rd'
+        };
 
         sendLog({
             type: 'common',
@@ -30,7 +36,8 @@ module.exports = async (ctx, data, user, result) => {
             language: user.language,
             registered: user.timestamp,
             timestamp: new Date(),
-            file_id: data.message.file_id
+            file_id: data.message.file_id,
+            service: services[data.service]
         });
     } catch (err) {
         console.error(err);

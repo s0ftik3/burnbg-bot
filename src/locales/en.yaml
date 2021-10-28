@@ -49,6 +49,7 @@ log:
     ├ Total converted: <b>${total}</b>
     ├ Converted to sticker: <b>${to_sticker}</b>
     ├ Converted to file: <b>${to_file}</b>
+    ├ Service active: <b>${service}</b>
     └ Language: <b>${language}</b>
 
     <i>${timestamp}''</i>
@@ -106,7 +107,7 @@ button:
   service: "Service: ${state}"
   add_text: "Sticker with Text: ${state}"
   channel: Channel
-  support: Developer
+  support: Donate
   subscribe: Subscribe
   back: « Back
 

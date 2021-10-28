@@ -14,7 +14,7 @@ module.exports = () => async (ctx) => {
 
         switch (direction) {
             case 'settings':
-                ctx.editMessageText(ctx.getString(ctx, 'service.settings', createStatsObject(ctx, user)), {
+                ctx.editMessageText(ctx.getString(ctx, 'service.settings', { version: config.version, ...createStatsObject(ctx, user) }), {
                     parse_mode: 'HTML',
                     reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user))
                 }).catch(() => {});

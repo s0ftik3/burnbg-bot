@@ -15,7 +15,7 @@ module.exports = (ctx, user) => {
                 [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off') }), `to_sticker`)],
                 [
                     Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
+                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/softik/85')
                 ]
             ];
         } else {
@@ -33,7 +33,7 @@ module.exports = (ctx, user) => {
                 // )],
                 [
                     Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/vychs')
+                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/softik/85')
                 ]
             ];
         }

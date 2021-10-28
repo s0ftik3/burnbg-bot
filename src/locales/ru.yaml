@@ -42,7 +42,7 @@ button:
   service: "Сервис: ${state}"
   add_text: "Стикеры с текстом: ${state}"
   channel: Канал
-  support: Разработчик
+  support: Пожертвовать
   subscribe: Подписаться
   back: « Назад
 

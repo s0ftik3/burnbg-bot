@@ -34,7 +34,8 @@ module.exports = (data) => {
                         subscription: data.subscription ? 'yes' : 'no',
                         language: i18n.t(data.language, 'language'),
                         registered: moment(data.registered).format('ll'),
-                        timestamp: moment(data.timestamp).format('ll s')
+                        timestamp: moment(data.timestamp).format('ll s'),
+                        service: data.service
                     }),
                     {
                         parse_mode: 'HTML',
