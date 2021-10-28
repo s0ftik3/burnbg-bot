@@ -4,6 +4,7 @@ const getUserSession = require('../scripts/getUserSession');
 const Markup = require('telegraf/markup');
 const createStatsObject = require('../scripts/createStatsObject');
 const getSettingsButtons = require('../scripts/getSettingsButtons');
+const config = require('../../config');
 
 module.exports = () => async (ctx) => {
     try {

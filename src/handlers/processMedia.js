@@ -26,7 +26,7 @@ module.exports = () => async (ctx) => {
                     type: 'document', 
                     mime: ctx.message?.document.mime_type,
                     file_id: ctx.message?.document.file_id,
-                    file_name: ctx.message?.document.file_name
+                    file_name: ctx.message?.document.file_name.split('.')[0]
                 }
                 : { type: 'photo', file_id: ctx.update?.message?.photo.reverse()[0].file_id },
             text: ctx.message.caption && ctx.message.caption,

@@ -11,7 +11,7 @@ module.exports = async (ctx, data, user, result) => {
 
         ctx.replyWithDocument({ 
             source: result.buffer, 
-            filename: data.message.file_name || '@burnbgbot.png' 
+            filename: `${data.message.file_name}.png` || '@burnbgbot.png' 
         }, {
             reply_to_message_id: ctx.message.message_id
         }).catch(() => replyWithError(ctx, 13));
