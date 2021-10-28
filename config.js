@@ -1,5 +1,5 @@
 module.exports = {
-    version: '1.4.30',
+    version: '1.4.31',
     token: process.env.TOKEN,
     host_token: process.env.HOST_TOKEN,
     host_token2: process.env.HOST_TOKEN2,

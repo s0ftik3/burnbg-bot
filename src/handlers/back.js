@@ -17,7 +17,8 @@ module.exports = () => async (ctx) => {
             case 'settings':
                 ctx.editMessageText(ctx.getString(ctx, 'service.settings', { version: config.version, ...createStatsObject(ctx, user) }), {
                     parse_mode: 'HTML',
-                    reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user))
+                    reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
+                    disable_web_page_preview: true
                 }).catch(() => {});
                 break;
             default:
