@@ -96,8 +96,9 @@ module.exports = () => async (ctx) => {
                     old_service: old_service
                 });
             }
-            ctx.answerCbQuery();
         }
+
+        ctx.answerCbQuery();
     } catch (err) {
         console.error(err);
     }
