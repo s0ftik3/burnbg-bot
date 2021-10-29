@@ -5,10 +5,7 @@ service:
     🖐 Olá, <b>${name}</b>! Eu posso remover o fundo de qualquer foto que você me enviar. Experimente, me envie um arquivo ou uma foto e veja a magia!<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
     ⭐️ Eu também posso converter sua imagem em um sticker. Use o comando /settings para ativar esta opção.
-  settings: |
-    Aqui você pode configurar a forma como o bot (<a href="https://github.com/s0ftik3/burnbg-bot">${version}</a>) funciona.
-
-    Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
+  settings: Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
   standby: 🕓 Por favor, aguarde enquanto a imagem está sendo processada...
   change_language: Escolha o idioma da interface.
   language_changed: 🇧🇷 Idioma alterado.
@@ -37,7 +34,7 @@ button:
   language: Mudar idioma
   settings: Configuração
   to_sticker: "Converter para Sticker: ${state}"
-  service: "Serviço: ${state}"
+  service: Mudar serviço
   add_text: "Sticker com Texto: ${state}"
   channel: Canal
   support: Suporte

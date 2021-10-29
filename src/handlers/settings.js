@@ -1,18 +1,17 @@
 'use strict';
 
-const getUserSession = require('../scripts/getUserSession');
+const getUserSession = require('../utils/general/getUserSession');
 const Markup = require('telegraf/markup');
-const createStatsObject = require('../scripts/createStatsObject');
-const replyWithError = require('../scripts/replyWithError');
-const getSettingsButtons = require('../scripts/getSettingsButtons');
-const config = require('../../config');
+const createStatsObject = require('../utils/general/createStatsObject');
+const replyWithError = require('../utils/general/replyWithError');
+const getSettingsButtons = require('../utils/general/getSettingsButtons');
 
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        ctx.replyWithHTML(ctx.getString(ctx, 'service.settings', { version: config.version, ...createStatsObject(ctx, user) }), {
+        ctx.replyWithHTML(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', createStatsObject(ctx, user)), {
             reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
             disable_web_page_preview: true
         }).catch(() => replyWithError(ctx, 15));

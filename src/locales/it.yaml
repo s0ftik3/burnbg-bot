@@ -5,10 +5,7 @@ service:
     🖐 Ciao, <b>${name}</b>! Posso rimuovere lo sfondo di ogni foto che mi mandi. Prova a mandarmi un file o una foto e osserva la magia.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
     ⭐️ Posso anche convertire la tua immagine in uno sticker. Utilizzare il comando /settings per attivare questa opzione.
-  settings: |
-    Puoi decidere come impostare il bot (<a href="https://github.com/s0ftik3/burnbg-bot">${version}</a>) qui.
-
-    Per <b>${range}</b> che hai processato <b>${usage} image${plural}</b> dei quali <b>${converted_to_file} convertiti</b> a file e <b>${converted_to_sticker} convertiti</b> a sticker.
+  settings: Per <b>${range}</b> che hai processato <b>${usage} image${plural}</b> dei quali <b>${converted_to_file} convertiti</b> a file e <b>${converted_to_sticker} convertiti</b> a sticker.
   standby: 🕓 Per favore, standby mentre l'immagine è in elaborazione...
   change_language: Scegli la lingua dell'interfaccia.
   language_changed: 🇮🇹 Lingua cambiata.
@@ -37,7 +34,7 @@ button:
   language: Cambia Lingua
   settings: Impostazioni
   to_sticker: "Converti a Sticker: ${state}"
-  service: "Servizio: ${state}"
+  service: Cambia Servizio
   add_text: "Add text to Sticker: ${state}"
   channel: Canale
   support: Supporto

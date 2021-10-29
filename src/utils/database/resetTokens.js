@@ -1,8 +1,8 @@
-const Bot = require('./models/Bot');
+const Bot = require('../../database/models/Bot');
 const config = require('../../config');
 
 module.exports = async () => {
-    return await Bot.updateOne({ id: 1 }, { 
+    await Bot.updateOne({ id: 1 }, { 
         $set: {
             active_token: config.host_token,
             inactive_tokens: [],

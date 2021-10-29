@@ -1,13 +1,13 @@
 'use strict';
 
-const Bot = require('../database/models/Bot');
-const getUserSession = require('../scripts/getUserSession');
-const RemoveBackground = require('../scripts/removeBackground');
-const replyWithError = require('../scripts/replyWithError');
-const checkSubscription = require('../scripts/checkSubscription');
-const replyWithFile = require('../scripts/replyWithFile');
-const replyWithSticker = require('../scripts/replyWithSticker');
-const updateUser = require('../database/updateUser');
+const getUserSession = require('../utils/general/getUserSession');
+const RemoveBackground = require('../utils/processing/removeBackground');
+const replyWithError = require('../utils/general/replyWithError');
+const checkSubscription = require('../utils/general/checkSubscription');
+const replyWithFile = require('../utils/processing/replyWithFile');
+const replyWithSticker = require('../utils/processing/replyWithSticker');
+const updateUser = require('../utils/database/updateUser');
+const updateTokens = require('../utils/database/updateTokens');
 
 module.exports = () => async (ctx) => {
     try {
@@ -15,7 +15,7 @@ module.exports = () => async (ctx) => {
         ctx.i18n.locale(user?.language);
 
         const is_member = await checkSubscription(ctx).then(response => response);
-        if (user.usage >= 5 && !is_member) return replyWithError(ctx, 11);
+        if (user?.usage >= 5 && !is_member) return replyWithError(ctx, 11);
 
         const data = {
             ctx: ctx,
@@ -46,14 +46,7 @@ module.exports = () => async (ctx) => {
             .catch(err => err);
 
         if (data.service === 0) {
-            await Bot.updateOne({ id: 1 }, { 
-                $set: {
-                    active_token: ctx.session.bot.active_token,
-                    inactive_tokens: ctx.session.bot.inactive_tokens,
-                    number: ctx.session.bot.number,
-                    type: ctx.session.bot.type
-                }
-            }, () => {});
+            await updateTokens(ctx.session.bot);
         }
         
         if (result?.code === 3) return replyWithError(ctx, 3);
@@ -66,6 +59,9 @@ module.exports = () => async (ctx) => {
         if (result?.code === 12) return replyWithError(ctx, 12, result.msg);
         if (result?.code === 17) return replyWithError(ctx, 17, result.service);
         if (result?.code === 18) return replyWithError(ctx, 18);
+        if (result?.code === 19) return replyWithError(ctx, 19);
+        if (result?.code === 20) return replyWithError(ctx, 20);
+        if (result?.code === 21) return replyWithError(ctx, 21);
 
         switch (data.output) {
             case 'file':
@@ -80,7 +76,7 @@ module.exports = () => async (ctx) => {
                 break;
         }
 
-        updateUser(ctx, user, data);
+        await updateUser(ctx, user, data);
     } catch (err) {
         replyWithError(ctx, 0);
         console.error(err);

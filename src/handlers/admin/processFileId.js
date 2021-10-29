@@ -1,4 +1,4 @@
-const getUserSession = require('../../scripts/getUserSession');
+const getUserSession = require('../../utils/general/getUserSession');
 
 module.exports = () => async (ctx) => {
     try {

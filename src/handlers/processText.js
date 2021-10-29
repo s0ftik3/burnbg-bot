@@ -1,12 +1,12 @@
 'use strict';
 
-const getUserSession = require('../scripts/getUserSession');
-const replyWithError = require('../scripts/replyWithError');
+const getUserSession = require('../utils/general/getUserSession');
+const replyWithError = require('../utils/general/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
-        ctx.i18n.locale(user.language);
+        ctx.i18n.locale(user?.language);
 
         ctx.session.user.sent_text = ctx.session.user.sent_text === undefined ? 1 : ctx.session.user.sent_text + 1 ;
 

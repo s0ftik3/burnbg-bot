@@ -1,5 +1,5 @@
 const User = require('../../database/models/User');
-const config = require('../../../config');
+const config = require('../../config');
 const moment = require('moment');
 
 module.exports = () => async (ctx) => {

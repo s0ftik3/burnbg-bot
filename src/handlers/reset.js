@@ -1,12 +1,12 @@
 const User = require('../database/models/User');
 const Markup = require('telegraf/markup');
-const getUser = require('../database/getUser');
-const replyWithError = require('../scripts/replyWithError');
-const sendLog = require('../scripts/sendLog');
+const getUser = require('../utils/database/getUser');
+const replyWithError = require('../utils/general/replyWithError');
+const sendLog = require('../utils/general/sendLog');
+const getUserSession = require('../utils/general/getUserSession');
 
 module.exports = () => async (ctx) => {
     try {
-        const getUserSession = require('../scripts/getUserSession');
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
         

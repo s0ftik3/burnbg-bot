@@ -1,6 +1,6 @@
 'use strict';
 
-const User = require('../database/models/User');
+const User = require('../../database/models/User');
 const config = require('../../config');
 
 module.exports = (ctx) => {

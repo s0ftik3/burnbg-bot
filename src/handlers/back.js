@@ -1,10 +1,9 @@
 'use strict';
 
-const getUserSession = require('../scripts/getUserSession');
+const getUserSession = require('../utils/general/getUserSession');
 const Markup = require('telegraf/markup');
-const createStatsObject = require('../scripts/createStatsObject');
-const getSettingsButtons = require('../scripts/getSettingsButtons');
-const config = require('../../config');
+const createStatsObject = require('../utils/general/createStatsObject');
+const getSettingsButtons = require('../utils/general/getSettingsButtons');
 
 module.exports = () => async (ctx) => {
     try {
@@ -15,7 +14,7 @@ module.exports = () => async (ctx) => {
 
         switch (direction) {
             case 'settings':
-                ctx.editMessageText(ctx.getString(ctx, 'service.settings', { version: config.version, ...createStatsObject(ctx, user) }), {
+                ctx.editMessageText(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', createStatsObject(ctx, user)), {
                     parse_mode: 'HTML',
                     reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
                     disable_web_page_preview: true

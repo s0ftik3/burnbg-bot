@@ -1,4 +1,4 @@
-const User = require('./models/User');
+const User = require('../../database/models/User');
 
 module.exports = async (ctx) => {
     const user = await User.find({ id: ctx.from.id }).then(response => response[0]);

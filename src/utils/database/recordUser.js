@@ -1,5 +1,5 @@
-const sendLog = require('../scripts/sendLog');
-const User = require('./models/User');
+const sendLog = require('../general/sendLog');
+const User = require('../../database/models/User');
 
 module.exports = async (data) => {
     const user = new User(data);

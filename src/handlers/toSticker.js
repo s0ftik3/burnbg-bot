@@ -1,10 +1,10 @@
 'use strict';
 
 const User = require('../database/models/User');
-const getUserSession = require('../scripts/getUserSession');
+const getUserSession = require('../utils/general/getUserSession');
 const Markup = require('telegraf/markup');
-const getSettingsButtons = require('../scripts/getSettingsButtons');
-const sendLog = require('../scripts/sendLog');
+const getSettingsButtons = require('../utils/general/getSettingsButtons');
+const sendLog = require('../utils/general/sendLog');
 
 module.exports = () => async (ctx) => {
     try {

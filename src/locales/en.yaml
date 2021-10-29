@@ -5,10 +5,8 @@ service:
     🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
     ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
-  settings: |
-    You can set up the way the bot (<a href="https://github.com/s0ftik3/burnbg-bot">${version}</a>) works here.
-
-    For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
+  settings: For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
+  settings_new: You will see the statistics of your usage on this page. Send your first image to the bot and come back here.
   standby: 🕓 Please, standby while picture is processing...
   change_language: Choose the interface language.
   language_changed: 🇬🇧 Language changed.
@@ -19,6 +17,13 @@ service:
   pre_reset: Do you really want to reset your account?
   reset: 🚀 You successfully deleted all the information stored about you. To start over use /start command.
   history: (${total}) All the processed pictures are stored here. Tap on any button to view a picture. If you want to delete all of them use /reset command.
+  change_service: |
+    Switch between services and find the best one for you.
+
+    ${service_1} — Fast. Well-trained neural network. Best quality. Manages all cases such as people, animals, hard backgrounds and other things. However, unstable and not always availabe.
+    ${service_2} — Moderate quality. Quite stable and almost always available.
+    ${service_3} — Slow. Not the best quality at all. Might be unavailable.
+    ${service_4} — Rather fast than slow. Also good neural network. Best for people and animals.
 
 error:
   common: 😥 Something went wrong. Please try /start again.
@@ -104,7 +109,7 @@ button:
   language: Change Language
   settings: Settings
   to_sticker: "Convert to Sticker: ${state}"
-  service: "Service: ${state}"
+  service: Change Service
   add_text: "Sticker with Text: ${state}"
   channel: Channel
   support: Donate

@@ -1,23 +1,26 @@
 'use strict';
 
-const convertToSticker = require('../scripts/convertToSticker');
-const sendLog = require('../scripts/sendLog');
-const replyWithError = require('./replyWithError');
+const sendLog = require('../general/sendLog');
+const replyWithError = require('../general/replyWithError');
 
 module.exports = async (ctx, data, user, result) => {
     try {
-        const sticker = await convertToSticker(result.buffer, data.text);
+        ctx.replyWithChatAction('upload_document');
 
         await ctx.deleteMessage(ctx.message.message_id + 1).catch(() => {});
-        
-        ctx.replyWithSticker({ source: sticker }, {
+
+        ctx.replyWithDocument({ 
+            source: result.buffer, 
+            filename: data.message?.file_name ? `${data.message.file_name}.png` : '@burnbgbot.png'
+        }, {
             reply_to_message_id: ctx.message.message_id
-        }).catch(() => replyWithError(ctx, 14));
+        }).catch(() => replyWithError(ctx, 13));
 
         const services = {
-            0: 'the 1st',
-            1: 'the 2nd',
-            2: 'the 3rd'
+            0: 'cutout.pro',
+            1: 'benzin.io',
+            2: 'experte.de',
+            3: 'erase.bg'
         };
 
         sendLog({
@@ -26,7 +29,7 @@ module.exports = async (ctx, data, user, result) => {
             username: user.username,
             name: ctx.from.first_name,
             query_type: data.message.type,
-            action: 1, // 0 - no-bg image / 1 - sticker
+            action: 0, // 0 - no-bg image / 1 - sticker
             size: result.initial_file_size,
             usage: user.usage,
             to_sticker: user.converted_to_sticker,

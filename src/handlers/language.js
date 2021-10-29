@@ -2,11 +2,11 @@
 
 const User = require('../database/models/User');
 const Markup = require('telegraf/markup');
-const getUserSession = require('../scripts/getUserSession');
+const getUserSession = require('../utils/general/getUserSession');
 const fs = require('fs');
 const path = require('path');
 const TelegrafI18n = require('telegraf-i18n');
-const sendLog = require('../scripts/sendLog');
+const sendLog = require('../utils/general/sendLog');
 const i18n = new TelegrafI18n({
     directory: path.resolve(__dirname, '../locales'),
     defaultLanguage: 'en',

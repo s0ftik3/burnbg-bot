@@ -1,10 +1,10 @@
 'use strict';
 
 const Markup = require('telegraf/markup');
-const getUserSession = require('../scripts/getUserSession');
-const recordUser = require('../database/recordUser');
-const setLanguage = require('../scripts/setLanguage');
-const replyWithError = require('../scripts/replyWithError');
+const getUserSession = require('../utils/general/getUserSession');
+const recordUser = require('../utils/database/recordUser');
+const setLanguage = require('../utils/general/setLanguage');
+const replyWithError = require('../utils/general/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {

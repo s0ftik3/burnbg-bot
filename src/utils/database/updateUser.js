@@ -1,7 +1,7 @@
-const User = require('./models/User');
+const User = require('../../database/models/User');
 
-module.exports = (ctx, user, data) => {
-    User.updateOne({ id: ctx.from.id }, { 
+module.exports = async (ctx, user, data) => {
+    await User.updateOne({ id: ctx.from.id }, { 
         $inc: { 
             usage: 1,
             converted_to_sticker: (user.to_sticker) ? 1 : 0,

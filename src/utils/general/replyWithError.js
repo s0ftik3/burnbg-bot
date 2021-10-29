@@ -139,6 +139,18 @@ module.exports = (ctx, code, additional) => {
                     message: 'Failed to call 2nd API'
                 });
                 break;
+            case 19:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.common'));
+                break;
+            case 20:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.common'));
+                break;
+            case 21:
+                ctx.i18n.locale(ctx.session?.user?.language || 'en');
+                ctx.replyWithHTML(ctx.i18n.t('error.common'));
+                break;
             default:
                 ctx.i18n.locale(ctx.session?.user?.language || 'en');
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));

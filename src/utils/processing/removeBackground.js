@@ -1,6 +1,6 @@
 'use strict';
 
-const Bot = require('../database/models/Bot');
+const Bot = require('../../database/models/Bot');
 const axios = require('axios');
 const byteSize = require('byte-size');
 const FormData = require('form-data');
@@ -22,37 +22,35 @@ module.exports = class RemoveBackground {
      * Removes background from given image.
      * @returns Promise, an object with either data or error and its code.
      */
-    async main() {
-        if (this.service === 0) {
-            return new Promise((resolve, reject) => {
-                Promise.all([this.getMedia(), this.getRequestData()]).then(async response => {
-                    const image = response[0];
-                    
-                    const result = await this.callMainService(image).catch(err => err);
-                    resolve(result);
-                }).catch((err) => {
-                    reject(err);
-                });
-            });
-        } else if (this.service === 1) {
-            return new Promise(async (resolve, reject) => {
-                const image = await this.getMedia();
+    main() {
+        return new Promise(async (resolve, reject) => {
+            const image = await this.getMedia();
 
-                const result = await this.callSecondService(image).catch(err => err);
-                resolve(result);
-            }).catch((err) => {
-                reject(err);
-            });
-        } else {
-            return new Promise(async (resolve, reject) => {
-                const image = await this.getMedia();
-
-                const result = await this.callThirdService(image).catch(err => err);
-                resolve(result);
-            }).catch((err) => {
-                reject(err);
-            });
-        }
+            switch (this.service) {
+                case 0:
+                    this.getRequestData().then(() => {
+                        this.processImage(image, 0)
+                            .then(response => resolve(response))
+                            .catch(err => reject({ code: 21, error: 'Main function failure', msg: err }));
+                    });
+                    break;
+                case 1:
+                    this.processImage(image, 1)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 21, error: 'Main function failure', msg: err }));
+                    break;
+                case 2:
+                    this.processImage(image, 2)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 21, error: 'Main function failure', msg: err }));
+                    break;
+                case 3:
+                    this.processImage(image, 3)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 21, error: 'Main function failure', msg: err }));
+                    break;
+            }
+        });
     }
 
     /**
@@ -105,7 +103,7 @@ module.exports = class RemoveBackground {
     }
     
     /**
-     * Requests data from database to make an API call.
+     * Requests data from database to make an API call to the first service.
      * @returns Promise, an object with either data or error and its code.
      * This function might return 7 - failed to get data from database.
      */
@@ -121,12 +119,49 @@ module.exports = class RemoveBackground {
     }
 
     /**
-     * Calls the main service's API and converts the result to buffer.
+     * Processes query image via one of the services.
+     * @param {Object} image Image data 
+     * @param {Number} service 0 - cutout.pro; 1 - benzin.io; 2 - experte.de; 3 - erase.bg
+     * @returns Promise, an object with either data or error and its code.
+     * This function might return 20 - failed to process image.
+     */
+    processImage(image, service) {
+        return new Promise((resolve, reject) => {
+            switch (service) {
+                case 0:
+                    this.callFirstService(image)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 19, error: 'Failed to process image', msg: err }));
+                    break;
+                case 1:
+                    this.callSecondService(image)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 19, error: 'Failed to process image', msg: err }));
+                    break;
+                case 2:
+                    this.callThirdService(image)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 19, error: 'Failed to process image', msg: err }));
+                    break;
+                case 3:
+                    this.callFourthService(image)
+                        .then(response => resolve(response))
+                        .catch(err => reject({ code: 19, error: 'Failed to process image', msg: err }));
+                    break;
+                default:
+                    reject({ code: 20, error: `Unknown service. Expected 0, 1, 2 or 3. Received ${service}` });
+                    break;
+            }
+        });
+    }
+
+    /**
+     * Calls the first service's API and converts the result to buffer.
      * @param {Object} image Image data 
      * @returns Promise, an object with either data or error and its code.
      * This function might return 3 - no active tokens, 7 - failed to call API.
      */
-    callMainService(image) {
+    callFirstService(image) {
         return new Promise((resolve, reject) => {
             const hosts = {
                 1: config.host_token,
@@ -275,6 +310,50 @@ module.exports = class RemoveBackground {
                 });
             }).catch((err) => {
                 reject({ code: 12, error: 'Failed to call 3rd API', msg: err });
+            });
+        });
+    }
+
+    /**
+     * Calls the fourth service's API and converts the result to buffer.
+     * @param {Object} image Image data
+     * @returns Promise, an object with either data or error and its code.
+     * This function might return 18 - failed to call 3rd API.
+     */
+    callFourthService(image) {
+        return new Promise(async (resolve, reject) => {
+            const data = new FormData();
+            const buffer = await axios({
+                method: 'GET',
+                url: image.url,
+                responseType: 'arraybuffer'
+            }).then(response => Buffer.from(response.data, 'binary'));
+            
+            data.append('file', buffer, 'image.jpeg');
+            data.append('filenameOverride', 'true');
+
+            axios({
+                method: 'POST',
+                url: config.host4,
+                headers: {
+                    ...data.getHeaders(),
+                },
+                data: data
+            }).then(response => {
+                axios({
+                    method: 'GET',
+                    url: response.data.url.replace('e/original/u', 'e/erase.bg()/u'),
+                    responseType: 'arraybuffer'
+                }).then(response => {
+                    resolve({
+                        buffer: Buffer.from(response.data, 'binary'),
+                        initial_file_size: image.size
+                    });
+                }).catch(() => {
+                    reject({ code: 10, error: 'Failed to download processed photo' });
+                });
+            }).catch((err) => {
+                reject({ code: 18, error: 'Failed to call 4th API', msg: err });
             });
         });
     }

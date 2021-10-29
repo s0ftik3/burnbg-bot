@@ -1,5 +1,5 @@
 const Telegraf = require('telegraf');
-const config = require('./config');
+const config = require('../config');
 const bot = new Telegraf(config.token, { handlerTimeout: config.handler_timeout });
 
 const rateLimit = require('telegraf-ratelimit')
@@ -13,8 +13,8 @@ const i18n = new TelegrafI18n({
     defaultLanguageOnMissing: true
 });
 
-const connect = require('./src/database/connect');
-const resetTokens = require('./src/database/resetTokens');
+const connect = require('./database/connect');
+const resetTokens = require('./utils/database/resetTokens');
 const {
     handleStart,
     handleCallback,
@@ -28,12 +28,12 @@ const {
     handleReset,
     handleStatistics,
     handleProcessFileId
-} = require('./src/handlers');
+} = require('./handlers');
 
 bot.use(i18n.middleware());
 bot.use(session());
 bot.use(rateLimit(require('./config').limit));
-bot.context.getString = require('./src/scripts/getString');
+bot.context.getString = require('./utils/general/getString');
 
 bot.start(handleStart());
 
@@ -47,6 +47,7 @@ bot.command('stats', handleStatistics());
 
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleChangeService());
+bot.action(/change_service:(.*)/, handleChangeService());
 bot.action('language', handleLanguage());
 bot.action(/set_lang:(.*)/, handleLanguage());
 bot.action(/back:(.*)/, handleBack());

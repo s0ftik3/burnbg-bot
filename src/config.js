@@ -1,5 +1,5 @@
 module.exports = {
-    version: '1.4.31',
+    version: '1.4.32',
     token: process.env.TOKEN,
     host_token: process.env.HOST_TOKEN,
     host_token2: process.env.HOST_TOKEN2,
@@ -17,6 +17,7 @@ module.exports = {
     host2: process.env.HOST2,
     host2_token: process.env.HOST2_TOKEN,
     host3: process.env.HOST3,
+    host4: process.env.HOST4,
     channel: process.env.CHANNEL,
     logs: process.env.LOGS,
     buttons: [
