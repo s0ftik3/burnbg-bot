@@ -1,5 +1,5 @@
 module.exports = {
-    version: '1.4.34',
+    version: '1.4.35',
     token: process.env.TOKEN,
     host_token: process.env.HOST_TOKEN,
     host_token2: process.env.HOST_TOKEN2,
@@ -33,6 +33,6 @@ module.exports = {
     limit: {
         window: 1500,
         limit: 1,
-        onLimitExceeded: (ctx) => require('./src/scripts/replyWithError')(ctx, 1),
+        onLimitExceeded: (ctx) => require('./utils/general/replyWithError')(ctx, 1),
     }
 };
