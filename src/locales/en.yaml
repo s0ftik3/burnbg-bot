@@ -47,7 +47,8 @@ error:
   unable_reset: 🙂 Nothing to reset. Use /start command to create a record.
   changed_service: 🔄 Send this image again. The service has been changed to <b>${new_service}</b>.
   daily_limit: ✋ You've reached a daily limit. Please, come back tomorrow or contact @vychs and convince him why exactly you need to have increased limit.
-  
+  the_same_service: 👮🏻 You have already chosen this service.
+
   # Do not translate this (admin) section
 log:
   common: |

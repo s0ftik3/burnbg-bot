@@ -33,11 +33,13 @@ module.exports = () => async (ctx) => {
                     [Markup.callbackButton(ctx.i18n.t('button.back'), 'back:settings')]
                 ])
             });
+
+            ctx.answerCbQuery();
         } else {
             const old_service = user.service;
             const new_service = ctx.match[1];
 
-            if (new_service === user.service) return ctx.answerCbQuery();
+            if (new_service === old_service) return ctx.answerCbQuery(ctx.i18n.t('error.the_same_service'));
 
             await User.updateOne({ id: ctx.from.id }, { $set: { service: new_service } }, () => {});
             ctx.session.user.service = new_service;
@@ -96,9 +98,9 @@ module.exports = () => async (ctx) => {
                     old_service: old_service
                 });
             }
+            
+            ctx.answerCbQuery();
         }
-
-        ctx.answerCbQuery();
     } catch (err) {
         console.error(err);
     }
