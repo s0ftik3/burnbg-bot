@@ -22,7 +22,9 @@ module.exports = async (ctx) => {
             id: ctx.from.id,
             name: ctx.from.first_name
         });
-
-        ctx.session?.user?.beta = true;
+        
+        if (ctx.session.user) {
+            ctx.session.user.beta = true;
+        }
     }
 };
