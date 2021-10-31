@@ -65,6 +65,11 @@ const userSchema = new mongoose.Schema({
         required: false,
         default: 0
     },
+    beta: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     files: [{
         type: Object,
         required: false

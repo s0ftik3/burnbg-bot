@@ -14,7 +14,7 @@ module.exports = () => async (ctx) => {
 
         switch (direction) {
             case 'settings':
-                ctx.editMessageText(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', createStatsObject(ctx, user)), {
+                ctx.editMessageText(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', { beta_sign: user.beta ? '(beta)' : '', ...createStatsObject(ctx, user) }), {
                     parse_mode: 'HTML',
                     reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
                     disable_web_page_preview: true

@@ -11,7 +11,7 @@ module.exports = () => async (ctx) => {
         const user = await getUserSession(ctx);
         ctx.i18n.locale(user.language);
 
-        ctx.replyWithHTML(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', createStatsObject(ctx, user)), {
+        ctx.replyWithHTML(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', { beta_sign: user.beta ? '(beta)' : '', ...createStatsObject(ctx, user) }), {
             reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
             disable_web_page_preview: true
         }).catch(() => replyWithError(ctx, 15));

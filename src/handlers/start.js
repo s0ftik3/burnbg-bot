@@ -5,10 +5,13 @@ const getUserSession = require('../utils/general/getUserSession');
 const recordUser = require('../utils/database/recordUser');
 const setLanguage = require('../utils/general/setLanguage');
 const replyWithError = require('../utils/general/replyWithError');
+const assignBetaTester = require('../utils/database/assignBetaTester');
 
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
+
+        if (ctx.startPayload.length > 0) return assignBetaTester(ctx);
 
         if (user === null) {
             const data = {

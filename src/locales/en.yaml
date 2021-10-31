@@ -5,8 +5,8 @@ service:
     🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
     ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
-  settings: For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
-  settings_new: You will see the statistics of your usage on this page. Send your first image to the bot and come back here.
+  settings: ${beta_sign} For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
+  settings_new: ${beta_sign} You will see the statistics of your usage on this page. Send your first image to the bot and come back here.
   standby: 🕓 Please, standby while picture is processing...
   change_language: Choose the interface language.
   language_changed: 🇬🇧 Language changed.
@@ -24,7 +24,11 @@ service:
     ${service_2} — Moderate quality. Quite stable and almost always available.
     ${service_3} — Slow. Not the best quality at all. Might be unavailable.
     ${service_4} — Rather fast than slow. Also good neural network. Best for people and animals.
-
+  beta_full: 😞 You're late. Try to join beta-testing program next time.
+  already_joined_beta: 👍 All good. You've already joined the beta-testing program. Now, wait for a message describing new features to test that will be available only for beta-testers, just like you!
+  joined_beta: 🎉 You've successfully joined the beta-testing program! You will get notified as soon as any new features available to test. Thank you!
+  wrong_payload: 👮‍♂️ Did you think by changing payload you would find something? Well, you did.
+  
 error:
   common: 😥 Something went wrong. Please try /start again.
   common_important: 😥 The service is not responding. Go to /settings and switch to another.
@@ -104,6 +108,10 @@ log:
 
     <i>(+n) since the latest command execution</i>
     <i>${timestamp}</i>
+  beta: |
+    🎉 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just joined the beta-testing program.
+
+    <i>${timestamp}''</i>
 
 button:
   language: Change Language

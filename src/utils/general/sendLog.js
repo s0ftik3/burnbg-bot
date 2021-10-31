@@ -137,6 +137,20 @@ module.exports = (data) => {
                 ).catch(() => {});
 
                 break;
+            case 'beta':
+                telegram.sendMessage(
+                    config.logs,
+                    i18n.t('en', 'log.beta', {
+                        id: data.id,
+                        name: data.name,
+                        timestamp: moment(data.timestamp).format('ll s')
+                    }),
+                    {
+                        parse_mode: 'HTML'
+                    }
+                ).catch(() => {});
+
+                break;
             default:
                 break;
         }
