@@ -23,6 +23,6 @@ module.exports = async (ctx) => {
             name: ctx.from.first_name
         });
 
-        ctx.session.user.beta = true;
+        ctx.session?.user?.beta = true;
     }
 };
