@@ -12,11 +12,7 @@ module.exports = (ctx, user) => {
                     Markup.callbackButton(ctx.i18n.t('button.language'), `language`),
                     Markup.callbackButton(ctx.i18n.t('button.service'), `service`)
                 ],
-                [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off') }), `to_sticker`)],
-                [
-                    Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/softik/85')
-                ]
+                [Markup.callbackButton(ctx.i18n.t('button.to_sticker', { state: user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off') }), `to_sticker`)]
             ];
         } else {
             buttons = [
@@ -31,10 +27,6 @@ module.exports = (ctx, user) => {
                 //     }),
                 //     'add_text'
                 // )],
-                [
-                    Markup.urlButton(ctx.i18n.t('button.channel'), 'https://t.me/softik'),
-                    Markup.urlButton(ctx.i18n.t('button.support'), 'https://t.me/softik/85')
-                ]
             ];
         }
 

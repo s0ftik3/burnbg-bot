@@ -31,23 +31,12 @@ module.exports = async (image, text) => {
             .webp()
             .toBuffer();
 
-        switch (text) {
-            case undefined:
-                return await sharp(background)
-                    .composite([
-                        { input: image_over_background }
-                    ])
-                    .webp()
-                    .toBuffer();
-            default:
-
-                return await sharp(background)
-                    .composite([
-                        { input: image_over_background }
-                    ])
-                    .webp()
-                    .toBuffer();
-        }
+        return await sharp(background)
+            .composite([
+                { input: image_over_background }
+            ])
+            .webp()
+            .toBuffer();
     } catch (err) {
         console.error(err);
     }

@@ -10,7 +10,7 @@ module.exports = () => async (ctx) => {
 
         ctx.session.user.sent_text = ctx.session.user.sent_text === undefined ? 1 : ctx.session.user.sent_text + 1 ;
 
-        if (ctx.session.user.sent_text === 20) {
+        if (ctx.session?.user?.sent_text === 20) {
             ctx.session.user.sent_text = 0;
             ctx.replyWithHTML(ctx.getString(ctx, 'error.no_text_messages_egg')).catch(() => replyWithError(ctx, 15));
         } else {

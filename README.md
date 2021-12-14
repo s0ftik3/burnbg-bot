@@ -29,4 +29,3 @@ Fork this [repository](https://github.com/s0ftik3/burnbg-bot), add your translat
 * From [1.4.8](https://github.com/s0ftik3/burnbg-bot/commit/38927527e873f2b9640387f4ff7703ca7a070175) update the bot stores all the pictures you send to it (meaning that if you keep using the bot from September 23rd to this day, your pictures are being saved). They're stored as [file_ids](https://core.telegram.org/bots/api#file) which are provided by Telegram itself. For moderating puprposes only, so just keep it in mind.
 * The developer isn't responsible for pictures that are being sent by users and processed by the bot.
 * [An article](https://vc.ru/tribuna/309559-lyubitelyam-avtomatizacii-post) about the bot on [vc.ru](https://vc.ru)
-* [Click here](https://t.me/softik/85) if you'd like to donate and support my work.

@@ -9,7 +9,7 @@ const getSettingsButtons = require('../utils/general/getSettingsButtons');
 module.exports = () => async (ctx) => {
     try {
         const user = await getUserSession(ctx);
-        ctx.i18n.locale(user.language);
+        ctx.i18n.locale(user?.language);
 
         ctx.replyWithHTML(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', { beta_sign: user.beta ? '(beta)' : '', ...createStatsObject(ctx, user) }), {
             reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
