@@ -1,0 +1,67 @@
+language: 🇩🇪 Deutsch
+
+service:
+  greeting: |
+    🖐 Hi, <b>${name}</b>! Ich kann den Hintergrund von jedem Foto entfernen, das du mir schickst. Probiere es aus und sende mir eine Datei oder ein Foto, um die Magie zu sehen.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+
+    ⭐️ Ich kann dein Bild auch in einen Sticker umwandeln. Verwende den Befehl /settings, um diese Option zu aktivieren.
+  settings: ${beta_sign} In <b>${range}</b> hast du <b>${usage} image${plural} wovon <b>${converted_to_file} ${verb_file} in eine Datei</b> und <b>${converted_to_sticker} ${verb_sticker} in einen Sticker umgewandelt wurden</b>, erhalten.
+  settings_new: ${beta_sign} Auf dieser Seite siehst du die Statistiken über deine Nutzung. Sende dein erstes Bild an den Bot und komm dann hierher zurück.
+  standby: 🕓 Bitte warte, während das Bild bearbeitet wird...
+  change_language: Wähle die Sprache der Benutzeroberfläche.
+  language_changed: 🇩🇪 Sprache gewechselt.
+  warning: (Beta) Dieser Dienst arbeitet langsamer und instabil.
+  service_no_change: Du kannst jetzt nicht mehr zwischen den Diensten wechseln.
+  image_downloaded: ${type} <code>(${size})</code> Das Bild wurde heruntergeladen. Die Verarbeitung kann ein paar Sekunden dauern...
+  no_translation: <i>Es scheint, als gäbe es keine Übersetzung für diesen String. Wenn du in der Lage bist, diesen String zu übersetzen, kannst du das gerne auf der <a href="https://github.com/s0ftik3/burnbg-bot">GitHub-Seite des Bots</a> tun.</i>
+  pre_reset: Willst du dein Konto wirklich zurücksetzen?
+  reset: 🚀 Du hast alle über dich gespeicherten Informationen erfolgreich gelöscht. Um neu zu beginnen, verwende den Befehl /start.
+  history: (${total}) Alle verarbeiteten Bilder werden hier gespeichert. Tippe auf eine beliebige Schaltfläche, um ein Bild anzusehen. Wenn du alle Bilder löschen willst, benutze den Befehl /reset.
+  change_service: |
+    Wechsle zwischen den Diensten und finde den besten für dich.
+
+    ${service_1} — Schnell. Gut trainiertes neuronales Netzwerk. Beste Qualität. Bewältigt alle Fälle wie Menschen, Tiere, harte Hintergründe und andere Dinge. Allerdings unstabil und nicht immer verfügbar.
+    ${service_2} — Mäßige Qualität. Ziemlich stabil und fast immer verfügbar.
+    ${service_3} — Langsam. Nicht gerade die beste Qualität. Könnte nicht verfügbar sein.
+    ${service_4} — Eher schnell als langsam. Auch gutes neuronales Netzwerk. Am besten für Menschen und Tiere.
+  beta_full: 😞 Du bist zu spät dran. Nächstes Mal versuchst du, am Beta-Testprogramm teilzunehmen.
+  already_joined_beta: 👍 Alles gut. Du hast dich bereits für das Beta-Testprogramm angemeldet. Warte jetzt auf eine Nachricht, in der neue Funktionen beschrieben werden, die nur für Beta-Tester/innen wie dich verfügbar sind!
+  joined_beta: 🎉 Du hast dich erfolgreich für das Beta-Testprogramm angemeldet! Du wirst benachrichtigt, sobald neue Funktionen zum Testen verfügbar sind. Vielen Dank für deine Teilnahme!
+  wrong_payload: 👮‍♂️ Dachtest du, dass du etwas finden würdest, wenn du die Nutzlast änderst? Nun, das hast du.
+  
+error:
+  common: 😥 Etwas ist schief gelaufen. Bitte versuche /start erneut.
+  common_important: 😥 Der Dienst antwortet nicht. Gehe zu /settings und wechsle zu einem anderen.
+  limit_exceeded: 👮🏻 Nur keine Eile!
+  wrong_file_extension: 📄 Falsche Dateierweiterung. Es werden nur JPG/JPEG/PNG unterstützt.
+  no_text_messages: 😕 Schicke mir stattdessen ein Bild oder eine Bilddatei.
+  no_text_messages_egg: 😠 Dir wurde gesagt, du sollst ein B-I-L-D schicken!
+  file_too_big: ✋ Deine Datei ist zu groß. Bitte sende mir Dateien bis zu 20 MB.
+  switched_tokens: |
+    😞 Es tut mir leid, bitte versuche noch einmal das gleiche Bild. Die Belastung für den Bot ist jetzt sehr groß. Du musst mir wahrscheinlich mehrmals ein Bild schicken. Du kannst mit dem Befehl /settings zwischen den Diensten wechseln.
+
+    Wenn etwas mit dem Bot nicht in Ordnung ist, wird es im @softik-Kanal veröffentlicht.
+  failed_download_file: 😞 Dieses Foto konnte nicht heruntergeladen werden. Bitte versuche es mit einem anderen Foto.
+  not_a_member: ✋ Um den Bot weiter zu nutzen, abonniere bitte den Kanal. Es ist der Kanal der Entwickler und du wirst dort keinen Spam sehen. Der Bot ist kostenlos und das ist deine Unterstützung dafür :)
+    api_error: 😥 Etwas ist schief gelaufen. Bitte probiere ein anderes Foto aus oder ändere den Dienst in /settings.
+  unable_reset: 🙂 Nichts zum Zurücksetzen. Verwende den Befehl /start, um einen Datensatz zu erstellen.
+  changed_service: 🔄 Sende dieses Bild erneut. Der Dienst wurde geändert in <b>${new_service}</b>.
+  daily_limit: ✋ Du hast ein Tageslimit erreicht. Bitte komme morgen wieder oder kontaktiere @vychs und überzeuge ihn, warum genau du ein höheres Limit brauchst.
+  the_same_service: 👮🏻 Du hast dich bereits für diesen Service entschieden.
+
+button:
+  language: Sprache wechseln
+  settings: Einstellungen
+  to_sticker: "In Sticker umwandeln: ${state}"
+  service: Service ändern
+  add_text: "Sticker mit dem Text: ${state}"
+  channel: Kanal
+  support: Spenden
+  subscribe: Abonieren
+  back: ‹ Zurück
+
+action:
+  a_on: "EIN"
+  a_off: "AUS"
+  a_yes: "Ja"
+  a_no: "Nein"
