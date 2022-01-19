@@ -1,5 +1,5 @@
 module.exports = {
-    version: '1.4.43',
+    version: '1.4.44',
     token: process.env.TOKEN,
     host_token: process.env.HOST_TOKEN,
     host_token2: process.env.HOST_TOKEN2,
@@ -21,18 +21,19 @@ module.exports = {
     channel: process.env.CHANNEL,
     logs: process.env.LOGS,
     buttons: [
-        'Settings', 
-        'Настройки', 
+        'Settings',
+        'Настройки',
         'Impostazioni',
         'Configuraciones',
         'సెట్టింగులు',
         'ക്രമീകരണങ്ങൾ',
-        'Configuração'
+        'Configuração',
+        'Einstellungen',
     ],
     handler_timeout: 100,
     limit: {
         window: 1500,
         limit: 1,
         onLimitExceeded: (ctx) => require('./utils/general/replyWithError')(ctx, 1),
-    }
+    },
 };

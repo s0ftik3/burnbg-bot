@@ -1,3 +1,5 @@
+'use strict';
+
 const mongoose = require('mongoose');
 const config = require('../config');
 
@@ -9,5 +11,5 @@ module.exports = async () => {
             useCreateIndex: true,
         })
         .then(() => console.log('[Database] Successfully connected'))
-        .catch(err => console.error('[Database] Failed to connect\n\n' + err));
+        .catch((err) => console.error('[Database] Failed to connect\n\n' + err));
 };

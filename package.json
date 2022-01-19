@@ -1,27 +1,27 @@
 {
-  "name": "burngbg-bot",
-  "version": "1.4.43",
-  "description": "A bot that can remove background of any image.",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "keywords": [
-    "telegram",
-    "bot"
-  ],
-  "author": "Vyacheslav <slava021323@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "axios": "^0.21.2",
-    "byte-size": "^8.1.0",
-    "form-data": "^4.0.0",
-    "moment": "^2.29.1",
-    "mongoose": "^5.13.4",
-    "plural-ru": "^2.0.2",
-    "sharp": "^0.28.3",
-    "telegraf": "^3.38.0",
-    "telegraf-i18n": "^6.6.0",
-    "telegraf-ratelimit": "^2.0.0"
-  }
+    "name": "burngbg-bot",
+    "version": "1.4.44",
+    "description": "A bot that can remove background of any image.",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js"
+    },
+    "keywords": [
+        "telegram",
+        "bot"
+    ],
+    "author": "Vyacheslav <slava021323@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.21.2",
+        "byte-size": "^8.1.0",
+        "form-data": "^4.0.0",
+        "moment": "^2.29.1",
+        "mongoose": "^5.13.4",
+        "plural-ru": "^2.0.2",
+        "sharp": "^0.28.3",
+        "telegraf": "^3.38.0",
+        "telegraf-i18n": "^6.6.0",
+        "telegraf-ratelimit": "^2.0.0"
+    }
 }
