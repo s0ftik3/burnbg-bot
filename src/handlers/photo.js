@@ -9,8 +9,8 @@ const replyWithSticker = require('../scripts/replyWithSticker');
 
 module.exports = () => async (ctx) => {
     try {
-        const isSubsriber = await checkSubscription(ctx);
-        if (ctx.user.usage >= 5 && !isSubsriber) return replyWithError(ctx, 'NOT_SUBSCRIBED');
+        const isSubscriber = await checkSubscription(ctx);
+        if (ctx.user.usage >= 5 && !isSubscriber) return replyWithError(ctx, 'NOT_SUBSCRIBED');
 
         const data = {
             user: ctx.user,

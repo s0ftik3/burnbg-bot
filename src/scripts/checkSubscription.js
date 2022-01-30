@@ -9,12 +9,12 @@ module.exports = (ctx) => {
             .getChatMember(config.channel, ctx.from.id)
             .then(async (response) => {
                 const roles = ['member', 'creator', 'administrator'];
-                const is_member = roles.includes(response.status) ? true : false;
+                const isSubscriber = roles.includes(response.status) ? true : false;
 
-                ctx.user.channel_member = is_member;
+                ctx.user.channel_member = isSubscriber;
                 await ctx.user.save();
 
-                return is_member;
+                return isSubscriber;
             })
             .catch((err) => {
                 console.error(err);
