@@ -2,7 +2,8 @@ const Telegraf = require('telegraf');
 const config = require('./config');
 const bot = new Telegraf(config.token, { handlerTimeout: config.handler_timeout });
 
-const rateLimit = require('telegraf-ratelimit')
+const rateLimit = require('telegraf-ratelimit');
+const userBlock = require('telegraf-userblock');
 const session = require('telegraf/session');
 
 const path = require('path');
@@ -10,58 +11,70 @@ const TelegrafI18n = require('telegraf-i18n');
 const i18n = new TelegrafI18n({
     directory: path.resolve(__dirname, './locales'),
     defaultLanguage: 'en',
-    defaultLanguageOnMissing: true
+    defaultLanguageOnMissing: true,
 });
 
+const attachUser = require('./middlewares/attachUser');
+const ignoreOldMessages = require('./middlewares/ignoreOldMessages');
+const userBlockConfig = require('./middlewares/userBlock');
+
 const connect = require('./database/connect');
-const resetTokens = require('./utils/database/resetTokens');
+const resetTokens = require('./database/resetTokens');
+
 const {
     handleStart,
-    handleCallback,
+    handlePhoto,
+    handleDocument,
     handleSettings,
-    handleLanguage,
-    handleBack,
-    handleProcessMedia,
+    handleHistory,
+    handleHistoryElement,
     handleToSticker,
-    handleProcessText,
-    handleChangeService,
+    handleService,
+    handleLanguage,
+    handleText,
     handleReset,
-    handleStatistics,
-    handleProcessFileId
+    handleNotImplemented,
+    handleFileId,
+    handleBack,
+    handleCallback,
 } = require('./handlers');
 
 bot.use(i18n.middleware());
 bot.use(session());
-bot.use(rateLimit(require('./config').limit));
-bot.context.getString = require('./utils/general/getString');
+bot.use(userBlock(userBlockConfig));
+bot.use(ignoreOldMessages());
+bot.use(attachUser());
+bot.use(rateLimit(config.limit));
 
 bot.start(handleStart());
 
-bot.on('photo', handleProcessMedia());
-bot.on('document', handleProcessMedia());
-
 bot.command('settings', handleSettings());
+bot.command('history', handleHistory());
 bot.command('reset', handleReset());
-bot.command('stats', handleStatistics());
-// bot.command('history', handleHistory());
 
 bot.action('to_sticker', handleToSticker());
-bot.action('service', handleChangeService());
-bot.action(/change_service:(.*)/, handleChangeService());
+bot.action('service', handleService());
 bot.action('language', handleLanguage());
-bot.action(/set_lang:(.*)/, handleLanguage());
-bot.action(/back:(.*)/, handleBack());
 bot.action('yes', handleReset());
 bot.action('no', handleReset());
+bot.action('not_implemented_yet', handleNotImplemented());
+bot.action(/set_language:(.*)/, handleLanguage());
+bot.action(/change_service:(.*)/, handleService());
+bot.action(/open:(.*)/, handleHistoryElement());
+bot.action(/back:(.*)/, handleBack());
 
 bot.hears(config.buttons, handleSettings());
-bot.hears(/file_id/, handleProcessFileId());
+bot.hears(/file_id::/, handleFileId());
 
-bot.on('text', handleProcessText());
+bot.on('text', handleText());
+bot.on('photo', handlePhoto());
+bot.on('document', handleDocument());
 bot.on('callback_query', handleCallback());
 
 bot.launch().then(async () => {
-    console.log('[Bot] I have been started');
     await connect();
     await resetTokens();
+    console.log(
+        `[${bot.context.botInfo.first_name}] The bot has been started --> https://t.me/${bot.context.botInfo.username}`
+    );
 });

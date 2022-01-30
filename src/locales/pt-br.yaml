@@ -1,46 +1,45 @@
 language: 🇧🇷 Português
 
 service:
-  greeting: |
-    🖐 Olá, <b>${name}</b>! Eu posso remover o fundo de qualquer foto que você me enviar. Experimente, me envie um arquivo ou uma foto e veja a magia!<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+    greeting: |
+        🖐 Olá, <b>${name}</b>! Eu posso remover o fundo de qualquer foto que você me enviar. Experimente, me envie um arquivo ou uma foto e veja a magia!<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    ⭐️ Eu também posso converter sua imagem em um sticker. Use o comando /settings para ativar esta opção.
-  settings: ${beta_sign} Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
-  standby: 🕓 Por favor, aguarde enquanto a imagem está sendo processada...
-  change_language: Escolha o idioma da interface.
-  language_changed: 🇧🇷 Idioma alterado.
-  warning: (beta) O segundo serviço que você acabou de escolher funciona de forma mais lenta e instável.
-  service_no_change: Você não pode alternar entre os serviços agora.
-  image_downloaded: ${type} <code>(${size})</code> A imagem foi baixada. O processamento pode demorar alguns segundos...
-  no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
+        ⭐️ Eu também posso converter sua imagem em um sticker. Use o comando /settings para ativar esta opção.
+    settings: ${beta_sign} Por <b>${range}</b> você processou <b>${usage} image${plural}</b>, das quais <b>${converted_to_file} covertidas</b> para arquivo e <b>${converted_to_sticker} convertidas</b> para sticker.
+    standby: 🕓 Por favor, aguarde enquanto a imagem está sendo processada...
+    change_language: Escolha o idioma da interface.
+    language_changed: 🇧🇷 Idioma alterado.
+    warning: (beta) O segundo serviço que você acabou de escolher funciona de forma mais lenta e instável.
+    service_no_change: Você não pode alternar entre os serviços agora.
+    image_downloaded: ${type} <code>(${size})</code> A imagem foi baixada. O processamento pode demorar alguns segundos...
 
 error:
-  common: 😥 Algo deu errado. Por favor, tente usar o comando /start novamente.
-  common_important: 😥 O serviço não respondeu. Por favor, entre em contato com @vychs para resolver o problema.
-  limit_exceeded: 👮🏻 Fique calmo!
-  wrong_file_extension: 📄 Extensão de arquivo errada. Apenas JPG/JPEG/PNG são suportados.
-  no_text_messages: 😕 Envie-me uma imagem ou um arquivo de imagem.
-  no_text_messages_egg: 😠 Você deve enviar uma I-M-A-G-E-M!
-  file_too_big: ✋ Seu arquivo é muito grande. Por favor, me envie arquivos de até 20 MB.
-  switched_tokens: |
-    😞 Lamento, tente enviar a mesma imagem novamente. Há uma carga muito grande no bot agora. Você provavelmente precisará me enviar uma foto várias vezes.
+    common: 😥 Algo deu errado. Por favor, tente usar o comando /start novamente.
+    common_important: 😥 O serviço não respondeu. Por favor, entre em contato com @vychs para resolver o problema.
+    limit_exceeded: 👮🏻 Fique calmo!
+    wrong_file_extension: 📄 Extensão de arquivo errada. Apenas JPG/JPEG/PNG são suportados.
+    no_text_messages: 😕 Envie-me uma imagem ou um arquivo de imagem.
+    no_text_messages_egg: 😠 Você deve enviar uma I-M-A-G-E-M!
+    file_too_big: ✋ Seu arquivo é muito grande. Por favor, me envie arquivos de até 20 MB.
+    switched_tokens: |
+        😞 Lamento, tente enviar a mesma imagem novamente. Há uma carga muito grande no bot agora. Você provavelmente precisará me enviar uma foto várias vezes.
 
-    Se o problema continuar e eu continuar enviando esta mensagem para você, entre em contato com @vychs.
-  failed_download_file: 😞 Não foi possível baixar esta foto. Por favor, tente outra foto.
-  not_a_member: ✋ Para continuar usando o bot, por favor se inscreva no canal. É o canal do desenvolvedor e você não verá nenhum spam lá. O bot é gratuito e este é o seu apoio :)
-  api_error: 😥 Algo deu errado. Tente alguma outra foto ou altere o serviço em /settings.
+        Se o problema continuar e eu continuar enviando esta mensagem para você, entre em contato com @vychs.
+    failed_download_file: 😞 Não foi possível baixar esta foto. Por favor, tente outra foto.
+    not_a_member: ✋ Para continuar usando o bot, por favor se inscreva no canal. É o canal do desenvolvedor e você não verá nenhum spam lá. O bot é gratuito e este é o seu apoio :)
+    api_error: 😥 Algo deu errado. Tente alguma outra foto ou altere o serviço em /settings.
 
 button:
-  language: Mudar idioma
-  settings: Configuração
-  to_sticker: "Converter para Sticker: ${state}"
-  service: Mudar serviço
-  add_text: "Sticker com Texto: ${state}"
-  channel: Canal
-  support: Suporte
-  subscribe: Se inscrever
-  back: ‹ Voltar
+    language: Mudar idioma
+    settings: Configuração
+    to_sticker: 'Converter para Sticker: ${state}'
+    service: Mudar serviço
+    add_text: 'Sticker com Texto: ${state}'
+    channel: Canal
+    support: Suporte
+    subscribe: Se inscrever
+    back: ‹ Voltar
 
 action:
-  a_on: "SIM"
-  a_off: "NAO"
+    a_on: 'SIM'
+    a_off: 'NAO'

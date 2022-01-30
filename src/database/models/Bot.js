@@ -7,9 +7,9 @@ const botSchema = new mongoose.Schema({
     inactive_tokens: {
         type: Array,
         required: false,
-        default: []
+        default: [],
     },
-    type: String
+    type: String,
 });
 
 module.exports = mongoose.model('Bot', botSchema);
