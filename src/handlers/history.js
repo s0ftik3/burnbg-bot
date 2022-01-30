@@ -5,7 +5,10 @@ const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => (ctx) => {
     try {
+        if (!ctx.user.beta) return replyWithError(ctx, 'BETA_ONLY');
+
         const userFiles = ctx.user.files;
+        const cache = ctx.session?.historyCache;
 
         if (userFiles.length <= 0) {
             return ctx.replyWithHTML(ctx.i18n.t('error.history_empty')).catch((err) => {
@@ -14,7 +17,20 @@ module.exports = () => (ctx) => {
             });
         }
 
+        if (cache && userFiles.length === cache.files && ctx.user.language === cache.languageLayout) {
+            return ctx
+                .replyWithHTML(ctx.i18n.t('service.history', { total: userFiles.length }), {
+                    reply_markup: Markup.inlineKeyboard(cache.buttons),
+                })
+                .catch((err) => {
+                    console.error(err);
+                    return replyWithError(ctx, 'METHOD_FAILED');
+                });
+        }
+
         const lastEightFiles = userFiles.reverse().slice(0, 5);
+
+        ctx.session.historyCache = { content: lastEightFiles };
 
         const buttons = lastEightFiles.map((e) => {
             const year = new Date(e.timestamp).getFullYear().toString();
@@ -37,6 +53,13 @@ module.exports = () => (ctx) => {
                 ),
             ]);
         }
+
+        ctx.session.historyCache = {
+            ...JSON.parse(JSON.stringify(ctx.session.historyCache)),
+            files: userFiles.length,
+            languageLayout: ctx.user.language,
+            buttons,
+        };
 
         return ctx
             .replyWithHTML(ctx.i18n.t('service.history', { total: userFiles.length }), {

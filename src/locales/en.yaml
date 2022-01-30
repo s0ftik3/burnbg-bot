@@ -57,6 +57,7 @@ error:
     history_empty: There are no files in the history. Once you process a picture, it will appear here.
     not_implemented: This feature is not implemented yet.
     not_owner_of_image: 👮🏻 It's not your image.
+    beta_only: 🙂 This feature is for beta testers only.
 
 button:
     language: Change Language
@@ -77,5 +78,5 @@ action:
     a_no: 'No'
 
 other:
-    file: file
+    file: document
     sticker: sticker

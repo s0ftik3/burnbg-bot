@@ -58,6 +58,9 @@ module.exports = (ctx, code) => {
             case 'API_ERROR':
                 ctx.replyWithHTML(ctx.i18n.t('error.api_error'));
                 break;
+            case 'BETA_ONLY':
+                ctx.replyWithHTML(ctx.i18n.t('error.beta_only'));
+                break;
             default:
                 ctx.replyWithHTML(ctx.i18n.t('error.common'));
                 console.error({

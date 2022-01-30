@@ -35,6 +35,8 @@ const {
     handleReset,
     handleNotImplemented,
     handleFileId,
+    handleStatistics,
+    handleBeta,
     handleBack,
     handleCallback,
 } = require('./handlers');
@@ -48,9 +50,14 @@ bot.use(rateLimit(config.limit));
 
 bot.start(handleStart());
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 bot.command('settings', handleSettings());
 bot.command('history', handleHistory());
 bot.command('reset', handleReset());
+
+bot.command(['statistics', 's'], handleStatistics());
+bot.command('beta', handleBeta());
 
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleService());

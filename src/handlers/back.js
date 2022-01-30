@@ -44,6 +44,7 @@ module.exports = () => async (ctx) => {
                 break;
             case 'history':
                 const userFiles = ctx.user.files;
+                const cache = ctx.session?.historyCache;
 
                 if (userFiles.length <= 0) {
                     return ctx
@@ -56,7 +57,21 @@ module.exports = () => async (ctx) => {
                         });
                 }
 
+                if (cache && userFiles.length === cache.files && ctx.user.language === cache.languageLayout) {
+                    return ctx
+                        .editMessageText(ctx.i18n.t('service.history', { total: userFiles.length }), {
+                            parse_mode: 'HTML',
+                            reply_markup: Markup.inlineKeyboard(cache.buttons),
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            return replyWithError(ctx, 'METHOD_FAILED');
+                        });
+                }
+
                 const lastEightFiles = userFiles.reverse().slice(0, 5);
+
+                ctx.session.historyCache = { content: lastEightFiles };
 
                 const buttons = lastEightFiles.map((e) => {
                     const year = new Date(e.timestamp).getFullYear().toString();
@@ -79,6 +94,13 @@ module.exports = () => async (ctx) => {
                         ),
                     ]);
                 }
+
+                ctx.session.historyCache = {
+                    ...JSON.parse(JSON.stringify(ctx.session.historyCache)),
+                    files: userFiles.length,
+                    languageLayout: ctx.user.language,
+                    buttons,
+                };
 
                 ctx.editMessageText(ctx.i18n.t('service.history', { total: userFiles.length }), {
                     parse_mode: 'HTML',
