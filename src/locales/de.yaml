@@ -16,14 +16,11 @@ service:
     no_translation: <i>Es scheint, als gäbe es keine Übersetzung für diesen String. Wenn du in der Lage bist, diesen String zu übersetzen, kannst du das gerne auf der <a href="https://github.com/s0ftik3/burnbg-bot">GitHub-Seite des Bots</a> tun.</i>
     pre_reset: Willst du dein Konto wirklich zurücksetzen?
     reset: 🚀 Du hast alle über dich gespeicherten Informationen erfolgreich gelöscht. Um neu zu beginnen, verwende den Befehl /start.
-    history: (${total}) Alle verarbeiteten Bilder werden hier gespeichert. Tippe auf eine beliebige Schaltfläche, um ein Bild anzusehen. Wenn du alle Bilder löschen willst, benutze den Befehl /reset.
     change_service: |
         Wechsle zwischen den Diensten und finde den besten für dich.
 
         ${service_1} — Schnell. Gut trainiertes neuronales Netzwerk. Beste Qualität. Bewältigt alle Fälle wie Menschen, Tiere, harte Hintergründe und andere Dinge. Allerdings unstabil und nicht immer verfügbar.
         ${service_2} — Mäßige Qualität. Ziemlich stabil und fast immer verfügbar.
-        ${service_3} — Langsam. Nicht gerade die beste Qualität. Könnte nicht verfügbar sein.
-        ${service_4} — Eher schnell als langsam. Auch gutes neuronales Netzwerk. Am besten für Menschen und Tiere.
     beta_full: 😞 Du bist zu spät dran. Nächstes Mal versuchst du, am Beta-Testprogramm teilzunehmen.
     already_joined_beta: 👍 Alles gut. Du hast dich bereits für das Beta-Testprogramm angemeldet. Warte jetzt auf eine Nachricht, in der neue Funktionen beschrieben werden, die nur für Beta-Tester/innen wie dich verfügbar sind!
     joined_beta: 🎉 Du hast dich erfolgreich für das Beta-Testprogramm angemeldet! Du wirst benachrichtigt, sobald neue Funktionen zum Testen verfügbar sind. Vielen Dank für deine Teilnahme!
