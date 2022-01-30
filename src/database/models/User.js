@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     id: {
         type: Number,
         unique: true,
-        required: true
+        required: true,
     },
     first_name: String,
     last_name: String,
@@ -13,72 +13,64 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         required: false,
-        default: 'user'
+        default: 'user',
     },
     to_sticker: {
         type: Boolean,
         required: false,
-        default: false
+        default: false,
     },
     add_text: {
         type: Boolean,
         required: false,
-        default: false
+        default: false,
     },
     service: {
         type: Number,
         required: false,
-        default: 0
+        default: 0,
     },
     usage: {
         type: Number,
         required: false,
-        default: 0
+        default: 0,
     },
     converted_to_file: {
         type: Number,
         required: false,
-        default: 0
+        default: 0,
     },
     converted_to_sticker: {
         type: Number,
         required: false,
-        default: 0
+        default: 0,
     },
-    last_time_used: { 
+    last_time_used: {
         type: Date,
         required: false,
-        default: 0
+        default: 0,
     },
     channel_member: {
         type: Boolean,
         required: false,
-        default: null
-    },
-    usage_limit: {
-        type: Number,
-        required: false,
-        default: 25
-    },
-    used_today: {
-        type: Number,
-        required: false,
-        default: 0
+        default: null,
     },
     beta: {
         type: Boolean,
         required: false,
-        default: false
+        default: false,
     },
-    files: [{
-        type: Object,
-        required: false
-    }],
+    files: [
+        {
+            type: Object,
+            required: false,
+        },
+    ],
     timestamp: {
         type: Date,
         required: false,
-        default: new Date()
-    }
+        default: new Date(),
+    },
 });
 
 module.exports = mongoose.model('User', userSchema);

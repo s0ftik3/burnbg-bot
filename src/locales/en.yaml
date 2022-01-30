@@ -1,132 +1,81 @@
 language: 🇬🇧 English
 
 service:
-  greeting: |
-    🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+    greeting: |
+        🖐 Hi, <b>${name}</b>! I can remove background of any photo you send me. Try and send me a file or a photo and see the magic.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
 
-    ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
-  settings: ${beta_sign} For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
-  settings_new: ${beta_sign} You will see the statistics of your usage on this page. Send your first image to the bot and come back here.
-  standby: 🕓 Please, standby while picture is processing...
-  change_language: Choose the interface language.
-  language_changed: 🇬🇧 Language changed.
-  warning: (beta) This service works slower and unstable.
-  service_no_change: You're not able to switch between services now.
-  image_downloaded: ${type} <code>(${size})</code> The image has been downloaded. Processing may take a few seconds...
-  no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
-  pre_reset: Do you really want to reset your account?
-  reset: 🚀 You successfully deleted all the information stored about you. To start over use /start command.
-  history: (${total}) All the processed pictures are stored here. Tap on any button to view a picture. If you want to delete all of them use /reset command.
-  change_service: |
-    Switch between services and find the best one for you.
+        ⭐️ I can also convert your image into a sticker. Use /settings command to activate this option.
+    settings: ${beta_sign} For <b>${range}</b> you processed <b>${usage} image${plural}</b> of which <b>${converted_to_file} ${verb_file} converted</b> to file and <b>${converted_to_sticker} ${verb_sticker} converted</b> to sticker.
+    settings_new: ${beta_sign} You will see the statistics of your usage on this page. Send your first image to the bot and come back here.
+    standby: 🕓 Please, standby while picture is downloading...
+    change_language: Choose the interface language.
+    language_changed: 🇬🇧 Language changed.
+    warning: (beta) This service works slower and unstable.
+    service_no_change: You're not able to switch between services now.
+    image_downloaded: ${type} <code>(${size})</code> The image has been downloaded. Processing may take a few seconds...
+    no_translation: <i>It seems there's no translation for this string. If you're able to translate this string, feel free to contribute on <a href="https://github.com/s0ftik3/burnbg-bot">the bot's GitHub repository</a>.</i>
+    pre_reset: Do you really want to reset your account?
+    reset: 🚀 You successfully deleted all the information stored about you. To start over use /start command.
+    history: |
+        Files in history: <b>${total}</b>
 
-    ${service_1} — Fast. Well-trained neural network. Best quality. Manages all cases such as people, animals, hard backgrounds and other things. However, unstable and not always availabe.
-    ${service_2} — Moderate quality. Quite stable and almost always available.
-    ${service_3} — Slow. Not the best quality at all. Might be unavailable.
-    ${service_4} — Rather fast than slow. Also good neural network. Best for people and animals.
-  beta_full: 😞 You're late. Try to join beta-testing program next time.
-  already_joined_beta: 👍 All good. You've already joined the beta-testing program. Now, wait for a message describing new features to test that will be available only for beta-testers, just like you!
-  joined_beta: 🎉 You've successfully joined the beta-testing program! You will get notified as soon as any new features available to test. Thank you!
-  wrong_payload: 👮‍♂️ Did you think by changing payload you would find something? Well, you did.
-  
+        Use /reset command to clear the history.
+    history_element: |
+        <b>File:</b> <tg-spoiler>${file_id}</tg-spoiler>
+        <b>Output format:</b> ${output} 
+        <b>Date:</b> ${date}
+
+        <i>If you want to see the image, copy the file id and send it to the bot.</i>
+    change_service: |
+        Switch between services and find the best one for you.
+
+        ${service_1} — Fast. Well-trained neural network. Best quality. Manages all cases such as people, animals, hard backgrounds and other things. However, unstable and not always availabe.
+        ${service_2} — Moderate quality. Quite stable and almost always available.
+    beta_full: 😞 You're late. Try to join beta-testing program next time.
+    already_joined_beta: 👍 All good. You've already joined the beta-testing program. Now, wait for a message describing new features to test that will be available only for beta-testers, just like you!
+    joined_beta: 🎉 You've successfully joined the beta-testing program! You will get notified as soon as any new features available to test. Thank you!
+    wrong_payload: 👮‍♂️ Did you think by changing payload you would find something? Well, you did.
+
 error:
-  common: 😥 Something went wrong. Please try /start again.
-  common_important: 😥 The service is not responding. Go to /settings and switch to another.
-  limit_exceeded: 👮🏻 Don't be in hurry!
-  wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
-  no_text_messages: 😕 Send me an image or a file of image instead.
-  no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
-  file_too_big: ✋ Your file is too big. Please, send me files up to 20 MB.
-  switched_tokens: |
-    😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times. You can switch between services by /settings command.
+    common: 😥 Something went wrong. Please try /start again.
+    common_important: 😥 The service is not responding. Go to /settings and switch to another.
+    limit_exceeded: 👮🏻 Don't be in hurry!
+    wrong_file_extension: 📄 Wrong file extension. Only JPG/JPEG/PNG are supported.
+    no_text_messages: 😕 Send me an image or a file of image instead.
+    no_text_messages_egg: 😠 You were told to send an I-M-A-G-E!
+    file_too_big: ✋ Your file is too big. Please, send me files up to 20 MB.
+    switched_tokens: |
+        😞 I am sorry, please try again the same picture. It's very huge load on the bot now. You will probably need to send me a picture several times. You can switch between services by /settings command.
 
-    If there's something wrong with the bot, it will be published in @softik channel.
-  failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
-  not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
-  api_error: 😥 Something went wrong. Please try some other photo or change service in /settings.
-  unable_reset: 🙂 Nothing to reset. Use /start command to create a record.
-  changed_service: 🔄 Send this image again. The service has been changed to <b>${new_service}</b>.
-  daily_limit: ✋ You've reached a daily limit. Please, come back tomorrow or contact @vychs and convince him why exactly you need to have increased limit.
-  the_same_service: 👮🏻 You have already chosen this service.
-
-  # Do not translate this (admin) section
-log:
-  common: |
-    ${type} <b><a href="tg://user?id=${id}">${name}</a></b> has just converted a <b>${input}</b> <code>(${size})</code> to a <b>${output}</b>.
-
-    <b>Information [<code>${id}</code>]:</b> 
-    ├ Started the bot: <b>${registered}</b>
-    ├ Total converted: <b>${total}</b>
-    ├ Converted to sticker: <b>${to_sticker}</b>
-    ├ Converted to file: <b>${to_file}</b>
-    ├ Service active: <b>${service}</b>
-    └ Language: <b>${language}</b>
-
-    <i>${timestamp}''</i>
-  new_user: |
-    🆕 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just started the bot for the first time.
-
-    <i>${timestamp}''</i>
-  no_subscription: |
-    ⛔️ [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> tried to use the bot without subscription.
-
-    <i>${timestamp}''</i>
-  service_change: |
-    🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed service from <b>${old_service}</b> to <b>${new_service}</b>.
-
-    <i>${timestamp}''</i>
-  language_change: |
-    🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has changed language from <b>${old_language}</b> to <b>${new_language}</b>.
-
-    <i>${timestamp}''</i>
-  to_sticker: |
-    🔄 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has turned ${action} to-sticker mode.
-
-    <i>${timestamp}''</i>
-  reseted: |
-    🧨 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has reseted their account.
-
-    <i>${timestamp}''</i>
-  standby: Fetching updates...
-  stats: |
-    <b>Users:</b> ${total} (+${total_new})
-    <b>Channel members:</b> ${channel_members}
-    <b>Languages:</b>
-    ├ RU: ${ru} (+${ru_new})
-    ├ EN: ${en} (+${en_new})
-    ├ ES: ${es} (+${es_new})
-    ├ IT: ${it} (+${it_new})
-    ├ ML: ${ml} (+${ml_new})
-    ├ PT-BR: ${pt_br} (+${pt_br_new})
-    └ TE: ${te} (+${te_new})
-    <b>Enabled stickers mode:</b> ${to_sticker}
-    <b>Converted to files the most:</b> <a href="tg://user?id=${file_id}">${file_name}</a> (${file_converted})
-    <b>Converted to stickers the most:</b> <a href="tg://user?id=${sticker_id}">${sticker_name}</a> (${sticker_converted})
-    <b>Usage the most:</b> <a href="tg://user?id=${usage_id}">${usage_name}</a> (${usage_usage})
-    <b>Used today:</b> ${used_today} (+${used_today_new})
-    <b>Last usage:</b> <a href="tg://user?id=${last_time_id}">${last_time_name}</a> (${last_time_timestamp})
-    <b>New user:</b> <a href="tg://user?id=${new_user_id}">${new_user_name}</a> (${new_user_timestamp})
-
-    <i>(+n) since the latest command execution</i>
-    <i>${timestamp}</i>
-  beta: |
-    🎉 [<code>${id}</code>] <b><a href="tg://user?id=${id}">${name}</a></b> has just joined the beta-testing program.
-
-    <i>${timestamp}''</i>
+        If there's something wrong with the bot, it will be published in @softik channel.
+    failed_download_file: 😞 Couldn't download this photo. Please, try some other photo.
+    not_a_member: ✋ To continue using the bot, please subscribe to the channel. It's developer's channel and you won't see any spam there. The bot is free and this is your support :)
+    api_error: 😥 Something went wrong. Please try some other photo or change service in /settings.
+    unable_reset: 🙂 Nothing to reset. Use /start command to create a record.
+    changed_service: 🔄 Send this image again. The service has been changed.
+    the_same_service: 👮🏻 You have already chosen this service.
+    history_empty: There are no files in the history. Once you process a picture, it will appear here.
+    not_implemented: This feature is not implemented yet.
+    not_owner_of_image: 👮🏻 It's not your image.
 
 button:
-  language: Change Language
-  settings: Settings
-  to_sticker: "Convert to Sticker: ${state}"
-  service: Change Service
-  add_text: "Sticker with Text: ${state}"
-  channel: Channel
-  support: Donate
-  subscribe: Subscribe
-  back: ‹ Back
+    language: Change Language
+    settings: Settings
+    to_sticker: 'Convert to Sticker: ${state}'
+    service: Change Service
+    add_text: 'Sticker with Text: ${state}'
+    channel: Channel
+    support: Donate
+    subscribe: Subscribe
+    more: '...${number} more'
+    back: ‹ Back
 
 action:
-  a_on: "ON"
-  a_off: "OFF"
-  a_yes: "Yes"
-  a_no: "No"
+    a_on: 'ON'
+    a_off: 'OFF'
+    a_yes: 'Yes'
+    a_no: 'No'
+
+other:
+    file: file
+    sticker: sticker

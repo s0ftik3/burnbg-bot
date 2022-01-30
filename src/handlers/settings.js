@@ -1,20 +1,39 @@
 'use strict';
 
-const getUserSession = require('../utils/general/getUserSession');
 const Markup = require('telegraf/markup');
-const createStatsObject = require('../utils/general/createStatsObject');
-const replyWithError = require('../utils/general/replyWithError');
-const getSettingsButtons = require('../utils/general/getSettingsButtons');
+const createStatsObject = require('../scripts/createStatsObject');
+const replyWithError = require('../scripts/replyWithError');
 
-module.exports = () => async (ctx) => {
+module.exports = () => (ctx) => {
     try {
-        const user = await getUserSession(ctx);
-        ctx.i18n.locale(user?.language);
-
-        ctx.replyWithHTML(ctx.getString(ctx, (user.usage <= 0) ? 'service.settings_new' : 'service.settings', { beta_sign: user.beta ? '(beta)' : '', ...createStatsObject(ctx, user) }), {
-            reply_markup: Markup.inlineKeyboard(getSettingsButtons(ctx, user)),
-            disable_web_page_preview: true
-        }).catch(() => replyWithError(ctx, 15));
+        return ctx
+            .replyWithHTML(
+                ctx.i18n.t(ctx.user.usage <= 0 ? 'service.settings_new' : 'service.settings', {
+                    beta_sign: ctx.user.beta ? '(beta)' : '',
+                    ...createStatsObject(ctx),
+                }),
+                {
+                    reply_markup: Markup.inlineKeyboard([
+                        [
+                            Markup.callbackButton(ctx.i18n.t('button.language'), 'language'),
+                            Markup.callbackButton(ctx.i18n.t('button.service'), 'service'),
+                        ],
+                        [
+                            Markup.callbackButton(
+                                ctx.i18n.t('button.to_sticker', {
+                                    state: ctx.user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off'),
+                                }),
+                                'to_sticker'
+                            ),
+                        ],
+                    ]),
+                    disable_web_page_preview: true,
+                }
+            )
+            .catch((err) => {
+                console.error(err);
+                return replyWithError(ctx, 'METHOD_FAILED');
+            });
     } catch (err) {
         console.error(err);
     }

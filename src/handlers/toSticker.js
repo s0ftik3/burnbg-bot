@@ -1,29 +1,37 @@
 'use strict';
 
-const User = require('../database/models/User');
-const getUserSession = require('../utils/general/getUserSession');
 const Markup = require('telegraf/markup');
-const getSettingsButtons = require('../utils/general/getSettingsButtons');
-const sendLog = require('../utils/general/sendLog');
+const replyWithError = require('../scripts/replyWithError');
 
 module.exports = () => async (ctx) => {
     try {
-        const user = await getUserSession(ctx);
-        ctx.i18n.locale(user.language);
+        await ctx.answerCbQuery();
 
-        User.updateOne({ id: ctx.from.id }, { $set: { to_sticker: user.to_sticker ? false : true } }, () => {});
-        ctx.session.user.to_sticker = user.to_sticker ? false : true;
-        
-        ctx.editMessageReplyMarkup(Markup.inlineKeyboard(getSettingsButtons(ctx, user)));
+        ctx.user.to_sticker = ctx.user.to_sticker ? false : true;
 
-        sendLog({
-            type: 'to_sticker', 
-            id: ctx.from.id, 
-            name: ctx.from.first_name, 
-            action: user.to_sticker
-        });
+        await ctx
+            .editMessageReplyMarkup(
+                Markup.inlineKeyboard([
+                    [
+                        Markup.callbackButton(ctx.i18n.t('button.language'), 'language'),
+                        Markup.callbackButton(ctx.i18n.t('button.service'), 'service'),
+                    ],
+                    [
+                        Markup.callbackButton(
+                            ctx.i18n.t('button.to_sticker', {
+                                state: ctx.user.to_sticker ? ctx.i18n.t('action.a_on') : ctx.i18n.t('action.a_off'),
+                            }),
+                            'to_sticker'
+                        ),
+                    ],
+                ])
+            )
+            .catch((err) => {
+                console.error(err);
+                return replyWithError(ctx, 'METHOD_FAILED');
+            });
 
-        ctx.answerCbQuery();
+        await ctx.user.save();
     } catch (err) {
         console.error(err);
     }

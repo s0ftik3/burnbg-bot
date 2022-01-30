@@ -4,9 +4,11 @@ const moment = require('moment');
 const plural = require('plural-ru');
 const replyWithError = require('./replyWithError');
 
-module.exports = (ctx, user) => {
+module.exports = (ctx) => {
     try {
+        const user = ctx.user;
         const language = user.language;
+
         moment.locale(language);
 
         switch (language) {
@@ -102,7 +104,7 @@ module.exports = (ctx, user) => {
 
                 return obj_de;
             default:
-                replyWithError(ctx, 0);
+                replyWithError(ctx, 'COMMON_ERROR');
                 break;
         }
     } catch (err) {
