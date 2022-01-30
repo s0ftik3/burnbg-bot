@@ -8,7 +8,7 @@ module.exports = () => (ctx) => {
         const userFiles = ctx.user.files;
 
         if (userFiles.length <= 0) {
-            return ctx.replyWithHTML(ctx.i18n.t('service.history_empty')).catch((err) => {
+            return ctx.replyWithHTML(ctx.i18n.t('error.history_empty')).catch((err) => {
                 console.error(err);
                 return replyWithError(ctx, 'METHOD_FAILED');
             });

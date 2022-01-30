@@ -47,7 +47,7 @@ module.exports = () => async (ctx) => {
 
                 if (userFiles.length <= 0) {
                     return ctx
-                        .editMessageText(ctx.i18n.t('service.history_empty'), {
+                        .editMessageText(ctx.i18n.t('error.history_empty'), {
                             parse_mode: 'HTML',
                         })
                         .catch((err) => {
