@@ -1,6 +1,6 @@
 # Burn Background Bot
 
-[![release](https://img.shields.io/badge/release-v2.0.3-green.svg?style=flat)]()
+[![release](https://img.shields.io/badge/release-v2.0.4-green.svg?style=flat)]()
 [![license](https://img.shields.io/github/license/s0ftik3/burnbg-bot)]()
 [![bot](https://img.shields.io/badge/Bot-Telegram-blue)](https://t.me/burnbgbot)
 
