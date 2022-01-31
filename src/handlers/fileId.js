@@ -15,17 +15,13 @@ module.exports = () => async (ctx) => {
                 return replyWithError(ctx, 'METHOD_FAILED');
             });
 
-        if (file.output === 'file') {
+        return ctx.replyWithPhoto(file_id).catch(() => {
+            // if the source was a document
             return ctx.replyWithDocument(file_id).catch((err) => {
                 console.error(err);
                 return replyWithError(ctx, 'METHOD_FAILED');
             });
-        } else {
-            return ctx.replyWithPhoto(file_id).catch((err) => {
-                console.error(err);
-                return replyWithError(ctx, 'METHOD_FAILED');
-            });
-        }
+        });
     } catch (err) {
         console.error(err);
     }
