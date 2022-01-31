@@ -41,7 +41,7 @@ module.exports = () => async (ctx) => {
         await ctx.deleteMessage(ctx.message.message_id + 1);
 
         return ctx.replyWithHTML(
-            `Done! Messages was sent. At least I tried.\n\nReceived: <b>${received}</b>\nLost: <b>${lost}</b>\nTotal: <b>${betaTesters.length}</b>`
+            `Done! Messages were sent. Well, at least I've tried.\n\nReceived: <b>${received}</b>\nLost: <b>${lost}</b>\nTotal: <b>${betaTesters.length}</b>`
         );
     } catch (err) {
         console.error(err);

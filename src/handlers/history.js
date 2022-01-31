@@ -28,11 +28,11 @@ module.exports = () => (ctx) => {
                 });
         }
 
-        const lastEightFiles = userFiles.reverse().slice(0, 5);
+        const lastFiveFiles = userFiles.reverse().slice(0, 5);
 
-        ctx.session.historyCache = { content: lastEightFiles };
+        ctx.session.historyCache = { content: lastFiveFiles };
 
-        const buttons = lastEightFiles.map((e) => {
+        const buttons = lastFiveFiles.map((e) => {
             const year = new Date(e.timestamp).getFullYear().toString();
             const month = (new Date(e.timestamp).getMonth() + 1).toString().padStart(2, '0');
             const day = new Date(e.timestamp).getDate().toString().padStart(2, '0');

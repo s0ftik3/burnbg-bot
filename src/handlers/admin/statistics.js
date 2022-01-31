@@ -8,8 +8,14 @@ module.exports = () => async (ctx) => {
         if (ctx.from.id != config.admin) return;
 
         const usersLength = await User.find().countDocuments();
+        const lastTimeUsersLength = ctx.session?.usersLength;
+        const difference = lastTimeUsersLength ? usersLength - lastTimeUsersLength : 0;
 
-        return ctx.replyWithHTML(`Number of users: <b>${usersLength}</b>`);
+        ctx.session.usersLength = usersLength;
+
+        return ctx.replyWithHTML(
+            `Number of users: <b>${usersLength}</b> <code>(${(difference <= 0 ? '' : '+') + difference})</code>`
+        );
     } catch (err) {
         console.error(err);
     }
