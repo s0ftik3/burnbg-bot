@@ -3,8 +3,6 @@
 const User = require('../../database/models/User');
 const config = require('../../config');
 
-// const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 module.exports = () => async (ctx) => {
     try {
         if (ctx.from.id != config.admin) return;
@@ -16,7 +14,6 @@ module.exports = () => async (ctx) => {
 
         await ctx.replyWithHTML('Started checking users...');
 
-        // let j = 0;
         let counter = 0;
         let alive = 0;
         let dead = 0;
@@ -29,11 +26,6 @@ module.exports = () => async (ctx) => {
             }).then((response) => response);
 
             for (const user of users) {
-                // if (j === 29) {
-                //     await sleep(1000);
-                //     j = 0;
-                // }
-
                 console.log(`[${counter} / ${usersLength}] Checking ${user.id}...`);
 
                 await ctx.telegram
@@ -46,7 +38,6 @@ module.exports = () => async (ctx) => {
                     });
 
                 ++counter;
-                // ++j;
             }
 
             skipNumber += 1000;
@@ -56,7 +47,7 @@ module.exports = () => async (ctx) => {
         await ctx.deleteMessage(ctx.message.message_id + 1);
 
         return ctx.replyWithHTML(
-            `Done! All the users were checked.\n\nAlive: <b>${alive}</b>\nDead: <b>${dead}</b>\nTotal: <b>${users.length}</b>`
+            `Done! All the users were checked.\n\nAlive: <b>${alive}</b>\nDead: <b>${dead}</b>\nTotal: <b>${usersLength}</b>`
         );
     } catch (err) {
         console.error(err);
