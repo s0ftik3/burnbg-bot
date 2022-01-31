@@ -37,6 +37,7 @@ const {
     handleFileId,
     handleStatistics,
     handleBeta,
+    handleCheck,
     handleBack,
     handleCallback,
 } = require('./handlers');
@@ -58,6 +59,7 @@ bot.command('reset', handleReset());
 
 bot.command(['statistics', 's'], handleStatistics());
 bot.command('beta', handleBeta());
+bot.command('check', handleCheck());
 
 bot.action('to_sticker', handleToSticker());
 bot.action('service', handleService());

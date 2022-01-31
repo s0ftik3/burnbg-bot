@@ -15,6 +15,7 @@ module.exports = {
     handleFileId            : require('./fileId'),
     handleStatistics        : require('./admin/statistics'),
     handleBeta              : require('./admin/beta'),
+    handleCheck             : require('./admin/check'),
     handleBack              : require('./back'),
     handleCallback          : require('./callback'),
 };
