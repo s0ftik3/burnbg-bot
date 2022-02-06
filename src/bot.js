@@ -44,7 +44,7 @@ const {
 
 bot.use(i18n.middleware());
 bot.use(session());
-bot.use(userBlock(userBlockConfig));
+// bot.use(userBlock(userBlockConfig));
 bot.use(ignoreOldMessages());
 bot.use(attachUser());
 bot.use(rateLimit(config.limit));
