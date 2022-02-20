@@ -40,6 +40,10 @@ const {
     handleCallback,
 } = require('./handlers');
 
+bot.catch((err, ctx) => {
+    console.log(`Ooops, encountered an error for ${ctx.updateType}`, err);
+});
+
 bot.use(i18n.middleware());
 bot.use(session());
 bot.use(ignoreOldMessages());
