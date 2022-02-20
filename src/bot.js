@@ -3,7 +3,6 @@ const config = require('./config');
 const bot = new Telegraf(config.token, { handlerTimeout: config.handler_timeout });
 
 const rateLimit = require('telegraf-ratelimit');
-const userBlock = require('telegraf-userblock');
 const session = require('telegraf/session');
 
 const path = require('path');
@@ -16,7 +15,6 @@ const i18n = new TelegrafI18n({
 
 const attachUser = require('./middlewares/attachUser');
 const ignoreOldMessages = require('./middlewares/ignoreOldMessages');
-const userBlockConfig = require('./middlewares/userBlock');
 
 const connect = require('./database/connect');
 const resetTokens = require('./database/resetTokens');
@@ -44,7 +42,6 @@ const {
 
 bot.use(i18n.middleware());
 bot.use(session());
-// bot.use(userBlock(userBlockConfig));
 bot.use(ignoreOldMessages());
 bot.use(attachUser());
 bot.use(rateLimit(config.limit));
