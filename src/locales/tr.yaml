@@ -1,0 +1,81 @@
+language: TR Turkce
+
+service:
+    greeting: |
+        🖐 Merhaba, <b>${name}</b>!Ben gönderdiğiniz her fotoğrafın arka planını kaldırabilirim. Bana bir dosya veya fotoğraf göndermeyi deneyin ve sihri görün.<a href="https://i.ibb.co/dKxZf5G/preview.png">ᅠ</a>
+
+        ⭐️ Ben görselinizi çıkartmaya çevirebilirim. Bu seçeneği etkinleştirmek için /settings komutunu kullanın.
+    settings: ${beta_sign} <b>${range}</b> için <b>${usage} görüntüyü${plural}</b> işlediniz ve bunlardan <b>${converted_to_file} ${verb_file} dönüştürüldü</ b> dosyaya ve çıkartmaya <b>${converted_to_sticker} ${verb_sticker} dönüştürüldü</b>.
+    settings_new: ${beta_sign}Bu sayfada kullanımınızın istatistiklerini göreceksiniz. İlk görselinizi bota gönderin ve buraya geri gelin.
+    standby: 🕓 Lütfen resim indirilirken beklemede kalın...
+    change_language: Lütfen arayüz dilini seçin.
+    language_changed: TR Dil değiştirildi.
+    warning: (beta) Bu servis daha yavaş ve daha az stabilize çalışıyor.
+    service_no_change: Şu anda hizmetler arasında geçiş yapamazsınız.
+    image_downloaded: ${type} <code>(${size})</code> Resim indirildi. İşlem birkaç saniye sürebilir...
+    no_translation: <i>Görünüşe göre bu dize için çeviri yok. Bu dizeyi tercüme edebiliyorsanız, botun GitHub deposuna <a href="https://github.com/s0ftik3/burnbg-bot">katkıda bulunmaktan çekinmeyin</a>.</i>
+    pre_reset: Gerçekten hesabını sııfırlamak istiyor musun?
+    reset: 🚀 Hakkınızda saklanan tüm bilgileri başarıyla sildiniz. Baştan başlamak için /start komutunu kullanın.
+    history: |
+        Dosya geçmişi: <b>${total}</b>
+
+        Geçmişi silmek için /reset komutunu kullanın.
+    history_element: |
+        <b>Dosya:</b> <tg-spoiler>${file_id}</tg-spoiler>
+        <b>Çıkış Formatı:</b> ${output} 
+        <b>Tarih:</b> ${date}
+
+        <i>Resmi görmek istiyorsanız, dosya kimliğini kopyalayın ve bot'a gönderin.</i>
+    change_service: |
+        Hizmetler arasında geçiş yapın ve sizin için en iyisini bulun.
+
+        ${service_1} — Hızlı. İyi eğitilmiş sinir ağı. En iyi kalite. İnsanlar, hayvanlar, sert geçmişler ve diğer şeyler gibi tüm vakaları yönetir. Ancak, kararsız ve her zaman mevcut değil.
+        ${service_2} — Orta kalite. Oldukça kararlı ve neredeyse her zaman kullanılabilir.
+    beta_full: 😞 Geç kaldın. Bir dahaki sefere beta test programına katılmayı deneyin.
+    already_joined_beta: 👍 Hepsi iyi. Beta test programına zaten katıldınız. Şimdi, tıpkı sizin gibi yalnızca beta test kullanıcıları için mevcut olacak test edilecek yeni özellikleri açıklayan bir mesaj bekleyin!
+    joined_beta: 🎉 Beta test programına başarıyla katıldınız! Test edilecek herhangi bir yeni özellik olur olmaz bilgilendirileceksiniz. Teşekkür ederim!
+
+error:
+    common: 😥 Bir şeyler yanlış gitti. Lütfen tekrar /start yazın.
+    common_important: 😥 Hizmet yanıt vermiyor. /settings'e gidin ve diğerine geçin.
+    limit_exceeded: 👮🏻 Acele etmeyin!
+    wrong_file_extension: 📄 Yanlış dosya uzantısı. Yalnızca JPG/JPEG/PNG desteklenir.
+    no_text_messages: 😕 Bunun yerine bana bir resim veya resim dosyası gönderin.
+    no_text_messages_egg: 😠 Sana bir R-E-S-İ-M göndermen söylendi!
+    file_too_big: ✋ Dosyan çok büyk. Lütfen en fazla 20 MB büyüklüğünde dosya yükle .
+    switched_tokens: |
+        😞 Üzgünüm, lütfen aynı resmi tekrar deneyin. Artık bot üzerinde çok büyük bir yük var. Muhtemelen bana birkaç kez resim göndermen gerekecek. /settings komutu ile servisler arasında geçiş yapabilirsiniz.
+
+        Botta bir sorun olursa @softik kanalında yayınlanacaktır.
+    failed_download_file: 😞 Bu fotoğraf indirilemedi. Lütfen başka bir fotoğraf deneyin.
+    not_a_member: ✋ Botu kullanmaya devam etmek için lütfen kanala abone olun. Bu, geliştiricinin kanalıdır ve burada herhangi bir spam görmezsiniz. Bot ücretsizdir ve bu sizin desteğiniz :)
+    api_error: 😥 Bir şeyler yanlış gitti. Lütfen başka bir fotoğraf deneyin veya /settings'te hizmeti değiştirin.
+    unable_reset: 🙂 Sıfırlanacak bir şey yok. Kayıt oluşturmak için /start komutunu kullanın.
+    changed_service: 🔄 Bu resmi tekrar gönder. Hizmet değiştirildi.
+    the_same_service: 👮🏻 Zaten bu servisi seçtin.
+    history_empty: Geçmişte dosya yok. Bir resmi işledikten sonra burada görünecektir.
+    not_implemented: Bu özellik henüz uygulanmadı.
+    not_owner_of_image: 👮🏻 Bu senin resmin değil.
+    beta_only: 🙂 Bu özellik sadece beta testerlar için.
+
+button:
+    language: Dil Değiştir
+    settings: Ayarlar
+    to_sticker: 'Çıkartmaya Dönüştür: ${state}'
+    service: Servis Değiştir
+    add_text: 'Metinli Etiket: ${state}'
+    channel: Kanal
+    support: Bağış
+    subscribe: Abone Ol
+    more: '...${number} 'den/dan fazla'
+    back: ‹ Geri
+
+action:
+    a_on: 'AÇ'
+    a_off: 'KAPA'
+    a_yes: 'EVET'
+    a_no: 'HAYIR'
+
+other:
+    file: Döküman
+    sticker: Çıkartma
